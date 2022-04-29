@@ -5,16 +5,22 @@ definePageMeta({
 </script>
 
 <script setup lang="ts">
-// const { data }: { data: any } = await useFetch('/api/hi?search=girls', {})
+import { ref } from 'vue'
+const searchText = ref('')
 
-const { data } = await useAsyncData('seachData', () =>
-  $fetch('/api/hi?search=gilmore')
-)
+const myData = ref([]) as any
+
+async function searchForStuff() {
+  const data = await fetch(`/api/hi?search=${searchText.value}`)
+  const json = await data.json()
+  console.log('json', json);
+  myData.value = json
+}
 
 
 </script>
 
-<!-- <template>
+<template>
   <div>
     <form class="form" @submit.prevent="searchForStuff">
       <input type="text" v-model="searchText">
@@ -22,18 +28,10 @@ const { data } = await useAsyncData('seachData', () =>
     </form>
     <div class="stuff">
       <div v-for="show in myData">
-        <img src="show.show?.image?.medium" alt="" srcset="">
+        <img :src="show.show?.image?.medium" alt="" srcset="">
       </div>
     </div>
-    eriks video: 23:08
-  </div>
-</template> -->
-
-<template>
-  <div>
-    <h1>hello World from page index.vue</h1>
-    {{ data }}
-    <img src="popcorn.jpeg" alt="" title="Das ist Popcorn">
+    <!-- eriks video: 23:08 -->
   </div>
 </template>
 

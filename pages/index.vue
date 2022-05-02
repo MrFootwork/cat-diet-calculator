@@ -17,7 +17,6 @@ async function searchForStuff() {
   myData.value = json
 }
 
-
 </script>
 
 <template>

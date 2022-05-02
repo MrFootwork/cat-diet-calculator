@@ -11,7 +11,7 @@ const searchText = ref('')
 const myData = ref([]) as any
 
 async function searchForStuff() {
-  const data = await fetch(`/api/hi?search=${searchText.value}`)
+  const data = await fetch(`/api/shows?search=${searchText.value}`)
   const json = await data.json()
   console.log('json', json);
   myData.value = json

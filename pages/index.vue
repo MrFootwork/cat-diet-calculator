@@ -34,13 +34,19 @@ async function searchForStuff() {
   </div>
 </template>
 
-<style>
+<style lang="scss">
 .stuff {
-  margin-top: 50px;
+  margin: 50px;
+  max-width: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 10px
+  gap: 10px;
+
+  img {
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px 0px black;
+  }
 }
 </style>

@@ -27,7 +27,7 @@ async function searchForStuff() {
     </form>
     <div class="stuff">
       <div v-for="show in myData">
-        <img :src="show.show?.image?.medium" class="grow" alt="" srcset="">
+        <img :src="show.show?.image?.medium" class="movie-card" alt="" srcset="">
       </div>
     </div>
     <!-- eriks video: 23:08 -->
@@ -44,15 +44,13 @@ async function searchForStuff() {
   flex-wrap: wrap;
   gap: 10px;
 
-  img {
+  .movie-card {
     border-radius: 8px;
     box-shadow: 5px 5px 10px 0px black;
 
-    .grow {
-      transition: all .1s ease-in-out;
-    }
+    transition: all .1s ease-in-out;
 
-    .grow:hover {
+    &:hover {
       transform: scale(1.05);
     }
   }

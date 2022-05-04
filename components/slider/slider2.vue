@@ -92,7 +92,6 @@ const rangeBulletLeft = computed(() => {
   }
 
   &::-webkit-slider-thumb {
-    box-shadow: none;
     border: 0px solid #ffffff;
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
     height: 42px;
@@ -105,7 +104,6 @@ const rangeBulletLeft = computed(() => {
   }
 
   &::-moz-range-thumb {
-    box-shadow: none;
     border: 0px solid #ffffff;
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
     height: 42px;
@@ -142,8 +140,6 @@ const rangeBulletLeft = computed(() => {
   left: attr(value);
   color: #fff;
   font-style: normal;
-  font-weight: normal;
-  line-height: normal;
   font-size: 36px;
 
   &::after {

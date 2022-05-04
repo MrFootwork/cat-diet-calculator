@@ -4,5 +4,5 @@ import { defineNuxtConfig } from 'nuxt'
 export default defineNuxtConfig({
 	// ssr breaks on windows for "npm run generate"
 	// https://github.com/nuxt/framework/issues/4555
-	ssr: false,
+	// ssr: false,
 })

@@ -1,0 +1,1 @@
+import{_ as r,d as s,o as a,c as n,i as _,t as p,b as c}from"./entry-c3f10f6f.mjs";const u=s({setup(t,{expose:o}){o();const e={};return Object.defineProperty(e,"__isScriptSetup",{enumerable:!1,value:!0}),e}}),i=c("h1",null,"Some Info",-1);function d(t,o,e,l,f,m){return a(),n("div",null,[i,_(" "+p(t.$route.params),1)])}var S=r(u,[["render",d]]);export{S as default};

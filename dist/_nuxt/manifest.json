@@ -1,0 +1,84 @@
+{
+  "node_modules/nuxt/dist/app/entry.mjs": {
+    "file": "entry-c3f10f6f.mjs",
+    "src": "node_modules/nuxt/dist/app/entry.mjs",
+    "isEntry": true,
+    "dynamicImports": [
+      "pages/cats.vue",
+      "pages/counter.vue",
+      "pages/index.vue",
+      "pages/pandau/[id].vue",
+      "pages/pandau/some-info[group].vue",
+      "layouts/custom.vue",
+      "layouts/default.vue",
+      "layouts/error.vue"
+    ],
+    "css": [
+      "entry.b1326f49.css"
+    ]
+  },
+  "pages/cats.vue": {
+    "file": "cats-c63177af.mjs",
+    "src": "pages/cats.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.mjs"
+    ]
+  },
+  "pages/counter.vue": {
+    "file": "counter-82bde58b.mjs",
+    "src": "pages/counter.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.mjs"
+    ]
+  },
+  "pages/index.vue": {
+    "file": "index-31463aec.mjs",
+    "src": "pages/index.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.mjs"
+    ]
+  },
+  "pages/pandau/[id].vue": {
+    "file": "_id_-40b911da.mjs",
+    "src": "pages/pandau/[id].vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.mjs"
+    ]
+  },
+  "pages/pandau/some-info[group].vue": {
+    "file": "some-info_group_-070f5d96.mjs",
+    "src": "pages/pandau/some-info[group].vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.mjs"
+    ]
+  },
+  "layouts/custom.vue": {
+    "file": "custom-9f4d654a.mjs",
+    "src": "layouts/custom.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.mjs"
+    ]
+  },
+  "layouts/default.vue": {
+    "file": "default-5baf5c61.mjs",
+    "src": "layouts/default.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.mjs"
+    ]
+  },
+  "layouts/error.vue": {
+    "file": "error-717eba8a.mjs",
+    "src": "layouts/error.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.mjs"
+    ]
+  }
+}

@@ -12,8 +12,10 @@ const myData = ref([]) as any
 
 async function searchForStuff() {
   const data = await fetch(`/api/shows?search=${searchText.value}`)
-  const json = await data.json()
-  console.log('json', json);
+  let json = await data.json()
+  // some data sets don't have images
+  // flexbox will add gaps to empty sets, too
+  json = json.filter(show => show.show.image)
   myData.value = json
 }
 

@@ -18,13 +18,12 @@
 import { ref } from 'vue'
 const RANGE_MINIMUM = 3
 const RANGE_MAXIMUM = 9
-// const magic = 578
-const magic = 578 / 2
+const magic = 578
 
-let rangeSlider = ref(RANGE_MINIMUM)
+const rangeSlider = ref(RANGE_MINIMUM)
 
 const rangeBulletLeft = computed(() => {
-  return ((rangeSlider.value) * magic / RANGE_MAXIMUM) + "px"
+  return ((rangeSlider.value - RANGE_MINIMUM) * magic / (RANGE_MAXIMUM - RANGE_MINIMUM)) + "px"
 })
 
 </script>
@@ -36,7 +35,7 @@ const rangeBulletLeft = computed(() => {
   align-items: center;
   justify-content: center;
   // body
-  height: 600px;
+  height: 250px;
   background-color: #000;
   font-family: 'Roboto', sans-serif;
   background: linear-gradient(180deg, #DB302A 0%, #62186B 100%) no-repeat;

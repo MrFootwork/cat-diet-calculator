@@ -1,0 +1,1 @@
+import{_ as o,o as a,c as n,f as c,j as s,k as _,l as r,i as l}from"./entry-163008c0.mjs";const d={},f=l("Welcome To The TV App");function u(e,i){const t=r;return a(),n("div",null,[c(t,{to:"/"},{default:s(()=>[f]),_:1}),_(e.$slots,"default")])}var m=o(d,[["render",u]]);export{m as default};

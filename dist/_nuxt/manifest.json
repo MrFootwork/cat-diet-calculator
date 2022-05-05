@@ -1,6 +1,6 @@
 {
   "node_modules/nuxt/dist/app/entry.mjs": {
-    "file": "entry-c3f10f6f.mjs",
+    "file": "entry-163008c0.mjs",
     "src": "node_modules/nuxt/dist/app/entry.mjs",
     "isEntry": true,
     "dynamicImports": [
@@ -18,7 +18,7 @@
     ]
   },
   "pages/cats.vue": {
-    "file": "cats-c63177af.mjs",
+    "file": "cats-ae249faa.mjs",
     "src": "pages/cats.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -26,7 +26,7 @@
     ]
   },
   "pages/counter.vue": {
-    "file": "counter-82bde58b.mjs",
+    "file": "counter-f8be043f.mjs",
     "src": "pages/counter.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -34,7 +34,7 @@
     ]
   },
   "pages/index.vue": {
-    "file": "index-31463aec.mjs",
+    "file": "index-e9a02c6a.mjs",
     "src": "pages/index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -42,7 +42,7 @@
     ]
   },
   "pages/pandau/[id].vue": {
-    "file": "_id_-40b911da.mjs",
+    "file": "_id_-6decc8f1.mjs",
     "src": "pages/pandau/[id].vue",
     "isDynamicEntry": true,
     "imports": [
@@ -50,7 +50,7 @@
     ]
   },
   "pages/pandau/some-info[group].vue": {
-    "file": "some-info_group_-070f5d96.mjs",
+    "file": "some-info_group_-9fba0348.mjs",
     "src": "pages/pandau/some-info[group].vue",
     "isDynamicEntry": true,
     "imports": [
@@ -58,7 +58,7 @@
     ]
   },
   "layouts/custom.vue": {
-    "file": "custom-9f4d654a.mjs",
+    "file": "custom-6678dcad.mjs",
     "src": "layouts/custom.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -66,7 +66,7 @@
     ]
   },
   "layouts/default.vue": {
-    "file": "default-5baf5c61.mjs",
+    "file": "default-fa5ab671.mjs",
     "src": "layouts/default.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -74,7 +74,7 @@
     ]
   },
   "layouts/error.vue": {
-    "file": "error-717eba8a.mjs",
+    "file": "error-d54e6bfe.mjs",
     "src": "layouts/error.vue",
     "isDynamicEntry": true,
     "imports": [

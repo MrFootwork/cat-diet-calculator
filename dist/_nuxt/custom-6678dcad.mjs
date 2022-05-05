@@ -1,0 +1,1 @@
+import{_ as c,o as n,c as _,f as e,j as o,k as r,b as d,l,i as s}from"./entry-163008c0.mjs";const u={},f=d("h1",null,"Crazy Custom Layout",-1),i=s("back to home"),m=s("Cats");function h(a,p){const t=l;return n(),_("div",null,[f,e(t,{to:"/"},{default:o(()=>[i]),_:1}),e(t,{to:"/cats"},{default:o(()=>[m]),_:1}),r(a.$slots,"default")])}var k=c(u,[["render",h]]);export{k as default};

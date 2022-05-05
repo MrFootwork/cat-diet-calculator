@@ -12,6 +12,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 
 	// test heroku env value
 	console.log(uri)
+	// FIXME connect DB to this app
 
 	const { search } = queryObject
 	if (search) {

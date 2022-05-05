@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>Continues deployment works great!</h1>
     <Slider1 />
     <Slider2 />
   </div>

@@ -24,5 +24,8 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 	res.end()
 }
 
-// MongoDB connection string
+// FIXME hide MongoDB connection string
 // mongodb+srv://pandau:<password>@cat-diet-calculator.pdnkg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+
+// TODO polynomial regression for value completion
+// npm package: js-polynomial-regression

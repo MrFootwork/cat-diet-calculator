@@ -2,33 +2,20 @@ import type { IncomingMessage, ServerResponse } from 'http'
 import * as url from 'url'
 
 import { MongoClient } from 'mongodb'
-
-// if depreciation warnings try
-// new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true })
-// more info: https://mongodb.github.io/node-mongodb-native/3.6/api/MongoClient.html
+// read environment variables from .env for "npm run dev"
+import { config } from 'dotenv'
 
 async function main() {
-	/**
-	 * Connection URI. Update <username>, <password>, and <your-cluster-url> to reflect your cluster.
-	 * See https://docs.mongodb.com/ecosystem/drivers/node/ for more details
-	 */
-
-	// Heroku Config Var Value
 	const uri = process.env.MONGODB_URI
-
-	const client = new MongoClient(uri)
-
-	console.log('food.ts/main(): ', uri)
-	// FIXME connect DB to this app
+	const mongoClient = new MongoClient(uri)
 
 	try {
-		await client.connect()
-
-		await listDatabases(client)
+		await mongoClient.connect()
+		await listDatabases(mongoClient)
 	} catch (e) {
 		console.error(e)
 	} finally {
-		await client.close()
+		await mongoClient.close()
 	}
 }
 

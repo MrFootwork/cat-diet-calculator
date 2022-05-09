@@ -14,14 +14,11 @@ async function main() {
 	 */
 
 	// Heroku Config Var Value
-	const uri = process.env.MONGODB_URI
-	// real connection string
-	// const uri =
-	// 	'mongodb+srv://pandau:lindaLINDA1206%3FCatDietCalculator@cat-diet-calculator.pdnkg.mongodb.net/cat-diet-calculator?retryWrites=true&w=majority'
+	const uri = process.env.MONGODB_URI || 
 
 	const client = new MongoClient(uri)
 
-	console.log(uri)
+	console.log('food.ts/main(): ', uri)
 	// FIXME connect DB to this app
 
 	try {

@@ -18,9 +18,10 @@ const myData = ref([]) as any
 async function getData() {
   const data = await fetch(`/api/food`)
   let json = await data.json()
+  console.log(json)
   // some data sets don't have images
   // flexbox will add gaps to empty sets, too
-  json = json.filter(show => show.show.image)
+  // json = json.filter(show => show.show.image)
   myData.value = json
 }
 </script>

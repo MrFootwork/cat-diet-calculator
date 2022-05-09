@@ -5,39 +5,38 @@ import { MongoClient } from 'mongodb'
 // read environment variables from .env for "npm run dev"
 import { config } from 'dotenv'
 
-async function main() {
+export default async (req: IncomingMessage, res: ServerResponse) => {
+	// type Food = {
+	// 	name: string
+	// 	weight: {
+	// 		ideal: number
+	// 		overweight: number
+	// 	}
+	// }
+	// FIXME declare weight as array of {ideal: number, overweight: number}
+	// let data: Food[]
+	let data = []
+	data = await fetchMongo()
+	// lazy writeHead: usually you would need to catch a 404
+	res.writeHead(200, { 'Content-Type': 'application/json' })
+	res.write(JSON.stringify(data))
+	res.end()
+}
+
+async function fetchMongo() {
 	const uri = process.env.MONGODB_URI
-	const mongoClient = new MongoClient(uri)
+	const mongoClient: MongoClient = new MongoClient(uri)
 
 	try {
 		await mongoClient.connect()
-		await listDatabases(mongoClient)
+		const db = mongoClient.db('food')
+		const collection = await db.collection('dry').find({}).toArray()
+		return collection
 	} catch (e) {
 		console.error(e)
 	} finally {
 		await mongoClient.close()
 	}
-}
-
-async function listDatabases(client) {
-	const databasesList = await client.db().admin().listDatabases()
-
-	console.log('Databases:')
-	databasesList.databases.forEach(db => console.log(` - ${db.name}`))
-}
-
-export default async (req: IncomingMessage, res: ServerResponse) => {
-	await main().catch(console.error)
-
-	let data = { data: [{ data: '' }] }
-	const queryObject = url.parse(req.url as string, true)
-	console.log('QueryObject: ', queryObject)
-	data = await $fetch(`endpoint for mongodb food dry`)
-
-	// lazy writeHead: usually you would need to catch a 404
-	res.writeHead(200, { 'Content-Type': 'application/json' })
-	res.write(JSON.stringify(data))
-	res.end()
 }
 
 // TODO polynomial regression for value completion

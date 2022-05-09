@@ -3,9 +3,6 @@ import * as url from 'url'
 
 import { MongoClient } from 'mongodb'
 
-// Heroku Config Var Value
-// const uri = process.env.MONGODB_URI
-
 // if depreciation warnings try
 // new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 // more info: https://mongodb.github.io/node-mongodb-native/3.6/api/MongoClient.html
@@ -15,9 +12,17 @@ async function main() {
 	 * Connection URI. Update <username>, <password>, and <your-cluster-url> to reflect your cluster.
 	 * See https://docs.mongodb.com/ecosystem/drivers/node/ for more details
 	 */
-	const uri =
-		'mongodb+srv://pandau:lindaLINDA1206%3FCatDietCalculator@cat-diet-calculator.pdnkg.mongodb.net/cat-diet-calculator?retryWrites=true&w=majority'
+
+	// Heroku Config Var Value
+	const uri = process.env.MONGODB_URI
+	// real connection string
+	// const uri =
+	// 	'mongodb+srv://pandau:lindaLINDA1206%3FCatDietCalculator@cat-diet-calculator.pdnkg.mongodb.net/cat-diet-calculator?retryWrites=true&w=majority'
+
 	const client = new MongoClient(uri)
+
+	console.log(uri)
+	// FIXME connect DB to this app
 
 	try {
 		await client.connect()

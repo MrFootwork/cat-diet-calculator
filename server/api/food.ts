@@ -2,7 +2,6 @@ import type { IncomingMessage, ServerResponse } from 'http'
 import * as url from 'url'
 
 import { MongoClient } from 'mongodb'
-// read environment variables from .env for "npm run dev"
 import { config } from 'dotenv'
 
 export default async (req: IncomingMessage, res: ServerResponse) => {
@@ -15,8 +14,11 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 	// }
 	// FIXME declare weight as array of {ideal: number, overweight: number}
 	// let data: Food[]
+	// FIXME Test all CRUD operations
+	// FIXME write api concept
 	let data = []
 	data = await fetchMongo()
+	console.log(data)
 	// lazy writeHead: usually you would need to catch a 404
 	res.writeHead(200, { 'Content-Type': 'application/json' })
 	res.write(JSON.stringify(data))

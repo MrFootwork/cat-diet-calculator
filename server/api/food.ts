@@ -12,8 +12,6 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 	// 		overweight: number
 	// 	}
 	// }
-	// FIXME declare weight as array of {ideal: number, overweight: number}
-	// let data: Food[]
 	// FIXME Test all CRUD operations
 	// FIXME write api concept
 	let data = []
@@ -35,7 +33,7 @@ async function fetchMongo() {
 		const collection = await db.collection('dry').find({}).toArray()
 		return collection
 	} catch (e) {
-		console.error(e)
+		console.error('could not read from database. ', e)
 	} finally {
 		await mongoClient.close()
 	}

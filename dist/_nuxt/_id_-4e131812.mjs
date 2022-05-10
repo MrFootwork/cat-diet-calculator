@@ -1,0 +1,1 @@
+import{_ as r,o,c as s,b as t,t as a,a as n}from"./entry-1ba6012a.mjs";const c={},d=n("h1",null,"hello world from pages/pandau/[id].vue",-1);function l(e,i){return o(),s("div",null,[d,t(" $route.params "+a(e.$route.params)+" $route.params.id "+a(e.$route.params.id),1)])}var u=r(c,[["render",l]]);export{u as default};

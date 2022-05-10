@@ -5,10 +5,11 @@
 		"dev": "nuxt dev",
 		"start": "node .output/server/index.mjs",
 		"generate": "nuxt generate",
-		"preview": "nuxt preview"
+		"preview": "nuxt preview",
+		"logs": "heroku logs --source app --tail"
 	},
 	"devDependencies": {
-		"nuxt": "3.0.0-rc.1",
+		"nuxt": "3.0.0-rc.3",
 		"sass": "^1.51.0"
 	},
 	"engines": {

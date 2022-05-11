@@ -7,7 +7,23 @@ definePageMeta({
 <template>
   <div>
     <button @click="getData">Get Data</button>
-    <p>{{ myData }}</p>
+    <ul>
+      <li v-for="foodBrand in foodBrands">
+        <h2>{{ foodBrand.name }}</h2>
+        <table class="recommendation">
+          <tr>
+            <th>Weight</th>
+            <th>Ideal</th>
+            <th>Overweight</th>
+          </tr>
+          <tr v-for="row in foodBrand.recommendations">
+            <td>{{ row.weight }}</td>
+            <td>{{ row.ideal }}</td>
+            <td>{{ row.overweight }}</td>
+          </tr>
+        </table>
+      </li>
+    </ul>
 
     <div class="singleton">
       <div class="name">
@@ -36,7 +52,7 @@ definePageMeta({
 import { ref } from "vue";
 import MyClass from "~/model/MyClass";
 
-const myData = ref([]) as any;
+const foodBrands = ref([]) as any;
 const name = ref('')
 const age = ref(0)
 const singleton = ref(MyClass.getInstance({ name: '', age: 0 }))
@@ -45,7 +61,7 @@ async function getData() {
 
   const data = await fetch(`/api/food`);
   let json = await data.json();
-  myData.value = json;
+  foodBrands.value = json;
 
 }
 
@@ -58,4 +74,31 @@ function getSingletonProps() {
 </script>
 
 <style lang="scss">
+.recommendation {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.recommendation td,
+.recommendation th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.recommendation tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.recommendation tr:hover {
+  background-color: #ddd;
+}
+
+.recommendation th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
 </style>

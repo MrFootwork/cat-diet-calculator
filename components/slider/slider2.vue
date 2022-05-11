@@ -1,31 +1,42 @@
 <template>
   <div class="container">
-
     <div class="range-slider">
-      <span id="rs-bullet" class="rs-label" :style="{ left: rangeBulletLeft }"> {{ rangeSlider }} </span>
-      <input id="rs-range-line" class="rs-range" type="range" v-model="rangeSlider" :min="RANGE_MINIMUM"
-        :max="RANGE_MAXIMUM" step=".5">
+      <span id="rs-bullet" class="rs-label" :style="{ left: rangeBulletLeft }">
+        {{ rangeSlider }}
+      </span>
+      <input
+        id="rs-range-line"
+        class="rs-range"
+        type="range"
+        v-model="rangeSlider"
+        :min="RANGE_MINIMUM"
+        :max="RANGE_MAXIMUM"
+        step=".5"
+      />
     </div>
 
     <div class="box-minmax">
-      <span>{{ RANGE_MINIMUM }}</span><span> {{ RANGE_MAXIMUM }} </span>
+      <span>{{ RANGE_MINIMUM }}</span
+      ><span> {{ RANGE_MAXIMUM }} </span>
     </div>
-
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-const RANGE_MINIMUM = 3
-const RANGE_MAXIMUM = 9
-const magic = 578
+import { ref } from "vue";
+const RANGE_MINIMUM = 3;
+const RANGE_MAXIMUM = 9;
+const magic = 578;
 
-const rangeSlider = ref(RANGE_MINIMUM)
+const rangeSlider = ref(RANGE_MINIMUM);
 
 const rangeBulletLeft = computed(() => {
-  return ((rangeSlider.value - RANGE_MINIMUM) * magic / (RANGE_MAXIMUM - RANGE_MINIMUM)) + "px"
-})
-
+  return (
+    ((rangeSlider.value - RANGE_MINIMUM) * magic) /
+      (RANGE_MAXIMUM - RANGE_MINIMUM) +
+    "px"
+  );
+});
 </script>
 
 <style scoped lang="scss">
@@ -37,8 +48,8 @@ const rangeBulletLeft = computed(() => {
   // body
   height: 250px;
   background-color: #000;
-  font-family: 'Roboto', sans-serif;
-  background: linear-gradient(180deg, #DB302A 0%, #62186B 100%) no-repeat;
+  font-family: "Roboto", sans-serif;
+  background: linear-gradient(180deg, #db302a 0%, #62186b 100%) no-repeat;
   // *
   margin: 0;
   padding: 0;
@@ -50,7 +61,7 @@ const rangeBulletLeft = computed(() => {
   display: flex;
   justify-content: space-between;
   font-size: 20px;
-  color: #FFFFFF;
+  color: #ffffff;
 
   span:first-child {
     margin-left: 10px;
@@ -59,7 +70,6 @@ const rangeBulletLeft = computed(() => {
 
 .range-slider {
   margin-top: 0;
-
 }
 
 .rs-range {
@@ -121,7 +131,6 @@ const rangeBulletLeft = computed(() => {
 }
 
 .rs-label {
-
   position: relative;
   transform-origin: center center;
   display: block;
@@ -149,6 +158,5 @@ const rangeBulletLeft = computed(() => {
     letter-spacing: 0.07em;
     margin-top: -2px;
   }
-
 }
 </style>

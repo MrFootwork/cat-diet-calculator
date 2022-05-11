@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input type="range" class="range-style">
+    <input type="range" class="range-style" />
   </div>
 </template>
 
@@ -15,7 +15,7 @@
 <style scoped lang="scss">
 $primary: #e0e0e0;
 
-input[type='range'] {
+input[type="range"] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;

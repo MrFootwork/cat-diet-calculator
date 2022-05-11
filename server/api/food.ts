@@ -14,6 +14,8 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 	// }
 	// FIXME Test all CRUD operations
 	// FIXME write api concept
+	// OOP in vue tips
+	// https://vuejsdevelopers.com/2017/04/22/vue-js-libraries-plugins/
 	let data = []
 	data = await fetchMongo()
 	console.log(data)

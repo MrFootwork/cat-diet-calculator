@@ -6,22 +6,18 @@
   </div>
 </template>
 
-
-<script  lang="ts">
+<script lang="ts">
 definePageMeta({
   layout: "custom",
-})
+});
 </script>
 
-
 <script setup lang="ts">
+import { ref } from "vue";
 
-import { ref } from 'vue'
-
-const theCount = ref(0)
+const theCount = ref(0);
 
 function addOne() {
-  theCount.value++
+  theCount.value++;
 }
-
 </script>

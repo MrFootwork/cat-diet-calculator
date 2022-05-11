@@ -4,6 +4,7 @@
     <NuxtLink to="/"> back to home </NuxtLink>
     <NuxtLink to="/counter"> Counter </NuxtLink>
     <NuxtLink to="/shows"> Shows </NuxtLink>
+    <NuxtLink to="/singleton"> Singleton </NuxtLink>
     <slot />
   </div>
 </template>

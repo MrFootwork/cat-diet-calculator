@@ -40,7 +40,7 @@ definePageMeta({
       </div>
 
       <button @click="getSingletonProps">Get Singleton Prop</button>
-      <p>{{ singleton.name }} ist {{ singleton.age }} Jahre alt. </p>
+      <p>{{ singleton.properties.name }} ist {{ singleton.properties.age }} Jahre alt. </p>
 
     </div>
 
@@ -51,11 +51,17 @@ definePageMeta({
 <script setup lang="ts">
 import { ref } from "vue";
 import MyClass from "~/model/MyClass";
+import type Properties from "~/model/Properties"
+
+const defaultProperties: Properties = {
+  name: "name",
+  age: 0
+}
 
 const foodBrands = ref([]) as any;
 const name = ref('')
 const age = ref(0)
-const singleton = ref(MyClass.getInstance({ name: '', age: 0 }))
+const singleton = ref(MyClass.getInstance(defaultProperties))
 
 async function getData() {
 
@@ -66,10 +72,10 @@ async function getData() {
 }
 
 function getSingletonProps() {
-
-  singleton.value.name = name.value
-  singleton.value.age = age.value
-
+  singleton.value.properties = {
+    name: name.value,
+    age: age.value
+  }
 }
 </script>
 

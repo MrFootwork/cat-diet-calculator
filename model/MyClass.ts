@@ -1,11 +1,11 @@
+import type Properties from './Properties'
+
 export default class MyClass {
-	private _name: string | null
-	private _age: number | null
+	private _properties: Properties
 	private static instance: MyClass
 
 	private constructor(properties: Properties) {
-		this._name = properties.name
-		this._age = properties.age
+		this._properties = properties
 	}
 
 	static getInstance(properties: Properties) {
@@ -15,26 +15,11 @@ export default class MyClass {
 		return MyClass.instance
 	}
 
-	public get name() {
-		return this._name
+	public get properties() {
+		return this._properties
 	}
 
-	public get age() {
-		return this._age
-	}
-
-	public set name(name: string) {
-		this._name = name
-	}
-
-	public set age(age: number) {
-		this._age = age
+	public set properties(properties: Properties) {
+		this._properties = properties
 	}
 }
-
-interface Properties {
-	name: string | null
-	age?: number | null
-}
-
-// FIXME only use properties in the class implementation

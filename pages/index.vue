@@ -78,27 +78,29 @@ function getSingletonProps() {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
-}
 
-.recommendation td,
-.recommendation th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
+  & td,
+  & th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
 
-.recommendation tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
+  & th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+  }
 
-.recommendation tr:hover {
-  background-color: #ddd;
-}
+  & tr {
+    &:nth-child(even) {
+      background-color: #f2f2f2;
+    }
 
-.recommendation th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #04AA6D;
-  color: white;
+    &:hover {
+      background-color: #ddd;
+    }
+  }
 }
 </style>

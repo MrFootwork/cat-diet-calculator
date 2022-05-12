@@ -1,11 +1,11 @@
 {
-  // https://v3.nuxtjs.org/concepts/typescript
-  "extends": "./.nuxt/tsconfig.json"
-  // "compilerOptions": {
-  // 	"types": [
-  // 		// add types for context.pinia
-  // 		// https://pinia.vuejs.org/ssr/nuxt.html#using-the-nuxt-context-in-stores
-  // 		"@pinia/nuxt"
-  // 	]
-  // }
+	// https://v3.nuxtjs.org/concepts/typescript
+	"extends": "./.nuxt/tsconfig.json"
+	// "compilerOptions": {
+	// 	"types": [
+	// 		// add types for context.pinia
+	// 		// https://pinia.vuejs.org/ssr/nuxt.html#using-the-nuxt-context-in-stores
+	// 		"@pinia/nuxt"
+	// 	]
+	// }
 }

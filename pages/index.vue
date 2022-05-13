@@ -44,6 +44,11 @@ definePageMeta({
 
     </div>
 
+    <div class="database">
+      {{ allCollections }}
+    </div>
+
+
   </div>
 </template>
 <!-- FIXME build basic UI -->
@@ -52,16 +57,13 @@ definePageMeta({
 import { ref } from "vue";
 import MyClass from "~/model/MyClass";
 import type Properties from "~/model/Properties"
-
-const defaultProperties: Properties = {
-  name: "name",
-  age: 0
-}
+import Database from "~/model/Database"
 
 const foodBrands = ref([]) as any;
 const name = ref('')
 const age = ref(0)
-const singleton = ref(MyClass.getInstance(defaultProperties))
+const singleton = ref(MyClass.getInstance())
+const allCollections = ref(Database.getInstance())
 
 async function getData() {
 

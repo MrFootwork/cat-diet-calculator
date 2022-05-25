@@ -5,6 +5,7 @@
     <NuxtLink to="/counter"> Counter </NuxtLink>
     <NuxtLink to="/shows"> Shows </NuxtLink>
     <NuxtLink to="/singleton"> Singleton </NuxtLink>
+    <NuxtLink to="/calculator"> Calculator </NuxtLink>
     <slot />
   </div>
 </template>

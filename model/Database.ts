@@ -1,55 +1,36 @@
-/****************************************************************
- *  Database
- ****************************************************************
- *  * Singleton
- *  * can return raw data
- *
- *
- *
- ***************************************************************/
-import { MongoClient } from 'mongodb'
-import { config } from 'dotenv'
-
 export default class Database {
-	readonly foodRecommendations: string
+	private _rawData
 	private static instance: Database
 
-	private constructor() {
-		this.foodRecommendations = 'constructor'
-	}
+	private constructor() {}
 
-	static async getInstance() {
-		if (Database.instance) Database.instance
-
-		Database.instance = new Database()
-		this.foodRecommendations = await fetchDB()
-	}
-
-	private async fetchDB() {
-		const uri = process.env.MONGODB_URI || ''
-		const mongoClient: MongoClient = new MongoClient(uri)
-
-		try {
-			await mongoClient.connect()
-			const db = mongoClient.db('food')
-			// get all collections
-			// fetch all collections
-			return 'test'
-		} catch (e) {
-			console.error('could not read from database. ', e)
-		} finally {
-			await mongoClient.close()
+	static getInstance() {
+		if (!Database.instance) {
+			Database.instance = new Database()
 		}
+		return Database.instance
+	}
 
-		// try {
-		// 	await mongoClient.connect()
-		// 	const db = mongoClient.db('food')
-		// 	const collection = await db.collection('dry').find({}).toArray()
-		// 	return collection
-		// } catch (e) {
-		// 	console.error('could not read from database. ', e)
-		// } finally {
-		// 	await mongoClient.close()
-		// }
+	set data(customData) {
+		this._rawData = customData
+	}
+
+	get data(): any {
+		return this._rawData
+	}
+
+	async fetchMongo() {
+		try {
+			const data = await fetch('api/getData')
+			let json = await data.json()
+			this._rawData = json
+		} catch (e) {
+			console.log('could not fetch MongoDB: ', e)
+			this._rawData = null
+		}
+	}
+
+	async resetDB() {
+		await fetch('api/resetDB')
 	}
 }

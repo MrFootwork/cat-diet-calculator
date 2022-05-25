@@ -1,22 +1,24 @@
+import Database from '~/model/Database'
+import DataProcessorDry from '~/model/DataProcessorDry'
+import DataProcessorWet from '~/model/DataProcessorWet'
+
+// FIXME create processor instances
+
 export default class Calculator {
-	public
+	// FIXME setup all required data
+	private _rawData
+	private static instance: Calculator
+	// FIXME setup model instances
 
-	private constructor(properties: Properties) {
-		this._properties = properties
-	}
+	private constructor() {}
 
-	static getInstance(properties: Properties) {
-		if (!MyClass.instance) {
-			MyClass.instance = new MyClass(properties)
+	static getInstance() {
+		if (!Calculator.instance) {
+			Calculator.instance = new Calculator()
 		}
-		return MyClass.instance
+		return Calculator.instance
 	}
+	// FIXME setter for all input variables
 
-	public get properties() {
-		return this._properties
-	}
-
-	public set properties(properties: Properties) {
-		this._properties = properties
-	}
+	// FIXME calculate
 }

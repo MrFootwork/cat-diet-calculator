@@ -1,5 +1,7 @@
 <template>
   <div>
+    <!-- FIXME build basic UI -->
+
     <div>
       <h5>dryProcessor:</h5>
       <p> {{ dryProcessor.data }} </p>

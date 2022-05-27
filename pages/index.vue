@@ -51,7 +51,6 @@ definePageMeta({
 
   </div>
 </template>
-<!-- FIXME build basic UI -->
 
 <script setup lang="ts">
 import { ref } from "vue";

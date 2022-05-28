@@ -9,18 +9,22 @@
       </div>
 
       <div class="body-shape">
-        <input name="body-shape" type="radio" id="ideal" />
-        <label for="radio">Ideal</label>
-        <input name="body-shape" type="radio" id="overweight" />
-        <label for="radio">Overweight</label>
+        <label for="ideal">
+          <input type="radio" name="body-shape" id="ideal" />
+          Ideal
+        </label>
+        <label for="overweight">
+          <input type="radio" name="body-shape" id="overweight" />
+          Overweight
+        </label>
       </div>
 
       <div class="dry-food">
-        <div v-for="dryFood in dryProcessor.data" :key="dryFood.name">
+        <label v-for="dryFood in dryProcessor.data" :key="dryFood.name" :for="dryFood.name">
           <img :src="dryFood.id" :alt="dryFood.name">
           <input type="checkbox" :id="dryFood.name" />
-          <label :for="dryFood.name"> {{ dryFood.name }} </label>
-        </div>
+          {{ dryFood.name }}
+        </label>
       </div>
 
       <!-- FIXME build Calculator with check states to display only checked brands -->
@@ -35,6 +39,7 @@
       <p>`Ratios: ` {{ dryFoodRatio }}</p>
 
     </div>
+
     <div>
       <h5>dryProcessor:</h5>
       <p> {{ JSON.stringify(dryProcessor.data) }} </p>

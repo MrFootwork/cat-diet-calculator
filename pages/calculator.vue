@@ -23,6 +23,7 @@
         </div>
       </div>
 
+      <!-- FIXME build Calculator with check states to display only checked brands -->
       <div class="dry-mix">
         <div class="dry-mix-slider" v-for="(dryFood, i) in dryProcessor.data" :key="dryFood.name">
           <label for="dry-food-brand-name">{{ dryFood.name }}</label>

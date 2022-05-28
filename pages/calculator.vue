@@ -2,21 +2,37 @@
   <div>
     <!-- FIXME build basic UI -->
     <div class="calculator-ui">
+
       <div class="cat-weight">
         <label for="cat-weight">{{ catWeight }}</label>
         <input id="cat-weight" type="range" min="3" max="6" v-model="catWeight" />
       </div>
+
       <div class="body-shape">
-        <input name="body-shape" type="radio" id="ideal" /> <label for="radio">Ideal</label>
-        <input name="body-shape" type="radio" id="overweight" /> <label for="radio">Overweight</label>
+        <input name="body-shape" type="radio" id="ideal" />
+        <label for="radio">Ideal</label>
+        <input name="body-shape" type="radio" id="overweight" />
+        <label for="radio">Overweight</label>
       </div>
+
       <div class="dry-food">
-        <div v-for="dryFood in dryProcessor.data">
+        <div v-for="dryFood in dryProcessor.data" :key="dryFood.name">
           <img :src="dryFood.id" :alt="dryFood.name">
           <input type="checkbox" :id="dryFood.name" />
           <label :for="dryFood.name"> {{ dryFood.name }} </label>
         </div>
       </div>
+
+      <div class="dry-mix">
+        <div class="dry-mix-slider" v-for="(dryFood, i) in dryProcessor.data" :key="dryFood.name">
+          <label for="dry-food-brand-name">{{ dryFood.name }}</label>
+          <input id="dry-food-brand-name" type="range" min="0" max="1" step=".1" v-model="dryFoodRatio[i]" />
+          <label for="dry-food-brand-name">{{ dryFoodRatio[i] }}</label>
+        </div>
+      </div>
+
+      <p>`Ratios: ` {{ dryFoodRatio }}</p>
+
     </div>
     <div>
       <h5>dryProcessor:</h5>
@@ -49,10 +65,13 @@ const db = ref(Database.getInstance())
 const dryProcessor = ref(DataProcessorDry.getInstance())
 const wetProcessor = ref(DataProcessorWet.getInstance())
 
+let dryFoodRatio = ref([])
+
 async function fetchData() {
   await db.value.fetchMongo()
   dryProcessor.value.processData()
   wetProcessor.value.processData()
+  dryFoodRatio.value = dryProcessor.value.data.map(brand => 0)
 }
 
 async function reset() {

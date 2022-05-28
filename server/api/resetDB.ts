@@ -77,6 +77,32 @@ const royalCaninSterilised = {
 	],
 	type: 'dry',
 }
+const test = {
+	name: 'dry test',
+	recommendations: [
+		{
+			weight: 3,
+			ideal: 47,
+			overweight: 37,
+		},
+		{
+			weight: 4,
+			ideal: 57,
+			overweight: 46,
+		},
+		{
+			weight: 5,
+			ideal: 67,
+			overweight: 54,
+		},
+		{
+			weight: 6,
+			ideal: 76,
+			overweight: 61,
+		},
+	],
+	type: 'dry',
+}
 const shebaBig = {
 	name: 'Sheba Slices',
 	recommendations: [
@@ -103,7 +129,7 @@ const shebaBig = {
 	],
 	type: 'wet',
 }
-const dryFood = [royalCaninCare, royalCaninSterilised]
+const dryFood = [royalCaninCare, royalCaninSterilised, test]
 const wetFood = [shebaBig]
 
 async function addData(db, collection, data) {

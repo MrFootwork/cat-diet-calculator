@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import DataProcessorDry from '@/model/DataProcessorDry'
+import DataProcessorDry from '~~/model/DataProcessorDry'
 
 const DataProcessor = DataProcessorDry.getInstance()
 

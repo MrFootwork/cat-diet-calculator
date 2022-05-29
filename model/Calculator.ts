@@ -61,7 +61,7 @@ export default class Calculator {
 		Calculator.wetProcessor = DataProcessorWet.getInstance()
 	}
 
-	static getInstance() {
+	static getInstance(): Calculator {
 		if (!Calculator.instance) {
 			Calculator.instance = new Calculator()
 		}
@@ -85,10 +85,10 @@ export default class Calculator {
 		this._data = allBrands
 	}
 
-	get allBrands() {
+	get allBrands(): FoodBrand[] {
 		return this._data || []
 	}
-	brandsOfType(type) {
+	brandsOfType(type): FoodBrand[] {
 		return this._data.filter(brand => brand.type === type)
 	}
 }

@@ -15,7 +15,9 @@ export default class DataProcessorDry {
 		return this._data
 	}
 
-	// TODO enrich data
+	// TODO polynomial regression for value completion
+	// npm package: js-polynomial-regression
+	// https://vuejsdevelopers.com/2017/04/22/vue-js-libraries-plugins/
 	processData(dataFromDB) {
 		this._data = dataFromDB.filter(brand => {
 			return brand.type === 'dry'

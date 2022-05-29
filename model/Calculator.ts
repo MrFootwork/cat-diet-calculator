@@ -9,6 +9,7 @@ export default class Calculator {
 	public catShape: string
 
 	// output
+	// FIXME do the real calculation
 	get result() {
 		return this.catWeight * 3 * (this.catShape === 'ideal' ? 1 : 2)
 	}
@@ -44,6 +45,7 @@ export default class Calculator {
 		const allBrands = [...dryData, ...wetData]
 
 		// data enrichment for ui
+		// TODO keep data: read old states and keep them with updated data
 		allBrands.forEach(brand => {
 			brand.selected = false
 			brand.selectionValue = 0

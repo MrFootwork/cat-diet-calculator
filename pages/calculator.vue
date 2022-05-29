@@ -1,8 +1,7 @@
 <template>
   <div>
-    <!-- FIXME build basic UI -->
-    <div class="calculator-ui">
 
+    <div class="calculator-ui">
       <div class="cat-weight">
         <label for="cat-weight">{{ calculator.catWeight }}</label>
         <input id="cat-weight" type="range" min="3" max="6" v-model="calculator.catWeight" />

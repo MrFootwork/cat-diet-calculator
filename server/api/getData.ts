@@ -4,10 +4,6 @@ import { MongoClient } from 'mongodb'
 import { config } from 'dotenv'
 
 export default async (req: IncomingMessage, res: ServerResponse) => {
-	// FIXME Test all CRUD operations
-	// FIXME write api concept
-	// OOP in vue tips
-	// https://vuejsdevelopers.com/2017/04/22/vue-js-libraries-plugins/
 	let data = []
 	data = await fetchMongo()
 
@@ -35,6 +31,3 @@ async function fetchMongo() {
 		await mongoClient.close()
 	}
 }
-
-// TODO polynomial regression for value completion
-// npm package: js-polynomial-regression

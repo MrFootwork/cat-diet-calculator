@@ -1,4 +1,4 @@
-import Database from '~/model/Database'
+import Database from '@/model/Database'
 
 export default class DataProcessorDry {
 	private _data

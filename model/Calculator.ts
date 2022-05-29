@@ -2,10 +2,11 @@ import Database from '~~/model/Database'
 import DataProcessorDry from '~~/model/DataProcessorDry'
 import DataProcessorWet from '~~/model/DataProcessorWet'
 
+// TODO create cat profiles
 export default class Calculator {
 	// input
-	public catWeight: number = 4
-	public catShape: string = 'ideal'
+	public catWeight: number
+	public catShape: string
 
 	// output
 	get result() {
@@ -20,6 +21,8 @@ export default class Calculator {
 	private static wetProcessor: DataProcessorWet
 
 	private constructor() {
+		this.catWeight = 4
+		this.catShape = 'ideal'
 		Calculator.db = Database.getInstance()
 		Calculator.dryProcessor = DataProcessorDry.getInstance()
 		Calculator.wetProcessor = DataProcessorWet.getInstance()

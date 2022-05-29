@@ -8,13 +8,13 @@
         <input id="cat-weight" type="range" min="3" max="6" v-model="calculator.catWeight" />
       </div>
 
-      <div class="body-shape">
+      <div class="cat-shape">
         <label for="ideal">
-          <input type="radio" name="bodyShape" id="ideal" value="ideal" v-model="calculator.catShape" />
+          <input type="radio" name="catShape" id="ideal" value="ideal" v-model="calculator.catShape" />
           Ideal
         </label>
         <label for="overweight">
-          <input type="radio" name="bodyShape" id="overweight" value="overweight" v-model="calculator.catShape" />
+          <input type="radio" name="catShape" id="overweight" value="overweight" v-model="calculator.catShape" />
           Overweight
         </label>
       </div>

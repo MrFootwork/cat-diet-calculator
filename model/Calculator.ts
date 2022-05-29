@@ -2,6 +2,19 @@ import Database from '~~/model/Database'
 import DataProcessorDry from '~~/model/DataProcessorDry'
 import DataProcessorWet from '~~/model/DataProcessorWet'
 
+type FoodBrand = {
+	_id: string
+	name: string
+	recommendations: {
+		weight: number
+		ideal: number
+		overweight: number
+	}[]
+	type: string
+	selected: boolean
+	selectionValue: number
+}
+
 // TODO create cat profiles
 export default class Calculator {
 	// input
@@ -11,11 +24,30 @@ export default class Calculator {
 	// output
 	// FIXME do the real calculation
 	get result() {
-		return this.catWeight * 3 * (this.catShape === 'ideal' ? 1 : 2)
+		const selectedDryBrands = this._data.filter(brand => {
+			return brand.type === 'dry' && brand.selected
+		})
+		console.log('recommendation: ', selectedDryBrands)
+
+		const sumOfSelectedDryBrands = selectedDryBrands.reduce((sum, brand) => {
+			return sum + brand.selectionValue
+		}, 0)
+		console.log('sum of selected dry brands: ', sumOfSelectedDryBrands)
+
+		return selectedDryBrands.reduce((brandAverage, brand) => {
+			const brandRatio = brand.selectionValue / sumOfSelectedDryBrands
+
+			const recommendedFoodAmount = brand.recommendations.filter(
+				recommendation => recommendation.weight === this.catWeight
+			)[0][this.catShape]
+
+			console.log(brand, brandRatio, recommendedFoodAmount, this.catShape)
+
+			return brandAverage + brandRatio * recommendedFoodAmount
+		}, 0)
 	}
 
-	// data from database
-	private _data = []
+	private _data: FoodBrand[] = []
 	private static instance: Calculator
 	private static db: Database
 	private static dryProcessor: DataProcessorDry

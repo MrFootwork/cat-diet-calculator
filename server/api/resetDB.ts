@@ -129,8 +129,35 @@ const shebaBig = {
 	],
 	type: 'wet',
 }
+const shebaTest = {
+	name: 'Sheba Test',
+	recommendations: [
+		{
+			weight: 3,
+			ideal: 3,
+			overweight: 4,
+		},
+		{
+			weight: 4,
+			ideal: 4,
+			overweight: 5,
+		},
+		{
+			weight: 5,
+			ideal: 5,
+			overweight: 6,
+		},
+		{
+			weight: 6,
+			ideal: 6,
+			overweight: 7,
+		},
+	],
+	type: 'wet',
+}
 const dryFood = [royalCaninCare, royalCaninSterilised, test]
-const wetFood = [shebaBig]
+const wetFood = [shebaBig, shebaTest]
+// const wetFood = [shebaBig]
 
 async function addData(db, collection, data) {
 	await db.collection(collection).insertMany(data)

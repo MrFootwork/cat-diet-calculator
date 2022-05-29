@@ -2,12 +2,18 @@ import Database from '~~/model/Database'
 import DataProcessorDry from '~~/model/DataProcessorDry'
 import DataProcessorWet from '~~/model/DataProcessorWet'
 
-// FIXME create processor instances
-
 export default class Calculator {
-	// FIXME setup all required data
-	private _dryFoodBrands
-	private _wetFoodBrands
+	// input
+	public catWeight: number = 4
+	public catShape: string = 'ideal'
+
+	// output
+	get result() {
+		return this.catWeight * 3 * (this.catShape === 'ideal' ? 1 : 2)
+	}
+
+	// data from database
+	private _data = []
 	private static instance: Calculator
 	private static db: Database
 	private static dryProcessor: DataProcessorDry
@@ -25,20 +31,27 @@ export default class Calculator {
 		}
 		return Calculator.instance
 	}
-	// FIXME setter for all input variables
 
-	// FIXME calculate
 	async refresh() {
 		await Calculator.db.fetchMongo()
 		Calculator.dryProcessor.processData(Calculator.db.data)
 		Calculator.wetProcessor.processData(Calculator.db.data)
-		this._dryFoodBrands = Calculator.dryProcessor.data
-		this._wetFoodBrands = Calculator.wetProcessor.data
-		// dryFoodRatio.= dryProcessor.data.map(brand => 0)
+		const dryData = Calculator.dryProcessor.data
+		const wetData = Calculator.wetProcessor.data
+		const allBrands = [...dryData, ...wetData]
+
+		// data enrichment for ui
+		allBrands.forEach(brand => {
+			brand.selected = false
+			brand.selectionValue = 0
+		})
+		this._data = allBrands
 	}
 
 	get allBrands() {
-		return [...this._dryFoodBrands, ...this._wetFoodBrands] || []
+		return this._data || []
 	}
-	// FIXME getters for dry and wet
+	brandsOfType(type) {
+		return this._data.filter(brand => brand.type === type)
+	}
 }

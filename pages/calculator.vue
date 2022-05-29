@@ -50,7 +50,7 @@
     </div>
     <div>
       <h5>db:</h5>
-      <p> {{ JSON.stringify(db.data) }}</p>
+      <p> {{ JSON.stringify(calculator.allBrands) }}</p>
     </div>
 
     <button @click="fetchData"> Update Data </button>
@@ -60,24 +60,30 @@
 </template>
 
 <script setup lang="ts">
-import Database from '~/model/Database'
-import DataProcessorDry from '~/model/DataProcessorDry'
-import DataProcessorWet from '~/model/DataProcessorWet'
+import Database from '~~/model/Database'
+import DataProcessorDry from '~~/model/DataProcessorDry'
+import DataProcessorWet from '~~/model/DataProcessorWet'
 import { ref } from 'vue'
+import Calculator from '~~/model/Calculator';
 
 const catWeight = ref(4)
 
 const db = ref(Database.getInstance())
+const calculator = ref(Calculator.getInstance())
 const dryProcessor = ref(DataProcessorDry.getInstance())
 const wetProcessor = ref(DataProcessorWet.getInstance())
 
 let dryFoodRatio = ref([])
 
+// async function fetchData() {
+//   await db.value.fetchMongo()
+//   dryProcessor.value.processData(db.value.data)
+//   wetProcessor.value.processData(db.value.data)
+//   dryFoodRatio.value = dryProcessor.value.data.map(brand => 0)
+// }
+
 async function fetchData() {
-  await db.value.fetchMongo()
-  dryProcessor.value.processData()
-  wetProcessor.value.processData()
-  dryFoodRatio.value = dryProcessor.value.data.map(brand => 0)
+  await calculator.value.refresh()
 }
 
 async function reset() {

@@ -61,7 +61,7 @@
         <h5>calculator:</h5>
         <p>cat weight: {{ calculator.catWeight }}</p>
         <p>cat shape: {{ calculator.catShape }}</p>
-        <p>Result: {{ calculator.result }}</p>
+        <p>Result: {{ calculator.getResult(calculator.allBrands) }}</p>
       </div>
       <div>
         <h5>calculator data:</h5>

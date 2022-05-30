@@ -29,8 +29,8 @@ export default class Calculator {
 
 	// output
 	// FIXME dependency inject this._data
-	get result(): number {
-		const selectedDryBrands = this._data.filter(brand => {
+	getResult(foodBrands: FoodBrand[]): number {
+		const selectedDryBrands = foodBrands.filter(brand => {
 			return brand.type === 'dry' && brand.isMixPortion
 		})
 

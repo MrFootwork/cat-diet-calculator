@@ -21,7 +21,7 @@
       </div>
 
       <div class="cat-shape-help" v-if="showHelp">
-        <img src="~~/public/HealthyCatWeight.webp" alt="Can you see/feel the ribs of your cat?" />
+        <img src="~~/HealthyCatWeight.webp" alt="Can you see/feel the ribs of your cat?" />
       </div>
 
       <div class="dry-food">

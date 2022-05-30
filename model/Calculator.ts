@@ -17,36 +17,7 @@ type FoodBrand = {
 
 // TODO create cat profiles
 export default class Calculator {
-	// input
-	public catWeight: number
-	public catShape: string
-
-	// output
-	// FIXME do the real calculation
-	get result() {
-		const selectedDryBrands = this._data.filter(brand => {
-			return brand.type === 'dry' && brand.selected
-		})
-		console.log('recommendation: ', selectedDryBrands)
-
-		const sumOfSelectedDryBrands = selectedDryBrands.reduce((sum, brand) => {
-			return sum + brand.selectionValue
-		}, 0)
-		console.log('sum of selected dry brands: ', sumOfSelectedDryBrands)
-
-		return selectedDryBrands.reduce((brandAverage, brand) => {
-			const brandRatio = brand.selectionValue / sumOfSelectedDryBrands
-
-			const recommendedFoodAmount = brand.recommendations.filter(
-				recommendation => recommendation.weight === this.catWeight
-			)[0][this.catShape]
-
-			console.log(brand, brandRatio, recommendedFoodAmount, this.catShape)
-
-			return brandAverage + brandRatio * recommendedFoodAmount
-		}, 0)
-	}
-
+	// properties
 	private _data: FoodBrand[] = []
 	private static instance: Calculator
 	private static db: Database
@@ -61,6 +32,47 @@ export default class Calculator {
 		Calculator.wetProcessor = DataProcessorWet.getInstance()
 	}
 
+	// input
+	public catWeight: number
+	public catShape: string
+	// more reactive input properties are embedded in brands of _data
+
+	// output
+	// FIXME add wet food subtraction
+	get result(): number {
+		const selectedDryBrands = this._data.filter(brand => {
+			return brand.type === 'dry' && brand.selected
+		})
+
+		const sumOfSelectedDryBrands = selectedDryBrands.reduce((sum, brand) => {
+			return sum + brand.selectionValue
+		}, 0)
+
+		const recommendedFoodQuantity = selectedDryBrands.reduce(
+			(average, brand): number => {
+				const brandRatio: number = brand.selectionValue / sumOfSelectedDryBrands
+
+				const brandQuantity: number = brand.recommendations.filter(
+					recommendation => recommendation.weight === this.catWeight
+				)[0][this.catShape]
+
+				return average + brandRatio * brandQuantity
+			},
+			0
+		)
+
+		return recommendedFoodQuantity
+	}
+
+	// getters
+	get allBrands(): FoodBrand[] {
+		return this._data || []
+	}
+
+	brandsOfType(foodType: string): FoodBrand[] {
+		return this._data.filter(brand => brand.type === foodType) || []
+	}
+
 	static getInstance(): Calculator {
 		if (!Calculator.instance) {
 			Calculator.instance = new Calculator()
@@ -68,6 +80,7 @@ export default class Calculator {
 		return Calculator.instance
 	}
 
+	// methods
 	async refresh() {
 		await Calculator.db.fetchMongo()
 		Calculator.dryProcessor.processData(Calculator.db.data)
@@ -83,12 +96,5 @@ export default class Calculator {
 			brand.selectionValue = 0
 		})
 		this._data = allBrands
-	}
-
-	get allBrands(): FoodBrand[] {
-		return this._data || []
-	}
-	brandsOfType(type): FoodBrand[] {
-		return this._data.filter(brand => brand.type === type)
 	}
 }

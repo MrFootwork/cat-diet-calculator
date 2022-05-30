@@ -1,4 +1,4 @@
-type RawFoodBrand = {
+interface FoodBrand {
 	_id: string
 	name: string
 	recommendations: {
@@ -7,5 +7,7 @@ type RawFoodBrand = {
 		overweight: number
 	}[]
 	type: string
+	isMixPortion?: boolean
+	mixPortion?: number
 }
-export default RawFoodBrand
+export default FoodBrand

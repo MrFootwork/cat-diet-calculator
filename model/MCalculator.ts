@@ -1,19 +1,7 @@
 import Database from '~~/model/MDatabase'
 import DataProcessorDry from '~~/model/MDataProcessorDry'
 import DataProcessorWet from '~~/model/MDataProcessorWet'
-
-type FoodBrand = {
-	_id: string
-	name: string
-	recommendations: {
-		weight: number
-		ideal: number
-		overweight: number
-	}[]
-	type: string
-	isMixPortion: boolean
-	mixPortion: number
-}
+import FoodBrand from '~~/model/IFoodBrand'
 
 // TODO create cat profiles
 export default class Calculator {
@@ -47,11 +35,13 @@ export default class Calculator {
 		})
 
 		const dryFoodMixPortionSum = selectedDryBrands.reduce((sum, brand) => {
+			if (brand.mixPortion == undefined) brand.mixPortion = 1
 			return sum + brand.mixPortion
 		}, 0)
 
 		const dryFoodMixDaily = selectedDryBrands.reduce(
-			(currentAverage, brand): number => {
+			(currentAverage, brand) => {
+				if (brand.mixPortion == undefined) brand.mixPortion = 1
 				// share of "current brand / mixed food"
 				const brandMixRatio: number = brand.mixPortion / dryFoodMixPortionSum
 

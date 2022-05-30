@@ -1,4 +1,4 @@
-import RawFoodBrand from 'model/TRawFoodBrand'
+import RawFoodBrand from '~~/model/IFoodBrand'
 
 export default class DataProcessorWet {
 	private _data: RawFoodBrand[]

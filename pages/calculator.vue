@@ -21,7 +21,7 @@
       </div>
 
       <div class="cat-shape-help" v-if="showHelp">
-        <img src="~~/HealthyCatWeight.webp" alt="Can you see/feel the ribs of your cat?" />
+        <img src="/HealthyCatWeight.webp" alt="Can you see/feel the ribs of your cat?" />
       </div>
 
       <div class="dry-food">
@@ -64,7 +64,7 @@
         <p>Result: {{ calculator.result }}</p>
       </div>
       <div>
-        <h5>db:</h5>
+        <h5>calculator data:</h5>
         <p>{{ JSON.stringify(calculator.allBrands) }}</p>
       </div>
       <button @click="fetchData">Update Data</button>

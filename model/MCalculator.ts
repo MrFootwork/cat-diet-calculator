@@ -96,9 +96,10 @@ export default class Calculator {
 
 		// data enrichment for ui
 		// TODO keep data: read old states and keep them with updated data
-		allBrands.map(brand =>
-			Object.defineProperties(brand, { isMixPortion = false, mixPortion = 0 })
-		)
+		allBrands.forEach(brand => {
+			brand.isMixPortion = false
+			brand.mixPortion = 1
+		})
 
 		this._data = allBrands
 	}

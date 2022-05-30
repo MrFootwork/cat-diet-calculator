@@ -56,7 +56,7 @@ definePageMeta({
 import { ref } from "vue";
 import MyClass from "~/model/MyClass";
 import type Properties from "~/model/Properties"
-import Database from "~/model/Database"
+import Database from "~~/model/MDatabase"
 
 const foodBrands = ref([]) as any;
 const name = ref('')

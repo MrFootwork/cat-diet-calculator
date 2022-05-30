@@ -1,6 +1,6 @@
-import Database from '~~/model/Database'
-import DataProcessorDry from '~~/model/DataProcessorDry'
-import DataProcessorWet from '~~/model/DataProcessorWet'
+import Database from '~~/model/MDatabase'
+import DataProcessorDry from '~~/model/MDataProcessorDry'
+import DataProcessorWet from '~~/model/MDataProcessorWet'
 
 type FoodBrand = {
 	_id: string
@@ -11,8 +11,8 @@ type FoodBrand = {
 		overweight: number
 	}[]
 	type: string
-	selected: boolean
-	selectionValue: number
+	isMixPortion: boolean
+	mixPortion: number
 }
 
 // TODO create cat profiles
@@ -35,33 +35,40 @@ export default class Calculator {
 	// input
 	public catWeight: number
 	public catShape: string
-	// more reactive input properties are embedded in brands of _data
+	// more reactive input properties are embedded in brands of _data e.g.,
+	// isMixPortion
+	// mixPortion
 
 	// output
-	// FIXME add wet food subtraction
+	// FIXME dependency inject this._data
 	get result(): number {
 		const selectedDryBrands = this._data.filter(brand => {
-			return brand.type === 'dry' && brand.selected
+			return brand.type === 'dry' && brand.isMixPortion
 		})
 
-		const sumOfSelectedDryBrands = selectedDryBrands.reduce((sum, brand) => {
-			return sum + brand.selectionValue
+		const dryFoodMixPortionSum = selectedDryBrands.reduce((sum, brand) => {
+			return sum + brand.mixPortion
 		}, 0)
 
-		const recommendedFoodQuantity = selectedDryBrands.reduce(
-			(average, brand): number => {
-				const brandRatio: number = brand.selectionValue / sumOfSelectedDryBrands
+		const dryFoodMixDaily = selectedDryBrands.reduce(
+			(currentAverage, brand): number => {
+				// share of "current brand / mixed food"
+				const brandMixRatio: number = brand.mixPortion / dryFoodMixPortionSum
 
+				// (catWeight, catShape) => daily quantity for current brand
 				const brandQuantity: number = brand.recommendations.filter(
 					recommendation => recommendation.weight === this.catWeight
 				)[0][this.catShape]
 
-				return average + brandRatio * brandQuantity
+				return currentAverage + brandMixRatio * brandQuantity
 			},
 			0
 		)
 
-		return recommendedFoodQuantity
+		// FIXME calculate the quantity subtracted from dryFoodMixDaily
+		const wetFoodMixEquivalent = 0
+
+		return dryFoodMixDaily
 	}
 
 	// getters
@@ -83,18 +90,16 @@ export default class Calculator {
 	// methods
 	async refresh() {
 		await Calculator.db.fetchMongo()
-		Calculator.dryProcessor.processData(Calculator.db.data)
-		Calculator.wetProcessor.processData(Calculator.db.data)
-		const dryData = Calculator.dryProcessor.data
-		const wetData = Calculator.wetProcessor.data
+		const dryData = Calculator.dryProcessor.processData(Calculator.db.data)
+		const wetData = Calculator.wetProcessor.processData(Calculator.db.data)
 		const allBrands = [...dryData, ...wetData]
 
 		// data enrichment for ui
 		// TODO keep data: read old states and keep them with updated data
-		allBrands.forEach(brand => {
-			brand.selected = false
-			brand.selectionValue = 0
-		})
+		allBrands.map(brand =>
+			Object.defineProperties(brand, { isMixPortion = false, mixPortion = 0 })
+		)
+
 		this._data = allBrands
 	}
 }

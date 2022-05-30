@@ -4,8 +4,7 @@ import { MongoClient } from 'mongodb'
 import { config } from 'dotenv'
 
 export default async (req: IncomingMessage, res: ServerResponse) => {
-	let data = []
-	data = await fetchMongo()
+	const data = await fetchMongo()
 
 	// lazy writeHead: usually you would need to catch a 404
 	res.writeHead(200, { 'Content-Type': 'application/json' })
@@ -14,7 +13,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 }
 
 async function fetchMongo() {
-	const uri = process.env.MONGODB_URI
+	const uri = process.env.MONGODB_URI || ''
 	const mongoClient: MongoClient = new MongoClient(uri)
 
 	try {

@@ -28,7 +28,7 @@
         <div class="dry-food-card" v-for="dryFood in calculator.brandsOfType('dry')" :key="dryFood._id">
           <label :for="dryFood.name">
             <img :src="dryFood._id" :alt="dryFood.name" />
-            <input type="checkbox" :id="dryFood.name" v-model="dryFood.selected" />
+            <input type="checkbox" :id="dryFood.name" v-model="dryFood.isMixPortion" />
             {{ dryFood.name }}
           </label>
         </div>
@@ -37,11 +37,10 @@
       <div class="dry-mix">
         <div class="dry-mix-slider" v-for="(dryFood, i) in calculator
         .brandsOfType('dry')
-        .filter(brand => brand.selected)" :key="dryFood._id">
+        .filter(brand => brand.isMixPortion)" :key="dryFood._id">
           <label for="dry-food-brand-name">{{ dryFood.name }}</label>
-          <input id="dry-food-brand-name" type="range" min="0" max="1" step=".1"
-            v-model.number="dryFood.selectionValue" />
-          <label for="dry-food-brand-name">{{ dryFood.selectionValue }}</label>
+          <input id="dry-food-brand-name" type="range" min="0" max="1" step=".1" v-model.number="dryFood.mixPortion" />
+          <label for="dry-food-brand-name">{{ dryFood.mixPortion }}</label>
         </div>
       </div>
 
@@ -49,9 +48,9 @@
         <div class="wet-food-card" v-for="wetFood in calculator.brandsOfType('wet')" :key="wetFood._id">
           <label :for="wetFood.name">
             <img :src="wetFood._id" :alt="wetFood.name" />
-            <input type="checkbox" :id="wetFood.name" v-model="wetFood.selected" />
+            <input type="checkbox" :id="wetFood.name" v-model="wetFood.isMixPortion" />
             {{ wetFood.name }}
-            <input type="number" min="0" step=".5" v-model.number="wetFood.selectionValue" v-if="wetFood.selected" />
+            <input type="number" min="0" step=".5" v-model.number="wetFood.mixPortion" v-if="wetFood.isMixPortion" />
           </label>
         </div>
       </div>
@@ -75,9 +74,9 @@
 </template>
 
 <script setup lang="ts">
-import Database from '~~/model/Database'
+import Database from '~~/model/MDatabase'
 import { ref } from 'vue'
-import Calculator from '~~/model/Calculator'
+import Calculator from '~~/model/MCalculator'
 
 const db = ref(Database.getInstance())
 const calculator = ref(Calculator.getInstance())

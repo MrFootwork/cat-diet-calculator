@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import DataProcessorWet from '~~/model/DataProcessorWet'
+import DataProcessorWet from '~~/model/MDataProcessorWet'
 
 describe('processed wet food data', () => {
 	// setup mockup

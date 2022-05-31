@@ -3,7 +3,7 @@ import DataProcessorDry from '~~/model/MDataProcessorDry'
 
 describe('processed dry food data', () => {
 	// setup mockup
-	const DataProcessor = DataProcessorDry.getInstance()
+	const processor = DataProcessorDry.getInstance()
 	const dataSample = [
 		{
 			_id: '6292815a8fc792107f9fbe09',
@@ -17,19 +17,19 @@ describe('processed dry food data', () => {
 			type: 'dry',
 		},
 	]
-	DataProcessor.processData(dataSample)
+	processor.processData(dataSample)
 
 	// testing results
+	const data = processor.data
 	it('data object has correct attributes', () => {
-		expect(DataProcessor.data.length).toBeGreaterThanOrEqual(1)
-		expect(DataProcessor.data[0]._id).toBeTruthy
-		expect(DataProcessor.data[0].name).toBeTruthy
-		expect(DataProcessor.data[0].recommendations).toBeTruthy
-		expect(DataProcessor.data[0].type).toBeTruthy
+		expect(data.length).toBeGreaterThanOrEqual(1)
+		expect(data[0]._id).toBeTruthy()
+		expect(data[0].name).toBeTruthy()
+		expect(data[0].recommendations).toBeTruthy()
+		expect(data[0].type).toBeTruthy()
 	})
 	it('has at least 2 recommendations', () => {
-		expect(DataProcessor.data[0].recommendations.length).toBeGreaterThanOrEqual(
-			2
-		)
+		expect(data[0].recommendations.length).toBeGreaterThanOrEqual(2)
 	})
+	it.todo('tips have been enriched')
 })

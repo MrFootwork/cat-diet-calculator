@@ -3,7 +3,7 @@ import DataProcessorDry from '~~/model/MDataProcessorDry'
 import DataProcessorWet from '~~/model/MDataProcessorWet'
 import FoodBrand from '~~/model/IFoodBrand'
 
-import round from '~~/model/Helper'
+import helpers from '~~/model/Helper'
 
 // TODO create cat profiles
 export default class Calculator {
@@ -62,7 +62,7 @@ export default class Calculator {
 			}) || []
 
 		const wetFoodMixEquivalent = selectedWetBrands.reduce((sum, brand) => {
-			// TODO is this line neccessary?
+			// ts doesn't compile without this check
 			if (brand.mixPortion == undefined) brand.mixPortion = 1
 
 			const brandDaily = brand.recommendations.filter(tip => {
@@ -75,7 +75,7 @@ export default class Calculator {
 		}, 0)
 
 		const exactResult = dryFoodMixDaily - wetFoodMixEquivalent
-		return round(exactResult, 1)
+		return helpers.round(exactResult, 1)
 	}
 
 	// getters

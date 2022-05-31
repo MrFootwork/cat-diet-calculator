@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import round from '~~/model/Helper'
+import helpers from '~~/model/Helper'
 
 import DataProcessorWet from '~~/model/MDataProcessorWet'
 import DataProcessorDry from '~~/model/MDataProcessorDry'
@@ -30,6 +30,9 @@ const dataSample = [
 		type: 'dry',
 	},
 ]
+/**
+ * Provides instances with initial mocked dataSample.
+ */
 const mockup = function () {
 	const processorWet = DataProcessorWet.getInstance()
 	const processorDry = DataProcessorDry.getInstance()
@@ -76,7 +79,7 @@ describe('result()', () => {
 		expect(calculator.catShape).toBe('ideal')
 	})
 
-	it('recommends with one dry brand', () => {
+	it('one dry brand', () => {
 		const { calculator } = mockup()
 		const processedData = fakeProcessedDryData(dataSample)
 
@@ -87,7 +90,7 @@ describe('result()', () => {
 		expect(calculator.getResult(processedData)).toBe(47)
 	})
 
-	it('recommends with two dry brands', () => {
+	it('two dry brands', () => {
 		const { calculator } = mockup()
 		const secondDryFoodBrand = {
 			_id: '6292815a8fc792107f9fbe09',
@@ -105,16 +108,16 @@ describe('result()', () => {
 
 		calculator.catWeight = 4
 		calculator.catShape = 'ideal'
-		const expectedResult1 = round((50 + 53) / 2, 1)
+		const expectedResult1 = helpers.round((50 + 53) / 2, 1)
 		expect(calculator.getResult(processedData)).toBe(expectedResult1)
 
 		calculator.catWeight = 5
 		calculator.catShape = 'overweight'
-		const expectedResult2 = round((47 + 49) / 2, 1)
+		const expectedResult2 = helpers.round((47 + 49) / 2, 1)
 		expect(calculator.getResult(processedData)).toBe(expectedResult2)
 	})
 
-	it('recommends with one wet brand', () => {
+	it('one wet brand', () => {
 		const { calculator } = mockup()
 		const processedDryData = fakeProcessedDryData(dataSample)
 		const processedWetData = fakeProcessedWetData(dataSample)
@@ -122,14 +125,41 @@ describe('result()', () => {
 
 		calculator.catWeight = 4
 		calculator.catShape = 'ideal'
-		const result1 = round((1 - 1 / 1.5) * 50, 1)
+		const result1 = helpers.round((1 - 1 / 1.5) * 50, 1)
 		expect(calculator.getResult(testSample)).toBe(result1)
 
 		calculator.catWeight = 5
 		calculator.catShape = 'overweight'
-		const result2 = round((1 - 1 / 2.5) * 47, 1)
+		const result2 = helpers.round((1 - 1 / 2.5) * 47, 1)
 		expect(calculator.getResult(testSample)).toBe(result2)
 	})
 
-	// FIXME test picking two wet food packs
+	it('two wet brands', () => {
+		const { calculator } = mockup()
+		const extraWet = {
+			_id: '6292815a8fc792107f9fbe09',
+			name: 'Another Wet Food Brand',
+			recommendations: [
+				{ weight: 3, ideal: 2, overweight: 1 },
+				{ weight: 4, ideal: 3, overweight: 2 },
+				{ weight: 5, ideal: 4, overweight: 3 },
+				{ weight: 6, ideal: 5, overweight: 4 },
+			],
+			type: 'wet',
+		}
+		const processedDryData = fakeProcessedDryData(dataSample)
+		const processedWetData = fakeProcessedWetData([...dataSample, extraWet])
+		const testSample = [...processedDryData, ...processedWetData]
+
+		calculator.catWeight = 4
+		calculator.catShape = 'ideal'
+		const result1 = helpers.round(50 * (1 - 1 / 1.5 - 1 / 3), 1)
+		const calculatorResult = calculator.getResult(testSample)
+		expect(calculatorResult).toBeCloseTo(result1)
+
+		calculator.catWeight = 5
+		calculator.catShape = 'overweight'
+		const result2 = helpers.round(47 * (1 - 1 / 2.5 - 1 / 3), 1)
+		expect(calculator.getResult(testSample)).toBeCloseTo(result2)
+	})
 })

@@ -1,4 +1,6 @@
 import { describe, expect, it } from 'vitest'
+import round from '~~/model/Helper'
+
 import DataProcessorWet from '~~/model/MDataProcessorWet'
 import DataProcessorDry from '~~/model/MDataProcessorDry'
 import Calculator from '~~/model/MCalculator'
@@ -74,7 +76,7 @@ describe('result()', () => {
 		expect(calculator.catShape).toBe('ideal')
 	})
 
-	it('recommends for one dry brand', () => {
+	it('recommends with one dry brand', () => {
 		const { calculator } = mockup()
 		const processedData = fakeProcessedDryData(dataSample)
 
@@ -85,7 +87,7 @@ describe('result()', () => {
 		expect(calculator.getResult(processedData)).toBe(47)
 	})
 
-	it('recommends for two dry brands', () => {
+	it('recommends with two dry brands', () => {
 		const { calculator } = mockup()
 		const secondDryFoodBrand = {
 			_id: '6292815a8fc792107f9fbe09',
@@ -103,15 +105,16 @@ describe('result()', () => {
 
 		calculator.catWeight = 4
 		calculator.catShape = 'ideal'
-		expect(calculator.getResult(processedData)).toBe((50 + 53) / 2)
+		const expectedResult1 = round((50 + 53) / 2, 1)
+		expect(calculator.getResult(processedData)).toBe(expectedResult1)
 
 		calculator.catWeight = 5
 		calculator.catShape = 'overweight'
-		expect(calculator.getResult(processedData)).toBe((47 + 49) / 2)
+		const expectedResult2 = round((47 + 49) / 2, 1)
+		expect(calculator.getResult(processedData)).toBe(expectedResult2)
 	})
 
-	// FIXME round to one decimal
-	it('recommends for one wet brand', () => {
+	it('recommends with one wet brand', () => {
 		const { calculator } = mockup()
 		const processedDryData = fakeProcessedDryData(dataSample)
 		const processedWetData = fakeProcessedWetData(dataSample)
@@ -119,12 +122,12 @@ describe('result()', () => {
 
 		calculator.catWeight = 4
 		calculator.catShape = 'ideal'
-		const result1 = (1 - 1 / 1.5) * 50
+		const result1 = round((1 - 1 / 1.5) * 50, 1)
 		expect(calculator.getResult(testSample)).toBe(result1)
 
 		calculator.catWeight = 5
 		calculator.catShape = 'overweight'
-		const result2 = (1 - 1 / 2.5) * 47
+		const result2 = round((1 - 1 / 2.5) * 47, 1)
 		expect(calculator.getResult(testSample)).toBe(result2)
 	})
 

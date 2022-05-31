@@ -3,6 +3,8 @@ import DataProcessorDry from '~~/model/MDataProcessorDry'
 import DataProcessorWet from '~~/model/MDataProcessorWet'
 import FoodBrand from '~~/model/IFoodBrand'
 
+import round from '~~/model/Helper'
+
 // TODO create cat profiles
 export default class Calculator {
 	// properties
@@ -72,7 +74,8 @@ export default class Calculator {
 			return sum + brandEquivalent * brand.mixPortion
 		}, 0)
 
-		return dryFoodMixDaily - wetFoodMixEquivalent
+		const exactResult = dryFoodMixDaily - wetFoodMixEquivalent
+		return round(exactResult, 1)
 	}
 
 	// getters

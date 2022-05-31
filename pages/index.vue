@@ -8,6 +8,7 @@ definePageMeta({
 <!-- FIXME build components-->
 <template>
   <div>
+
     <button @click="getData">Get Data</button>
     <ul>
       <li v-for="foodBrand in foodBrands">
@@ -27,29 +28,28 @@ definePageMeta({
       </li>
     </ul>
 
-    <div class="singleton"></div>
-    <div class="name">
+    <div class="singleton">
+      <div class="name">
 
-      <label for="singleton-name">Name</label>
-      <input id="singleton-name" type="text" v-model="name">
+        <label for="singleton-name">Name</label>
+        <input id="singleton-name" type="text" v-model="name">
+
+      </div>
+      <div class="age">
+
+        <label for="singleton-age">Age</label>
+        <input id="singleton-age" type="text" v-model="age">
+
+      </div>
+
+      <button @click="getSingletonProps">Get Singleton Prop</button>
+      <p>{{ singleton.properties.name }} ist {{ singleton.properties.age }} Jahre alt. </p>
 
     </div>
-    <div class="age">
 
-      <label for="singleton-age">Age</label>
-      <input id="singleton-age" type="text" v-model="age">
-
+    <div class="database">
+      {{ allCollections }}
     </div>
-
-    <button @click="getSingletonProps">Get Singleton Prop</button>
-    <p>{{ singleton.properties.name }} ist {{ singleton.properties.age }} Jahre alt. </p>
-
-  </div>
-
-  <div class="database">
-    {{ allCollections }}
-  </div>
-
 
   </div>
 </template>

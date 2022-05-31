@@ -129,34 +129,34 @@ const shebaBig = {
 	],
 	type: 'wet',
 }
-const shebaTest = {
-	name: 'Sheba Test',
+const shebaSelection = {
+	name: 'Sheba Selection In Sauce',
 	recommendations: [
 		{
 			weight: 3,
-			ideal: 3,
-			overweight: 4,
+			ideal: 2.5,
+			overweight: 2,
 		},
 		{
 			weight: 4,
-			ideal: 4,
-			overweight: 5,
+			ideal: 3,
+			overweight: 2.5,
 		},
 		{
 			weight: 5,
-			ideal: 5,
-			overweight: 6,
+			ideal: 3.5,
+			overweight: 3,
 		},
 		{
 			weight: 6,
-			ideal: 6,
-			overweight: 7,
+			ideal: 4,
+			overweight: 3.5,
 		},
 	],
 	type: 'wet',
 }
 const dryFood = [royalCaninCare, royalCaninSterilised, test]
-const wetFood = [shebaBig, shebaTest]
+const wetFood = [shebaBig, shebaSelection]
 // const wetFood = [shebaBig]
 
 async function addData(db, collection, data) {

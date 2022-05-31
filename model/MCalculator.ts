@@ -28,7 +28,6 @@ export default class Calculator {
 	// mixPortion
 
 	// output
-	// FIXME dependency inject this._data
 	getResult(foodBrands: FoodBrand[]): number {
 		const selectedDryBrands = foodBrands.filter(brand => {
 			return brand.type === 'dry' && brand.isMixPortion
@@ -55,10 +54,25 @@ export default class Calculator {
 			0
 		)
 
-		// FIXME calculate the quantity subtracted from dryFoodMixDaily
-		const wetFoodMixEquivalent = 0
+		const selectedWetBrands =
+			foodBrands.filter(brand => {
+				return brand.type === 'wet' && brand.isMixPortion
+			}) || []
 
-		return dryFoodMixDaily
+		const wetFoodMixEquivalent = selectedWetBrands.reduce((sum, brand) => {
+			// TODO is this line neccessary?
+			if (brand.mixPortion == undefined) brand.mixPortion = 1
+
+			const brandDaily = brand.recommendations.filter(tip => {
+				return tip.weight === this.catWeight
+			})[0][this.catShape]
+
+			const brandEquivalent = dryFoodMixDaily / brandDaily
+
+			return sum + brandEquivalent * brand.mixPortion
+		}, 0)
+
+		return dryFoodMixDaily - wetFoodMixEquivalent
 	}
 
 	// getters

@@ -110,6 +110,7 @@ describe('result()', () => {
 		expect(calculator.getResult(processedData)).toBe((47 + 49) / 2)
 	})
 
+	// FIXME round to one decimal
 	it('recommends for one wet brand', () => {
 		const { calculator } = mockup()
 		const processedDryData = fakeProcessedDryData(dataSample)
@@ -119,13 +120,13 @@ describe('result()', () => {
 		calculator.catWeight = 4
 		calculator.catShape = 'ideal'
 		const result1 = (1 - 1 / 1.5) * 50
-		console.log(result1)
 		expect(calculator.getResult(testSample)).toBe(result1)
 
 		calculator.catWeight = 5
 		calculator.catShape = 'overweight'
 		const result2 = (1 - 1 / 2.5) * 47
-		console.log(result2)
 		expect(calculator.getResult(testSample)).toBe(result2)
 	})
+
+	// FIXME test picking two wet food packs
 })

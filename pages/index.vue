@@ -7,12 +7,16 @@
     <div v-if="isLoading">
       <LoaderAnimation />
     </div>
+
     <div v-else>
+
       <div class="calculator-ui">
+
         <div class="cat-weight">
           <label for="cat-weight">{{ calculator.catWeight }}</label>
           <input id="cat-weight" type="range" min="3" max="6" v-model.number="calculator.catWeight" />
         </div>
+
         <div class="cat-shape">
           <label for="ideal">
             <input type="radio" name="catShape" id="ideal" value="ideal" v-model="calculator.catShape" />
@@ -26,6 +30,7 @@
             What is my cat?
           </button>
         </div>
+
         <div class="cat-shape-help" v-if="showHelp">
           <img src="/HealthyCatWeight.webp" alt="Can you see/feel the ribs of your cat?" />
         </div>
@@ -38,8 +43,9 @@
             </label>
           </div>
         </div>
+
         <!-- TODO show pie chart to display the current dry food mixture -->
-        <div class="dry-mix">
+        <div class="dry-mix" v-if="moreThanOneDryFoodSelected">
           <div class="dry-mix-slider" v-for="(dryFood, i) in calculator
           .brandsOfType('dry')
           .filter(brand => brand.isMixPortion)" :key="dryFood._id">
@@ -49,6 +55,7 @@
             <label for="dry-food-brand-name">{{ dryFood.mixPortion }}</label>
           </div>
         </div>
+
         <div class="wet-food">
           <div class="wet-food-card" v-for="wetFood in calculator.brandsOfType('wet')" :key="wetFood._id">
             <label :for="wetFood.name">
@@ -59,7 +66,9 @@
             </label>
           </div>
         </div>
+
       </div>
+
       <div>
         <div>
           <h5>calculator:</h5>
@@ -74,9 +83,11 @@
         <button @click="refreshData">Refresh Data</button>
         <button @click="reset">Reset Database</button>
       </div>
+
     </div>
 
   </div>
+
 </template>
 
 <script setup lang="ts">
@@ -94,6 +105,13 @@ const isLoading = ref(true)
 onBeforeMount(async () => {
   await calculator.value.refresh()
   isLoading.value = false
+})
+
+const moreThanOneDryFoodSelected = computed(() => {
+  return calculator.value.brandsOfType('dry').reduce((count, brand) => {
+    const isSelected = brand.isMixPortion || false
+    return count + +isSelected
+  }, 0) > 1
 })
 
 function toggleCatShapeHelp() {

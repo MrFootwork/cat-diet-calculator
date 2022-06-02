@@ -163,3 +163,5 @@ describe('result()', () => {
 		expect(calculator.getResult(testSample)).toBeCloseTo(result2)
 	})
 })
+
+describe.todo('result() with invalid data, e.g. missing tip')

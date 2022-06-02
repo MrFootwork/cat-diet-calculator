@@ -13,4 +13,13 @@ export default defineNuxtConfig({
 	// typescript: {
 	// 	strict: true,
 	// },
+
+	// debugging in nuxt
+	// https://github.com/nuxt/framework/discussions/2098
+	// https://nordschool.com/enable-vs-code-debugger-for-nuxt-and-typescript/
+	extend(config: any, ctx: any) {
+		if (ctx.isDev) {
+			config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
+		}
+	},
 })

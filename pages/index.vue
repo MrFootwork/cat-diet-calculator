@@ -1,115 +1,112 @@
-<script lang="ts">
-definePageMeta({
-  layout: "custom",
-});
-</script>
-<!-- FIXME move calculator.vue to here -->
 <!-- FIXME build beautiful UI -->
 <!-- FIXME build components-->
 <template>
   <div>
-
-    <button @click="getData">Get Data</button>
-    <ul>
-      <li v-for="foodBrand in foodBrands">
-        <h2>{{ foodBrand.name }}</h2>
-        <table class="recommendation">
-          <tr>
-            <th>Weight</th>
-            <th>Ideal</th>
-            <th>Overweight</th>
-          </tr>
-          <tr v-for="row in foodBrand.recommendations">
-            <td>{{ row.weight }}</td>
-            <td>{{ row.ideal }}</td>
-            <td>{{ row.overweight }}</td>
-          </tr>
-        </table>
-      </li>
-    </ul>
-
-    <div class="singleton">
-      <div class="name">
-
-        <label for="singleton-name">Name</label>
-        <input id="singleton-name" type="text" v-model="name">
-
-      </div>
-      <div class="age">
-
-        <label for="singleton-age">Age</label>
-        <input id="singleton-age" type="text" v-model="age">
-
+    <div class="calculator-ui">
+      <div class="cat-weight">
+        <label for="cat-weight">{{ calculator.catWeight }}</label>
+        <input id="cat-weight" type="range" min="3" max="6" v-model.number="calculator.catWeight" />
       </div>
 
-      <button @click="getSingletonProps">Get Singleton Prop</button>
-      <p>{{ singleton.properties.name }} ist {{ singleton.properties.age }} Jahre alt. </p>
+      <div class="cat-shape">
+        <label for="ideal">
+          <input type="radio" name="catShape" id="ideal" value="ideal" v-model="calculator.catShape" />
+          Ideal
+        </label>
+        <label for="overweight">
+          <input type="radio" name="catShape" id="overweight" value="overweight" v-model="calculator.catShape" />
+          Overweight
+        </label>
+        <button class="cat-shape-help-toggle" @click="toggleCatShapeHelp">
+          What is my cat?
+        </button>
+      </div>
 
+      <div class="cat-shape-help" v-if="showHelp">
+        <img src="/HealthyCatWeight.webp" alt="Can you see/feel the ribs of your cat?" />
+      </div>
+
+      <div class="dry-food">
+        <div class="dry-food-card" v-for="dryFood in calculator.brandsOfType('dry')" :key="dryFood._id">
+          <label :for="dryFood.name">
+            <img :src="dryFood._id" :alt="dryFood.name" />
+            <input type="checkbox" :id="dryFood.name" v-model="dryFood.isMixPortion" />
+            {{ dryFood.name }}
+          </label>
+        </div>
+      </div>
+
+      <div class="dry-mix">
+        <div class="dry-mix-slider" v-for="(dryFood, i) in calculator
+        .brandsOfType('dry')
+        .filter(brand => brand.isMixPortion)" :key="dryFood._id">
+          <label for="dry-food-brand-name">{{ dryFood.name }}</label>
+          <input id="dry-food-brand-name" type="range" min="0" max="1" step=".1" v-model.number="dryFood.mixPortion" />
+          <label for="dry-food-brand-name">{{ dryFood.mixPortion }}</label>
+        </div>
+      </div>
+
+      <div class="wet-food">
+        <div class="wet-food-card" v-for="wetFood in calculator.brandsOfType('wet')" :key="wetFood._id">
+          <label :for="wetFood.name">
+            <img :src="wetFood._id" :alt="wetFood.name" />
+            <input type="checkbox" :id="wetFood.name" v-model="wetFood.isMixPortion" />
+            {{ wetFood.name }}
+            <input type="number" min="0" step=".5" v-model.number="wetFood.mixPortion" v-if="wetFood.isMixPortion" />
+          </label>
+        </div>
+      </div>
     </div>
 
-    <div class="database">
-      {{ allCollections }}
+    <div>
+      <div>
+        <h5>calculator:</h5>
+        <p>cat weight: {{ calculator.catWeight }}</p>
+        <p>cat shape: {{ calculator.catShape }}</p>
+        <p>Result: {{ calculator.getResult(calculator.allBrands) }}</p>
+      </div>
+      <!-- <div>
+        <h5>calculator data:</h5>
+        <p>{{ JSON.stringify(calculator.allBrands) }}</p>
+      </div> -->
+      <button @click="refreshData">Refresh Data</button>
+      <button @click="reset">Reset Database</button>
     </div>
-
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import MyClass from "~/model/MyClass";
-import type Properties from "~/model/Properties"
-import Database from "~~/model/MDatabase"
+import { ref } from 'vue'
+import Database from '~~/model/MDatabase'
+import Calculator from '~~/model/MCalculator'
 
-const foodBrands = ref([]) as any;
-const name = ref('')
-const age = ref(0)
-const singleton = ref(MyClass.getInstance())
-const allCollections = ref(Database.getInstance())
+const db = ref(Database.getInstance())
+const calculator = ref(Calculator.getInstance())
 
-async function getData() {
+const showHelp = ref(false)
 
-  const data = await fetch(`/api/food`);
-  let json = await data.json();
-  foodBrands.value = json;
+onBeforeMount(async () => {
+  await calculator.value.refresh()
 
+})
+
+function toggleCatShapeHelp() {
+  showHelp.value = !showHelp.value
 }
 
-function getSingletonProps() {
-  singleton.value.properties = {
-    name: name.value,
-    age: age.value
-  }
+async function refreshData() {
+  await calculator.value.refresh()
+}
+
+async function reset() {
+  await db.value.resetDB()
 }
 </script>
 
-<style lang="scss">
-.recommendation {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-
-  & td,
-  & th {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-
-  & th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #04AA6D;
-    color: white;
-  }
-
-  & tr {
-    &:nth-child(even) {
-      background-color: #f2f2f2;
-    }
-
-    &:hover {
-      background-color: #ddd;
-    }
+<style scoped lang="scss">
+.cat-shape-help {
+  img {
+    width: 50vw;
   }
 }
 </style>

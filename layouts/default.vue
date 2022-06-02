@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NuxtLink to="/">Welcome To The TV App</NuxtLink>
+    <NuxtLink to="/">Welcome To The Cats Diet Calculator</NuxtLink>
     <slot />
   </div>
 </template>

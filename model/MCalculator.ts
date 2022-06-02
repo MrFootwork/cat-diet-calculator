@@ -61,6 +61,7 @@ export default class Calculator {
 				return brand.type === 'wet' && brand.isMixPortion
 			}) || []
 
+		// all wet food in the given amount translated into dry food amount
 		const wetFoodMixEquivalent = selectedWetBrands.reduce((sum, brand) => {
 			// ts doesn't compile without this check
 			if (brand.mixPortion == undefined) brand.mixPortion = 1

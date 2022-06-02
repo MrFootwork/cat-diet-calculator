@@ -1,10 +1,11 @@
 <!-- FIXME build beautiful UI -->
-<!-- FIXME build components-->
+<!-- FIXME persist brand images in database -->
+<!-- TODO build components-->
 <template>
   <div>
 
     <div v-if="isLoading">
-      ...loading
+      <LoaderAnimation />
     </div>
     <div v-else>
       <div class="calculator-ui">
@@ -37,6 +38,7 @@
             </label>
           </div>
         </div>
+        <!-- TODO show pie chart to display the current dry food mixture -->
         <div class="dry-mix">
           <div class="dry-mix-slider" v-for="(dryFood, i) in calculator
           .brandsOfType('dry')
@@ -81,6 +83,7 @@
 import { ref } from 'vue'
 import Database from '~~/model/MDatabase'
 import Calculator from '~~/model/MCalculator'
+import LoaderAnimation from '~~/components/LoaderAnimation.vue'
 
 const db = ref(Database.getInstance())
 const calculator = ref(Calculator.getInstance())
@@ -109,6 +112,12 @@ async function reset() {
   isLoading.value = false
 }
 </script>
+
+<style lang="scss">
+body {
+  background-color: hsl(140, 100%, 85%)
+}
+</style>
 
 <style scoped lang="scss">
 .cat-shape-help {

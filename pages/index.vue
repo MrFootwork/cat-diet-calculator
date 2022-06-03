@@ -10,7 +10,7 @@
 
     <div v-else>
 
-      <div class="calculator-ui">
+      <div class="calculator-ui" v-if="showUi">
 
         <div class="cat-weight">
           <label for="cat-weight">{{ calculator.catWeight }}</label>
@@ -81,7 +81,8 @@
           <p>{{ JSON.stringify(calculator.allBrands) }}</p>
         </div> -->
         <button @click="refreshData">Refresh Data</button>
-        <button @click="reset">Reset Database</button>
+        <!-- <button @click="reset">Reset Database</button> -->
+        <button @click="toggleUi" id="btn-toggle-ui"> Show UI </button>
       </div>
 
     </div>
@@ -101,6 +102,7 @@ const calculator = ref(Calculator.getInstance())
 
 const showHelp = ref(false)
 const isLoading = ref(true)
+const showUi = ref(false)
 
 onBeforeMount(async () => {
   await calculator.value.refresh()
@@ -108,11 +110,20 @@ onBeforeMount(async () => {
 })
 
 const moreThanOneDryFoodSelected = computed(() => {
-  return calculator.value.brandsOfType('dry').reduce((count, brand) => {
-    const isSelected = brand.isMixPortion || false
-    return count + +isSelected
-  }, 0) > 1
+  const selectedDryFoodCount = calculator.value
+    .brandsOfType('dry')
+    .reduce((count, brand) => {
+      const isSelected = brand.isMixPortion || false
+      return count + +isSelected
+    }, 0)
+  return selectedDryFoodCount > 1
 })
+
+function toggleUi() {
+  showUi.value = !showUi.value
+  const btnCaptureText = document.getElementById('btn-toggle-ui') || document.createElement('button')
+  btnCaptureText.innerText = showUi.value ? 'Hide UI' : 'Show UI'
+}
 
 function toggleCatShapeHelp() {
   showHelp.value = !showHelp.value

@@ -1,14 +1,6 @@
 {
 	// https://v3.nuxtjs.org/concepts/typescript
 	"extends": "./.nuxt/tsconfig.json",
-	// "compilerOptions": {
-	// 	"types": [
-	// 		// add types for context.pinia
-	// 		// https://pinia.vuejs.org/ssr/nuxt.html#using-the-nuxt-context-in-stores
-	// 		"@pinia/nuxt"
-	// 	]
-	// }
-
 	"compilerOptions": {
 		/* Visit https://aka.ms/tsconfig.json to read more about this file */
 
@@ -42,6 +34,14 @@
 		// "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
 		// "typeRoots": [],                                  /* Specify multiple folders that act like `./node_modules/@types`. */
 		// "types": [],                                      /* Specify type package names to be included without being referenced in a source file. */
+		"types": [
+			// https://github.com/EXT5RCH/vue3-components/issues/1
+			// v-model on radio buttons (values are string, e.g. "ideal") throw error
+			"vue"
+			// add types for context.pinia
+			// https://pinia.vuejs.org/ssr/nuxt.html#using-the-nuxt-context-in-stores
+			// "@pinia/nuxt"
+		],
 		// "allowUmdGlobalAccess": true,                     /* Allow accessing UMD globals from modules. */
 		// "resolveJsonModule": true,                        /* Enable importing .json files */
 		// "noResolve": true,                                /* Disallow `import`s, `require`s or `<reference>`s from expanding the number of files TypeScript should add to a project. */

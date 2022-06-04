@@ -76,10 +76,6 @@
           <p>cat shape: {{ calculator.catShape }}</p>
           <p>Result: {{ calculator.getResult(calculator.allBrands) }}</p>
         </div>
-        <!-- <div>
-          <h5>calculator data:</h5>
-          <p>{{ JSON.stringify(calculator.allBrands) }}</p>
-        </div> -->
         <button @click="refreshData">Refresh Data</button>
         <!-- <button @click="reset">Reset Database</button> -->
         <button @click="toggleUi" id="btn-toggle-ui"> Show UI </button>
@@ -121,8 +117,8 @@ const moreThanOneDryFoodSelected = computed(() => {
 
 function toggleUi() {
   showUi.value = !showUi.value
-  const btnCaptureText = document.getElementById('btn-toggle-ui') || document.createElement('button')
-  btnCaptureText.innerText = showUi.value ? 'Hide UI' : 'Show UI'
+  const btnToggleUi = document.getElementById('btn-toggle-ui') || document.createElement('button')
+  btnToggleUi.innerText = showUi.value ? 'Hide UI' : 'Show UI'
 }
 
 function toggleCatShapeHelp() {

@@ -25,6 +25,85 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 	res.end()
 }
 
+const test03 = {
+	name: 'Royal Canin Care Hair&Skin',
+	recommendations: [
+		{
+			weight: 3,
+			ideal: 41,
+			overweight: 33,
+		},
+		{
+			weight: 4,
+			ideal: 50,
+			overweight: 40,
+		},
+		{
+			weight: 5,
+			ideal: 59,
+			overweight: 47,
+		},
+		{
+			weight: 6,
+			ideal: 67,
+			overweight: 53,
+		},
+	],
+	type: 'dry',
+	color: 
+}
+const test02 = {
+	name: 'Royal Canin Regular Sterilised 37',
+	recommendations: [
+		{
+			weight: 3,
+			ideal: 47,
+			overweight: 37,
+		},
+		{
+			weight: 4,
+			ideal: 57,
+			overweight: 46,
+		},
+		{
+			weight: 5,
+			ideal: 67,
+			overweight: 54,
+		},
+		{
+			weight: 6,
+			ideal: 76,
+			overweight: 61,
+		},
+	],
+	type: 'dry',
+}
+const test01 = {
+	name: 'dry test',
+	recommendations: [
+		{
+			weight: 3,
+			ideal: 47,
+			overweight: 37,
+		},
+		{
+			weight: 4,
+			ideal: 57,
+			overweight: 46,
+		},
+		{
+			weight: 5,
+			ideal: 67,
+			overweight: 54,
+		},
+		{
+			weight: 6,
+			ideal: 76,
+			overweight: 61,
+		},
+	],
+	type: 'dry',
+}
 const royalCaninCare = {
 	name: 'Royal Canin Care Hair&Skin',
 	recommendations: [
@@ -50,6 +129,7 @@ const royalCaninCare = {
 		},
 	],
 	type: 'dry',
+	color: 
 }
 const royalCaninSterilised = {
 	name: 'Royal Canin Regular Sterilised 37',
@@ -155,6 +235,9 @@ const shebaSelection = {
 	],
 	type: 'wet',
 }
+// FIXME add more brands
+// FIXME add colors for brands
+// TODO kg / lbs
 const dryFood = [royalCaninCare, royalCaninSterilised, test]
 const wetFood = [shebaBig, shebaSelection]
 // const wetFood = [shebaBig]

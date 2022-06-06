@@ -49,10 +49,10 @@
           <div class="dry-mix-slider" v-for="(dryFood, i) in calculator
           .brandsOfType('dry')
           .filter(brand => brand.isMixPortion)" :key="dryFood._id">
-            <label for="dry-food-brand-name">{{ dryFood.name }}</label>
+            <!-- <label for="dry-food-brand-name">{{ dryFood.name }}</label> -->
             <input id="dry-food-brand-name" type="range" min="0" max="1" step=".1"
               v-model.number="dryFood.mixPortion" />
-            <label for="dry-food-brand-name">{{ dryFood.mixPortion }}</label>
+            <!-- <label for="dry-food-brand-name">{{ dryFood.mixPortion }}</label> -->
           </div>
         </div>
 
@@ -77,7 +77,7 @@
           <p>Result: {{ calculator.getResult(calculator.allBrands) }}</p>
         </div>
         <button @click="refreshData">Refresh Data</button>
-        <!-- <button @click="reset">Reset Database</button> -->
+        <button @click="reset">Reset Database</button>
         <button @click="toggleUi" id="btn-toggle-ui"> Show UI </button>
       </div>
 

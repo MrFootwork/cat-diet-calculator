@@ -23,6 +23,8 @@
 		"@nuxt/test-utils-edge": "^3.0.0-rc.3-27550969.a4a3cff",
 		"dotenv": "^16.0.0",
 		"mongodb": "^4.5.0",
-		"vitest": "^0.12.9"
+		"vitest": "^0.12.9",
+		"chart.js": "^3.8.0",
+		"vue-chartjs": "^4.1.1"
 	}
 }

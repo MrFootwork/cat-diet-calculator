@@ -4,7 +4,7 @@ import { MongoClient } from 'mongodb'
 import { config } from 'dotenv'
 
 export default async (req: IncomingMessage, res: ServerResponse) => {
-	const uri = process.env.MONGODB_URI
+	const uri = process.env.MONGODB_URI || ''
 	const mongoClient: MongoClient = new MongoClient(uri)
 
 	await mongoClient.connect()
@@ -50,7 +50,7 @@ const test03 = {
 		},
 	],
 	type: 'dry',
-	color: 
+	color: '#41B883',
 }
 const test02 = {
 	name: 'Royal Canin Regular Sterilised 37',
@@ -77,6 +77,7 @@ const test02 = {
 		},
 	],
 	type: 'dry',
+	color: '#E46651',
 }
 const test01 = {
 	name: 'dry test',
@@ -103,6 +104,7 @@ const test01 = {
 		},
 	],
 	type: 'dry',
+	color: '#00D8FF',
 }
 const royalCaninCare = {
 	name: 'Royal Canin Care Hair&Skin',
@@ -129,7 +131,7 @@ const royalCaninCare = {
 		},
 	],
 	type: 'dry',
-	color: 
+	color: '#00D8FF',
 }
 const royalCaninSterilised = {
 	name: 'Royal Canin Regular Sterilised 37',
@@ -156,6 +158,7 @@ const royalCaninSterilised = {
 		},
 	],
 	type: 'dry',
+	color: '#E46651',
 }
 const test = {
 	name: 'dry test',
@@ -182,6 +185,7 @@ const test = {
 		},
 	],
 	type: 'dry',
+	color: '#41B883',
 }
 const shebaBig = {
 	name: 'Sheba Slices',

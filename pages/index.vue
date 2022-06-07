@@ -46,15 +46,14 @@
 
         <!-- TODO show pie chart to display the current dry food mixture -->
         <div class="dry-mix" v-if="moreThanOneDryFoodSelected">
-          <div class="dry-mix-slider" v-for="(dryFood, i) in calculator
-          .brandsOfType('dry')
-          .filter(brand => brand.isMixPortion)" :key="dryFood._id">
-            <!-- <label for="dry-food-brand-name">{{ dryFood.name }}</label> -->
+          <div class="dry-mix-slider" v-for="(dryFood, i) in selectedDryBrands" :key="dryFood._id">
             <input id="dry-food-brand-name" type="range" min="0" max="1" step=".1"
               v-model.number="dryFood.mixPortion" />
-            <!-- <label for="dry-food-brand-name">{{ dryFood.mixPortion }}</label> -->
           </div>
+          <PieChart :chart-data="pieChartData" />
+          <p>{{ selectedDryBrands.map(brand => brand.color) }}</p>
         </div>
+
 
         <div class="wet-food">
           <div class="wet-food-card" v-for="wetFood in calculator.brandsOfType('wet')" :key="wetFood._id">
@@ -92,6 +91,11 @@ import { ref } from 'vue'
 import Database from '~~/model/MDatabase'
 import Calculator from '~~/model/MCalculator'
 import LoaderAnimation from '~~/components/LoaderAnimation.vue'
+import PieChart from '~~/components/PieChart'
+
+defineProps([
+  'pieChartData'
+])
 
 const db = ref(Database.getInstance())
 const calculator = ref(Calculator.getInstance())
@@ -101,17 +105,46 @@ const isLoading = ref(true)
 const showUi = ref(false)
 
 onBeforeMount(async () => {
+
   await calculator.value.refresh()
   isLoading.value = false
 })
 
+const selectedDryBrands = computed(() => {
+
+  return calculator.value
+    .brandsOfType('dry')
+    .filter(brand => brand.isMixPortion)
+})
+
+const pieChartData = computed(() => {
+
+  const selectedDryBrandsNames = selectedDryBrands.value.map(brand => brand.name)
+  const selectedDryBrandsColors = selectedDryBrands.value.map(brand => brand.color)
+  const selectedDryBrandsPortions = selectedDryBrands.value.map(brand => brand.mixPortion)
+
+  return {
+    labels: selectedDryBrandsNames,
+    datasets: [
+      {
+        backgroundColor: selectedDryBrandsColors,
+        data: selectedDryBrandsPortions
+      },
+    ],
+  }
+})
+
 const moreThanOneDryFoodSelected = computed(() => {
+
   const selectedDryFoodCount = calculator.value
     .brandsOfType('dry')
     .reduce((count, brand) => {
+
       const isSelected = brand.isMixPortion || false
+
       return count + +isSelected
     }, 0)
+
   return selectedDryFoodCount > 1
 })
 

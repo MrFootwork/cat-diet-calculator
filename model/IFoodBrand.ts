@@ -11,5 +11,6 @@ interface FoodBrand {
 	type: string
 	isMixPortion?: boolean
 	mixPortion?: number
+	color: string
 }
 export default FoodBrand

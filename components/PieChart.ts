@@ -1,17 +1,20 @@
 import { defineComponent, h, PropType } from 'vue'
 
 import { Pie } from 'vue-chartjs'
-import {
-	Chart as ChartJS,
-	Title,
-	Tooltip,
-	Legend,
-	ArcElement,
-	CategoryScale,
-	Plugin,
-} from 'chart.js'
+// import {
+// 	Chart as ChartJS,
+// 	Title,
+// 	Tooltip,
+// 	Legend,
+// 	ArcElement,
+// 	CategoryScale,
+// 	Plugin,
+// } from 'chart.js'
 
-ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale)
+// ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale)
+
+import { Chart, registerables } from 'chart.js'
+Chart.register(...registerables)
 
 export default defineComponent({
 	name: 'PieChart',
@@ -45,6 +48,7 @@ export default defineComponent({
 		},
 	},
 	setup(props) {
+		console.log(props)
 		const chartData = {
 			labels: ['bli', 'bla', 'ReactJs', 'AngularJs'],
 			datasets: [

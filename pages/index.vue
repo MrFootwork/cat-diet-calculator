@@ -50,8 +50,12 @@
             <input id="dry-food-brand-name" type="range" min="0" max="1" step=".1"
               v-model.number="dryFood.mixPortion" />
           </div>
+
           <PieChart :chart-data="pieChartData" />
           <p>{{ selectedDryBrands.map(brand => brand.color) }}</p>
+
+          <!-- This component doesn't work at all -->
+          <!-- <Pie /> -->
         </div>
 
 
@@ -92,6 +96,7 @@ import Database from '~~/model/MDatabase'
 import Calculator from '~~/model/MCalculator'
 import LoaderAnimation from '~~/components/LoaderAnimation.vue'
 import PieChart from '~~/components/PieChart'
+import Pie from '~~/components/Pie.vue'
 
 defineProps([
   'pieChartData'

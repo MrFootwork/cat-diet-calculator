@@ -12,28 +12,8 @@
 
       <div class="calculator-ui" v-if="showUi">
 
-        <div class="cat-weight">
-          <label for="cat-weight">{{ calculator.catWeight }}</label>
-          <input id="cat-weight" type="range" min="3" max="6" v-model.number="calculator.catWeight" />
-        </div>
+        <CatAttributes />
 
-        <div class="cat-shape">
-          <label for="ideal">
-            <input type="radio" name="catShape" id="ideal" value="ideal" v-model="calculator.catShape" />
-            Ideal
-          </label>
-          <label for="overweight">
-            <input type="radio" name="catShape" id="overweight" value="overweight" v-model="calculator.catShape" />
-            Overweight
-          </label>
-          <button class="cat-shape-help-toggle" @click="toggleCatShapeHelp">
-            What is my cat?
-          </button>
-        </div>
-
-        <div class="cat-shape-help" v-if="showHelp">
-          <img src="/HealthyCatWeight.webp" alt="Can you see/feel the ribs of your cat?" />
-        </div>
         <div class="dry-food">
           <div class="dry-food-card" v-for="dryFood in calculator.brandsOfType('dry')" :key="dryFood._id">
             <label :for="dryFood.name">
@@ -58,7 +38,6 @@
           <!-- <Pie /> -->
         </div>
 
-
         <div class="wet-food">
           <div class="wet-food-card" v-for="wetFood in calculator.brandsOfType('wet')" :key="wetFood._id">
             <label :for="wetFood.name">
@@ -77,11 +56,15 @@
           <h5>calculator:</h5>
           <p>cat weight: {{ calculator.catWeight }}</p>
           <p>cat shape: {{ calculator.catShape }}</p>
-          <p>Result: {{ calculator.getResult(calculator.allBrands) }}</p>
         </div>
+
         <button @click="refreshData">Refresh Data</button>
         <button @click="reset">Reset Database</button>
         <button @click="toggleUi" id="btn-toggle-ui"> Show UI </button>
+      </div>
+
+      <div class="result">
+        <p>Result: {{ calculator.getResult(calculator.allBrands) }}</p>
       </div>
 
     </div>
@@ -94,6 +77,7 @@
 import { ref } from 'vue'
 import Database from '~~/model/MDatabase'
 import Calculator from '~~/model/MCalculator'
+import CatAttributes from '~~/components/CatAttributesInput.vue'
 import LoaderAnimation from '~~/components/LoaderAnimation.vue'
 import PieChart from '~~/components/PieChart'
 import Pie from '~~/components/Pie.vue'
@@ -105,7 +89,6 @@ defineProps([
 const db = ref(Database.getInstance())
 const calculator = ref(Calculator.getInstance())
 
-const showHelp = ref(false)
 const isLoading = ref(true)
 const showUi = ref(false)
 
@@ -113,6 +96,7 @@ onBeforeMount(async () => {
 
   await calculator.value.refresh()
   isLoading.value = false
+
 })
 
 const selectedDryBrands = computed(() => {
@@ -120,6 +104,7 @@ const selectedDryBrands = computed(() => {
   return calculator.value
     .brandsOfType('dry')
     .filter(brand => brand.isMixPortion)
+
 })
 
 const pieChartData = computed(() => {
@@ -151,28 +136,31 @@ const moreThanOneDryFoodSelected = computed(() => {
     }, 0)
 
   return selectedDryFoodCount > 1
+
 })
 
 function toggleUi() {
+
   showUi.value = !showUi.value
   const btnToggleUi = document.getElementById('btn-toggle-ui') || document.createElement('button')
   btnToggleUi.innerText = showUi.value ? 'Hide UI' : 'Show UI'
-}
 
-function toggleCatShapeHelp() {
-  showHelp.value = !showHelp.value
 }
 
 async function refreshData() {
+
   isLoading.value = true
   await calculator.value.refresh()
   isLoading.value = false
+
 }
 
 async function reset() {
+
   isLoading.value = true
   await db.value.resetDB()
   isLoading.value = false
+
 }
 </script>
 
@@ -183,9 +171,9 @@ body {
 </style>
 
 <style scoped lang="scss">
-.cat-shape-help {
-  img {
-    width: 50vw;
-  }
+.result {
+  position: sticky;
+  bottom: 10px;
+  right: 10px
 }
 </style>

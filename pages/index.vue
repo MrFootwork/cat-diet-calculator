@@ -34,8 +34,6 @@
           <PieChart :chart-data="pieChartData" />
           <p>{{ selectedDryBrands.map(brand => brand.color) }}</p>
 
-          <!-- This component doesn't work at all -->
-          <!-- <Pie /> -->
         </div>
 
         <div class="wet-food">

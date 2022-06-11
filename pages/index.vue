@@ -1,6 +1,9 @@
 <!-- FIXME build beautiful UI -->
 <!-- FIXME persist brand images in database -->
 <!-- TODO build components-->
+<!-- FIXME report bug in vue-chartjs/issues
+provide minimal repro in nuxt3 + vue-chartjs + pie chart 
+error: dev renders, but build doesn't render -->
 <template>
   <div>
 

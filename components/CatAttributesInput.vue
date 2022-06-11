@@ -40,8 +40,13 @@ function toggleCatShapeHelp() {
 
 <style scoped lang="scss">
 .cat-shape-help {
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+
   img {
-    width: 50vw;
+    width: 85vw;
+
   }
 }
 </style>

@@ -166,6 +166,7 @@ async function reset() {
 
 <style lang="scss">
 body {
+  margin: 0;
   background-color: hsl(140, 100%, 85%)
 }
 </style>
@@ -174,6 +175,6 @@ body {
 .result {
   position: sticky;
   bottom: 10px;
-  right: 10px
+  right: 0px
 }
 </style>

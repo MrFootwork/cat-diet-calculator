@@ -11,12 +11,12 @@
 		"info": "npx nuxi info"
 	},
 	"devDependencies": {
-		"nuxt": "3.0.0-rc.3",
+		"nuxt": "3.0.0-rc.4",
 		"eslint": "^8.15.0",
 		"typescript": "latest",
 		"vitest": "^0.12.9",
 		"@vitest/ui": "^0.12.9",
-		"@nuxt/test-utils-edge": "^3.0.0-rc.3-27581242.8831e4a",
+		"@nuxt/test-utils-edge": "latest",
 		"sass": "^1.51.0",
 		"dotenv": "^16.0.0"
 	},

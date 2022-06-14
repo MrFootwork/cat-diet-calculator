@@ -22,4 +22,12 @@ export default defineNuxtConfig({
 			config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
 		}
 	},
+
+	// ESM issues with chart.js
+	// https://v3.nuxtjs.org/guide/going-further/esm#transpiling-libraries
+	// without this following error would occur
+	// https://v3.nuxtjs.org/guide/going-further/esm/#what-kinds-of-problems-can-there-be
+	build: {
+		transpile: ['chart.js'],
+	},
 })

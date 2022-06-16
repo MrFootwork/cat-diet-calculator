@@ -1,12 +1,20 @@
 <template>
-  <div class="dry-mix" v-if="moreThanOneDryFoodSelected">
-    <div class="dry-mix-slider" v-for="(dryFood, i) in selectedDryBrands" :key="dryFood._id">
+  <div class="dry-mix" v-if="selectedDryBrands.length >= 2">
+    <div class="dry-mix-slider" v-for="dryFood in selectedDryBrands" :key="dryFood._id">
       <input id="dry-food-brand-name" type="range" min="0" max="1" step=".1" v-model.number="dryFood.mixPortion" />
     </div>
 
     <PieChart :chart-data="pieChartData" />
     <p>{{ selectedDryBrands.map(brand => brand.color) }}</p>
 
+  </div>
+
+  <div v-else-if="selectedDryBrands.length === 1">
+    You use "{{ selectedDryBrands[0]?.name }}" as dry food only.
+  </div>
+
+  <div v-else-if="selectedDryBrands.length === 0">
+    You haven't chosen your dry food, yet.
   </div>
 </template>
 
@@ -42,22 +50,6 @@ const selectedDryBrands = computed(() => {
   return calculator.value
     .brandsOfType('dry')
     .filter(brand => brand.isMixPortion)
-
-})
-
-const moreThanOneDryFoodSelected = computed(() => {
-
-  const selectedDryFoodCount = calculator.value
-    .brandsOfType('dry')
-    .reduce((count, brand) => {
-
-      // TODO Find algorithm which breaks at finding more than one selected
-      const isSelected = brand.isMixPortion || false
-
-      return count + +isSelected
-    }, 0)
-
-  return selectedDryFoodCount > 1
 
 })
 </script>

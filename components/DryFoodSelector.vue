@@ -16,6 +16,7 @@
 import Calculator from '~~/model/MCalculator'
 
 const calculator = ref(Calculator.getInstance())
+
 </script>
 
 <style scoped>

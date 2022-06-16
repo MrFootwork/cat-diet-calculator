@@ -19,10 +19,21 @@
 
       <div class="calculator-ui" v-show="showUi">
 
-        <CatAttributes />
-        <DryFoodSelector />
-        <DryFoodMixture />
-        <WetFoodSelector />
+        <Container>
+          <CatAttributes />
+        </Container>
+
+        <Container>
+          <DryFoodSelector />
+        </Container>
+
+        <Container>
+          <DryFoodMixture />
+        </Container>
+
+        <Container>
+          <WetFoodSelector />
+        </Container>
 
         <ResultDisplay />
 
@@ -37,7 +48,9 @@ import { ref } from 'vue'
 // model
 import Database from '~~/model/MDatabase'
 import Calculator from '~~/model/MCalculator'
-// components
+// design components
+import Container from '~~/components/DivisionContainer.vue'
+// logic components
 import CatAttributes from '~~/components/CatAttributesInput.vue'
 import DryFoodSelector from '~~/components/DryFoodSelector.vue'
 import DryFoodMixture from '~~/components/DryFoodMixture.vue'

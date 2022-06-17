@@ -4,7 +4,7 @@
 <template>
   <div>
 
-    <div v-if="isLoading">
+    <div class="loader" v-if="isLoading">
       <LoaderAnimation />
     </div>
 
@@ -40,6 +40,7 @@
       </div>
 
     </div>
+
   </div>
 </template>
 
@@ -103,4 +104,11 @@ body {
 </style>
 
 <style scoped lang="scss">
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+
+}
 </style>

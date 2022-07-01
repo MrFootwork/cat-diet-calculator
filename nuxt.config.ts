@@ -30,4 +30,7 @@ export default defineNuxtConfig({
 	build: {
 		transpile: ['chart.js'],
 	},
+
+	// https://stackoverflow.com/questions/71540998/how-to-use-global-sass-variables-in-my-nuxt-3-components
+	css: ['@/assets/scss/main.scss'],
 })

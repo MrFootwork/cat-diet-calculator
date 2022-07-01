@@ -97,9 +97,18 @@ function toggleUi() {
 </script>
 
 <style lang="scss">
-body {
-  margin: 0;
-  background-color: hsl(140, 100%, 85%)
+@mixin app($bg-color) {
+  background-color: $bg-color;
+}
+
+@import "../assets/scss/mixins/theme.scss";
+
+@include componentTheme(light) {
+  @include app(purple);
+}
+
+@include componentTheme(dark) {
+  @include app(black);
 }
 </style>
 

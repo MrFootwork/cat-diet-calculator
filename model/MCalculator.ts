@@ -4,7 +4,6 @@ import DataProcessorWet from '~~/model/MDataProcessorWet'
 import FoodBrand from '~~/model/IFoodBrand'
 
 import helpers from '~~/model/Helper'
-
 // TODO create cat profiles
 export default class Calculator {
 	// properties

@@ -3,6 +3,7 @@ import type { IncomingMessage, ServerResponse } from 'http'
 import { MongoClient } from 'mongodb'
 import { config } from 'dotenv'
 
+// FIXME copy new method from getData.ts
 export default async (req: IncomingMessage, res: ServerResponse) => {
 	const uri = process.env.MONGODB_URI || ''
 	const mongoClient: MongoClient = new MongoClient(uri)

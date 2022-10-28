@@ -11,7 +11,7 @@
 		"info": "npx nuxi info"
 	},
 	"devDependencies": {
-		"nuxt": "3.0.0-rc.4",
+		"nuxt": "3.0.0-rc.12",
 		"eslint": "^8.15.0",
 		"typescript": "latest",
 		"vitest": "^0.12.9",

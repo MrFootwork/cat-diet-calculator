@@ -2,7 +2,7 @@
 <!-- FIXME build nav bar with theme picker -->
 <!-- FIXME build beautiful UI -->
 <template>
-  <div>
+  <div ref="themeElement" :class="activeTheme">
 
     <div class="loader" v-if="isLoading">
       <LoaderAnimation />
@@ -15,6 +15,7 @@
         <button @click="refreshData">Refresh Data</button>
         <button @click="resetDB">Reset Database</button>
         <button @click="toggleUi" id="btn-toggle-ui"> {{ btnToggleUiCapture }} </button>
+        <button @click="toggleTheme">Change Theme</button>
       </div>
 
       <div class="calculator-ui" v-show="showUi">
@@ -62,8 +63,31 @@ const db = ref(Database.getInstance())
 const calculator = ref(Calculator.getInstance())
 
 const isLoading = ref(true)
+
+// Theming
+// FIXME move back to body
+const activeTheme = ref('theme-light')
+
+function toggleTheme() {
+
+  if (activeTheme.value === 'theme-light') {
+    activeTheme.value = 'theme-dark'
+  } else {
+    activeTheme.value = 'theme-light'
+  }
+
+}
+
+// UI
 const showUi = ref(false)
 const btnToggleUiCapture = ref('Show UI')
+
+function toggleUi() {
+
+  showUi.value = !showUi.value
+  btnToggleUiCapture.value = showUi.value ? 'Hide UI' : 'Show UI'
+
+}
 
 onBeforeMount(async () => {
 
@@ -88,12 +112,6 @@ async function resetDB() {
 
 }
 
-function toggleUi() {
-
-  showUi.value = !showUi.value
-  btnToggleUiCapture.value = showUi.value ? 'Hide UI' : 'Show UI'
-
-}
 </script>
 
 <style lang="scss">

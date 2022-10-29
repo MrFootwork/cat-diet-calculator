@@ -2,6 +2,10 @@ import { defineNuxtConfig } from 'nuxt'
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
+	// https://render.com/docs/deploy-nuxtjs
+	server: {
+		host: '0.0.0.0',
+	},
 	// preset for deploying
 	// https://v3.nuxtjs.org/guide/deploy/presets/
 	nitro: {

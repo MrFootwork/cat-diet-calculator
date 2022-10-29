@@ -10,7 +10,7 @@
 > npm cache clear -f
 
 ### Install packages with the --legacy-peer-deps option
-
+<!-- https://stackoverflow.com/a/66620869/13608849 -->
 > npm i --legacy-peer-deps
 > npm run dev
 

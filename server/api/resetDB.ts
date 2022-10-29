@@ -3,28 +3,29 @@ import type { IncomingMessage, ServerResponse } from 'http'
 import { MongoClient } from 'mongodb'
 import { config } from 'dotenv'
 
-// FIXME copy new method from getData.ts
-export default async (req: IncomingMessage, res: ServerResponse) => {
-	const uri = process.env.MONGODB_URI || ''
-	const mongoClient: MongoClient = new MongoClient(uri)
+export default fromNodeMiddleware(
+	async (req: IncomingMessage, res: ServerResponse) => {
+		const uri = process.env.MONGODB_URI || ''
+		const mongoClient: MongoClient = new MongoClient(uri)
 
-	await mongoClient.connect()
-	const db = mongoClient.db('food')
+		await mongoClient.connect()
+		const db = mongoClient.db('food')
 
-	try {
-		await dropCollection(db, 'dry')
-		await addData(db, 'dry', dryFood)
-		await dropCollection(db, 'wet')
-		await addData(db, 'wet', wetFood)
-	} catch (e) {
-		console.error('could not read from database. ', e)
-	} finally {
-		await mongoClient.close()
+		try {
+			await dropCollection(db, 'dry')
+			await addData(db, 'dry', dryFood)
+			await dropCollection(db, 'wet')
+			await addData(db, 'wet', wetFood)
+		} catch (e) {
+			console.error('could not read from database. ', e)
+		} finally {
+			await mongoClient.close()
+		}
+
+		res.writeHead(200, { 'Content-Type': 'application/json' })
+		res.end()
 	}
-
-	res.writeHead(200, { 'Content-Type': 'application/json' })
-	res.end()
-}
+)
 
 const test03 = {
 	name: 'Royal Canin Care Hair&Skin',

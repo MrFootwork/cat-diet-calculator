@@ -9,28 +9,25 @@
 </script>
 
 <style scoped lang="scss">
-@import "../assets/scss/mixins/theme.scss";
+// @import "../assets/sass/abstracts/_mixins.scss";
 
-// LIGHT
-$light-border-color: black;
-// DARK
-$dark-border-color: yellow;
-
-
-@mixin container($border-color) {
-  .container {
-    border: 3px solid $border-color;
-    border-radius: 10px;
-    margin: 1rem;
-    padding: 1rem;
-  }
+%staticContainerAttributes {
+  border-radius: 10px;
+  margin: 1rem;
+  padding: 1rem;
 }
 
 @include componentTheme(light) {
-  @include container($light-border-color);
+  .container {
+    border: 3px solid $light-secondary-color;
+    @extend %staticContainerAttributes
+  }
 }
 
 @include componentTheme(dark) {
-  @include container($dark-border-color);
+  .container {
+    border: 3px solid $dark-secondary-color;
+    @extend %staticContainerAttributes
+  }
 }
 </style>

@@ -2,7 +2,7 @@
 <!-- FIXME build nav bar with theme picker -->
 <!-- FIXME build beautiful UI -->
 <template>
-  <div ref="themeElement" :class="activeTheme">
+  <div>
 
     <div class="loader" v-if="isLoading">
       <LoaderAnimation />
@@ -52,7 +52,7 @@ import Database from '~~/model/MDatabase'
 import Calculator from '~~/model/MCalculator'
 // design components
 import Container from '~~/components/DivisionContainer.vue'
-// logic components
+// input components
 import CatAttributes from '~~/components/CatAttributesInput.vue'
 import DryFoodSelector from '~~/components/DryFoodSelector.vue'
 import DryFoodMixture from '~~/components/DryFoodMixture.vue'
@@ -65,15 +65,22 @@ const calculator = ref(Calculator.getInstance())
 const isLoading = ref(true)
 
 // Theming
-// FIXME move back to body
+onMounted(() => {
+  document.body.className = 'theme-light'
+})
+
 const activeTheme = ref('theme-light')
 
 function toggleTheme() {
 
+  let bodyClass = document.body.className
+
   if (activeTheme.value === 'theme-light') {
     activeTheme.value = 'theme-dark'
+    document.body.className = 'theme-dark'
   } else {
     activeTheme.value = 'theme-light'
+    document.body.className = 'theme-light'
   }
 
 }
@@ -89,6 +96,7 @@ function toggleUi() {
 
 }
 
+// data model
 onBeforeMount(async () => {
 
   await calculator.value.refresh()
@@ -114,28 +122,11 @@ async function resetDB() {
 
 </script>
 
-<style lang="scss">
-@mixin app($bg-color) {
-  background-color: $bg-color;
-}
-
-@import "../assets/scss/mixins/theme.scss";
-
-@include componentTheme(light) {
-  @include app(purple);
-}
-
-@include componentTheme(dark) {
-  @include app(black);
-}
-</style>
-
 <style scoped lang="scss">
 .loader {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 80vh;
-
 }
 </style>

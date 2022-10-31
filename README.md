@@ -7,6 +7,7 @@
 > rm -rf node_modules
 > rm package-lock.json
 > rm -rf .nuxt
+> rm -rf .output
 > npm cache clear -f
 
 ### Install packages with the --legacy-peer-deps option

@@ -1,7 +1,0 @@
-@mixin componentTheme($theme-name) {
-
-  // FIXME return to body instead of that div
-  div.theme-#{$theme-name} {
-    @content
-  }
-}

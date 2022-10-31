@@ -1,0 +1,7 @@
+@mixin componentTheme($theme-name) {
+
+  body.theme-#{$theme-name} {
+    @content
+  }
+
+}

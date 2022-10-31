@@ -9,7 +9,8 @@
 </script>
 
 <style scoped lang="scss">
-// @import "../assets/sass/abstracts/_mixins.scss";
+@use '../assets/sass/abstracts/_mixins.scss' as *;
+@use '../assets/sass/abstracts/_colors.scss' as *;
 
 %staticContainerAttributes {
   border-radius: 10px;
@@ -17,14 +18,14 @@
   padding: 1rem;
 }
 
-@include componentTheme(light) {
+@include styleBody(light) {
   .container {
     border: 3px solid $light-secondary-color;
     @extend %staticContainerAttributes
   }
 }
 
-@include componentTheme(dark) {
+@include styleBody(dark) {
   .container {
     border: 3px solid $dark-secondary-color;
     @extend %staticContainerAttributes

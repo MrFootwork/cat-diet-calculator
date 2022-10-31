@@ -36,17 +36,17 @@ export default defineNuxtConfig({
 	},
 
 	// https://stackoverflow.com/questions/71540998/how-to-use-global-sass-variables-in-my-nuxt-3-components
-	css: ['@/assets/sass/main.scss'],
+	// css: ['@/assets/sass/global.scss'],
 
 	// https://v3.nuxtjs.org/getting-started/assets/#global-styles-imports
-	vite: {
-		css: {
-			preprocessorOptions: {
-				scss: {
-					// https://stackoverflow.com/a/71540999/13608849
-					additionalData: '@import "@/assets/sass/global.scss";',
-				},
-			},
-		},
-	},
+	// vite: {
+	// 	css: {
+	// 		preprocessorOptions: {
+	// 			scss: {
+	// 				// https://stackoverflow.com/a/71540999/13608849
+	// 				additionalData: '@use "@/assets/sass/global.scss" as *;',
+	// 			},
+	// 		},
+	// 	},
+	// },
 })

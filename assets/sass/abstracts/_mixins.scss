@@ -1,4 +1,4 @@
-@mixin componentTheme($theme-name) {
+@mixin styleBody($theme-name) {
 
   body.theme-#{$theme-name} {
     @content

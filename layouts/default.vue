@@ -6,14 +6,15 @@
 </template>
 
 <style lang="scss">
-// @import "../assets/sass/abstracts/_mixins.scss";
+@use '../assets/sass/abstracts/_mixins.scss' as *;
+@use '../assets/sass/abstracts/_colors.scss' as *;
 
-@include componentTheme(light) {
+@include styleBody(light) {
   background-color: $light-primary-color;
   color: $light-secondary-color;
 }
 
-@include componentTheme(dark) {
+@include styleBody(dark) {
   background-color: $dark-primary-color;
   color: $dark-secondary-color;
 }

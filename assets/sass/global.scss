@@ -1,3 +1,4 @@
 // https://stackoverflow.com/a/71540999/13608849
-@import "abstracts/_mixins.scss";
-@import "abstracts/_colors.scss";
+// TODO global doesn't work => look in nuxt.config.ts
+@use "abstracts/mixins";
+@use "abstracts/colors";

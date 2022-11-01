@@ -6,8 +6,8 @@
 </template>
 
 <style lang="scss">
-@use '../assets/sass/abstracts/_mixins.scss' as *;
-@use '../assets/sass/abstracts/_colors.scss' as *;
+@use 'sassMixins' as *;
+@use 'sassColors' as *;
 
 @include styleBody(light) {
   background-color: $light-primary-color;

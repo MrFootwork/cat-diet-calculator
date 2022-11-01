@@ -9,8 +9,8 @@
 </script>
 
 <style scoped lang="scss">
-@use '../assets/sass/abstracts/_mixins.scss' as *;
-@use '../assets/sass/abstracts/_colors.scss' as *;
+@use 'sassMixins' as *;
+@use 'sassColors' as *;
 
 %staticContainerAttributes {
   border-radius: 10px;

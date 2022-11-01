@@ -1,4 +1,3 @@
-<!-- FIXME persist brand images in database -->
 <!-- FIXME build nav bar with theme picker -->
 <!-- FIXME build beautiful UI -->
 <template>

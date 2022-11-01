@@ -1,7 +1,13 @@
 import { defineNuxtConfig } from 'nuxt'
+import { resolve } from 'path'
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
+	alias: {
+		sassMixins: resolve(__dirname, './assets/sass/abstracts/_mixins.scss'),
+		sassColors: resolve(__dirname, './assets/sass/abstracts/_colors.scss'),
+	},
+
 	// https://render.com/docs/deploy-nuxtjs
 	server: {
 		host: '0.0.0.0',
@@ -14,9 +20,9 @@ export default defineNuxtConfig({
 	/** Strict Type Checking
 	 *  https://v3.nuxtjs.org/guide/concepts/typescript/
 	 */
-	// typescript: {
-	// 	strict: true,
-	// },
+	typescript: {
+		strict: true,
+	},
 
 	// debugging in nuxt
 	// https://github.com/nuxt/framework/discussions/2098

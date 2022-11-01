@@ -20,6 +20,9 @@ import Calculator from '~~/model/MCalculator'
 
 const calculator = ref(Calculator.getInstance())
 
+// FIXME persist brand images in database
+// 1. save images in database
+// 2. adjust model to handle images
 const urlPlaceholder = function (dryFood: FoodBrand) {
 
   const baseUrl = 'https://via.placeholder.com/100x150'
@@ -31,4 +34,5 @@ const urlPlaceholder = function (dryFood: FoodBrand) {
 </script>
 
 <style scoped>
+
 </style>

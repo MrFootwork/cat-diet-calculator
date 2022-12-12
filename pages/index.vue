@@ -35,8 +35,6 @@
           <WetFoodSelector />
         </Container>
 
-        <ResultDisplay />
-
       </div>
 
     </div>
@@ -56,7 +54,6 @@ import CatAttributes from '~~/components/CatAttributesInput.vue'
 import DryFoodSelector from '~~/components/DryFoodSelector.vue'
 import DryFoodMixture from '~~/components/DryFoodMixture.vue'
 import WetFoodSelector from '~~/components/WetFoodSelector.vue'
-import ResultDisplay from '~~/components/ResultDisplay.vue'
 
 const db = ref(Database.getInstance())
 const calculator = ref(Calculator.getInstance())

@@ -81,7 +81,7 @@ function toggleTheme() {
 }
 
 // UI
-const showUi = ref(false)
+const showUi = ref(true)
 const btnToggleUiCapture = ref('Show UI')
 
 function toggleUi() {

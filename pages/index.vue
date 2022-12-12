@@ -10,10 +10,9 @@
     <div v-else>
 
       <div>
-        <!-- controls only for dev build -->
-        <button @click="refreshData">Refresh Data</button>
-        <button @click="resetDB">Reset Database</button>
-        <button @click="toggleUi" id="btn-toggle-ui"> {{ btnToggleUiCapture }} </button>
+        <!-- <button @click="refreshData">Refresh Data</button> -->
+        <!-- <button @click="resetDB">Reset Database</button> -->
+        <!-- <button @click="toggleUi" id="btn-toggle-ui"> {{ btnToggleUiCapture }} </button> -->
         <button @click="toggleTheme">Change Theme</button>
       </div>
 

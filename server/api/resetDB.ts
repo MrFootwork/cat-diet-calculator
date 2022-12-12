@@ -189,6 +189,7 @@ const test = {
 	type: 'dry',
 	color: '#41B883',
 }
+// FIXME 'overweight' can't be more than 'ideal'
 const shebaBig = {
 	name: 'Sheba Slices',
 	recommendations: [

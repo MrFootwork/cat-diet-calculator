@@ -196,22 +196,22 @@ const shebaBig = {
 		{
 			weight: 3,
 			ideal: 3,
-			overweight: 4,
+			overweight: 2.5,
 		},
 		{
 			weight: 4,
 			ideal: 4,
-			overweight: 5,
+			overweight: 3.5,
 		},
 		{
 			weight: 5,
 			ideal: 5,
-			overweight: 6,
+			overweight: 4,
 		},
 		{
 			weight: 6,
 			ideal: 6,
-			overweight: 7,
+			overweight: 5,
 		},
 	],
 	type: 'wet',

@@ -52,8 +52,10 @@ const calculator = ref(Calculator.getInstance())
   .wrapper-bowl {
     .image-bowl {
       position: relative;
-      top: 0;
+      top: 10px;
       right: 0;
+      width: calc(1.5*96px);
+      height: calc(1.5*72px);
     }
   }
 

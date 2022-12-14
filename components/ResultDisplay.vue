@@ -2,7 +2,7 @@
   <div class="result-container">
 
     <div class="wrapper-bowl">
-      <img class="image-bowl" src="@/public/food-bowl.png" alt="">
+      <img class="image-bowl" src="@/public/food-bowl-old.png" alt="">
     </div>
 
     <div class="wrapper-result-display">
@@ -52,10 +52,12 @@ const calculator = ref(Calculator.getInstance())
   .wrapper-bowl {
     .image-bowl {
       position: relative;
-      top: 10px;
+      top: 0;
       right: 0;
-      width: calc(1.5*96px);
-      height: calc(1.5*72px);
+      // top: 10px;
+      // right: 0;
+      // width: calc(1.5*96px);
+      // height: calc(1.5*72px);
     }
   }
 

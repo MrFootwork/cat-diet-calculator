@@ -1,46 +1,5 @@
 <!-- FIXME build nav bar with theme picker -->
 <!-- FIXME build beautiful UI -->
-<template>
-  <div>
-
-    <div class="loader" v-if="isLoading">
-      <LoaderAnimation />
-    </div>
-
-    <div v-else>
-
-      <div>
-        <!-- <button @click="refreshData">Refresh Data</button> -->
-        <!-- <button @click="resetDB">Reset Database</button> -->
-        <!-- <button @click="toggleUi" id="btn-toggle-ui"> {{ btnToggleUiCapture }} </button> -->
-        <button @click="toggleTheme">Change Theme</button>
-      </div>
-
-      <div class="calculator-ui" v-show="showUi">
-
-        <Container>
-          <CatAttributes />
-        </Container>
-
-        <Container>
-          <DryFoodSelector />
-        </Container>
-
-        <Container>
-          <DryFoodMixture />
-        </Container>
-
-        <Container>
-          <WetFoodSelector />
-        </Container>
-
-      </div>
-
-    </div>
-
-  </div>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue'
 // model
@@ -116,6 +75,47 @@ async function resetDB() {
 }
 
 </script>
+
+<template>
+  <div>
+
+    <div class="loader" v-if="isLoading">
+      <LoaderAnimation />
+    </div>
+
+    <div v-else>
+
+      <div>
+        <!-- <button @click="refreshData">Refresh Data</button> -->
+        <!-- <button @click="resetDB">Reset Database</button> -->
+        <!-- <button @click="toggleUi" id="btn-toggle-ui"> {{ btnToggleUiCapture }} </button> -->
+        <button @click="toggleTheme">Change Theme</button>
+      </div>
+
+      <div class="calculator-ui" v-show="showUi">
+
+        <Container>
+          <CatAttributes />
+        </Container>
+
+        <Container>
+          <DryFoodSelector />
+        </Container>
+
+        <Container>
+          <DryFoodMixture />
+        </Container>
+
+        <Container>
+          <WetFoodSelector />
+        </Container>
+
+      </div>
+
+    </div>
+
+  </div>
+</template>
 
 <style scoped lang="scss">
 .loader {

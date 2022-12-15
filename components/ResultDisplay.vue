@@ -2,7 +2,7 @@
   <div class="result-container">
 
     <div class="wrapper-bowl">
-      <img class="image-bowl" src="@/public/food-bowl-old.png" alt="">
+      <img class="image-bowl" src="/foodbowl.png" alt="">
     </div>
 
     <div class="wrapper-result-display">

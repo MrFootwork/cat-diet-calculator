@@ -8,10 +8,10 @@ import Calculator from '~~/model/MCalculator'
 // design components
 import Container from '~~/components/DivisionContainer.vue'
 // input components
-import CatAttributes from '~~/components/CatAttributesInput.vue'
-import DryFoodSelector from '~~/components/DryFoodSelector.vue'
-import DryFoodMixture from '~~/components/DryFoodMixture.vue'
-import WetFoodSelector from '~~/components/WetFoodSelector.vue'
+import InputAttributesCat from '~~/components/InputAttributesCat.vue'
+import DisplayFoodMixture from '~~/components/DisplayFoodMixture.vue'
+import SelectorFoodDry from '~~/components/SelectorFoodDry.vue'
+import SelectorFoodWet from '~~/components/SelectorFoodWet.vue'
 
 const db = ref(Database.getInstance())
 const calculator = ref(Calculator.getInstance())
@@ -95,19 +95,19 @@ async function resetDB() {
       <div class="calculator-ui" v-show="showUi">
 
         <Container>
-          <CatAttributes />
+          <InputAttributesCat />
         </Container>
 
         <Container>
-          <DryFoodSelector />
+          <SelectorFoodDry />
         </Container>
 
         <Container>
-          <DryFoodMixture />
+          <DisplayFoodMixture />
         </Container>
 
         <Container>
-          <WetFoodSelector />
+          <SelectorFoodWet />
         </Container>
 
       </div>

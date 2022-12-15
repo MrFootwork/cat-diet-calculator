@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ResultDisplay from '~~/components/ResultDisplay.vue'
+import ResultDisplay from '~~/components/DisplayResult.vue'
 
 </script>
 

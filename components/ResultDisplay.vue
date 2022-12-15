@@ -2,7 +2,8 @@
   <div class="result-container">
 
     <div class="wrapper-bowl">
-      <img class="image-bowl" src="@/public/food-bowl-fish.png" alt="">
+      <!-- https://nuxt.com/docs/getting-started/assets#public-directory -->
+      <img class="image-bowl" src="/food-bowl-fish.png" alt="">
     </div>
 
     <div class="wrapper-result-display">

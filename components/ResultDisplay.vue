@@ -2,10 +2,7 @@
   <div class="result-container">
 
     <div class="wrapper-bowl">
-      <!-- last working -->
-      <!-- <img class="image-bowl" src="/foodbowl.png" alt=""> -->
-      <!-- <img class="image-bowl" src="~~/public/foodbowl.png" alt=""> -->
-      <!-- <img class="image-bowl" src="@/assets/img/foodbowl.png" alt=""> -->
+      <img class="image-bowl" src="@/public/food-bowl-fish.png" alt="">
     </div>
 
     <div class="wrapper-result-display">
@@ -57,10 +54,8 @@ const calculator = ref(Calculator.getInstance())
       position: relative;
       top: 0;
       right: 0;
-      // top: 10px;
-      // right: 0;
-      // width: calc(1.5*96px);
-      // height: calc(1.5*72px);
+      width: calc(1.3*96px);
+      height: calc(1.3*96px);
     }
   }
 

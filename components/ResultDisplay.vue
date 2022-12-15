@@ -2,7 +2,10 @@
   <div class="result-container">
 
     <div class="wrapper-bowl">
-      <img class="image-bowl" src="/foodbowl.png" alt="">
+      <!-- last working -->
+      <!-- <img class="image-bowl" src="/foodbowl.png" alt=""> -->
+      <!-- <img class="image-bowl" src="~~/public/foodbowl.png" alt=""> -->
+      <!-- <img class="image-bowl" src="@/assets/img/foodbowl.png" alt=""> -->
     </div>
 
     <div class="wrapper-result-display">

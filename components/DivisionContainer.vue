@@ -20,7 +20,7 @@
 
 @include styleBody(light) {
   .container {
-    border: 3px solid $light-secondary-color;
+    border: 3px solid $light-primary-color;
     @extend %staticContainerAttributes
   }
 }

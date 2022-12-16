@@ -23,8 +23,8 @@ import ResultDisplay from '~~/components/DisplayResult.vue'
 
 
 @include styleBody(light) {
-  background-color: $light-primary-color;
-  color: $light-secondary-color;
+  background-color: $light-background-color;
+  color: $light-text-color;
 }
 
 @include styleBody(dark) {

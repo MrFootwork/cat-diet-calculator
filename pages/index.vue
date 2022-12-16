@@ -7,6 +7,7 @@ import Database from '~~/model/MDatabase'
 import Calculator from '~~/model/MCalculator'
 // design components
 import Container from '~~/components/DivisionContainer.vue'
+import AnimationLoader from '~~/components/AnimationLoader.vue'
 // input components
 import InputAttributesCat from '~~/components/InputAttributesCat.vue'
 import DisplayFoodMixture from '~~/components/DisplayFoodMixture.vue'
@@ -80,7 +81,7 @@ async function resetDB() {
   <div>
 
     <div class="loader" v-if="isLoading">
-      <LoaderAnimation />
+      <AnimationLoader />
     </div>
 
     <div v-else>

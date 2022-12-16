@@ -1,4 +1,8 @@
 <!-- // https://loading.io/css/ -->
+<script setup lang="ts">
+
+</script>
+
 <template>
   <div>
     <div class="lds-spinner">
@@ -17,10 +21,6 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-
-</script>
 
 <style scoped lang="scss">
 .lds-spinner {

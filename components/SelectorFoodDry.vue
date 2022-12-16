@@ -25,7 +25,6 @@ const calculator = ref(Calculator.getInstance())
 // 2. adjust model to handle images
 const urlPlaceholder = function (dryFood: FoodBrand) {
 
-  console.log(dryFood.image);
   if (dryFood.image) {
     return dryFood.image
   }

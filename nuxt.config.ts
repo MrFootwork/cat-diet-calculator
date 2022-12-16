@@ -11,14 +11,6 @@ export default defineNuxtConfig({
 			meta: [],
 		},
 	},
-	proxy: {
-		'/api': {
-			target: 'https://cats.pandau.de/api',
-			pathRewrite: {
-				'^/api': '/',
-			},
-		},
-	},
 	alias: {
 		sassMixins: resolve(__dirname, './assets/sass/abstracts/_mixins.scss'),
 		sassColors: resolve(__dirname, './assets/sass/abstracts/_colors.scss'),

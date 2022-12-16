@@ -86,8 +86,8 @@ async function resetDB() {
     <div v-else>
 
       <div>
-        <!-- <button @click="refreshData">Refresh Data</button> -->
-        <!-- <button @click="resetDB">Reset Database</button> -->
+        <button @click="refreshData">Refresh Data</button>
+        <button @click="resetDB">Reset Database</button>
         <!-- <button @click="toggleUi" id="btn-toggle-ui"> {{ btnToggleUiCapture }} </button> -->
         <button @click="toggleTheme">Change Theme</button>
       </div>

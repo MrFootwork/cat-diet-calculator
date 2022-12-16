@@ -53,6 +53,8 @@ const test03 = {
 	],
 	type: 'dry',
 	color: '#41B883',
+	image:
+		'https://lh3.googleusercontent.com/LVjwlxmeu5omDhv-ay80SkE8zhqiEzXjnb2DoTOO59L_6PmGFXj5c8pNcqCMBD0l0JgT4WlJywsQSiXZDyh4wl9hQr3s5yt_PN04iG1-PYhQGNfWfpwkBUxzIiyeoFf34oKuEhcA-ZI=w2400',
 }
 const test02 = {
 	name: 'Royal Canin Regular Sterilised 37',
@@ -134,6 +136,8 @@ const royalCaninCare = {
 	],
 	type: 'dry',
 	color: '#00D8FF',
+	image:
+		'https://lh3.googleusercontent.com/LVjwlxmeu5omDhv-ay80SkE8zhqiEzXjnb2DoTOO59L_6PmGFXj5c8pNcqCMBD0l0JgT4WlJywsQSiXZDyh4wl9hQr3s5yt_PN04iG1-PYhQGNfWfpwkBUxzIiyeoFf34oKuEhcA-ZI=w2400',
 }
 const royalCaninSterilised = {
 	name: 'Royal Canin Regular Sterilised 37',

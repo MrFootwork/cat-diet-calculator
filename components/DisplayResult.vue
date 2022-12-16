@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import Calculator from '~~/model/MCalculator'
+
+const calculator = ref(Calculator.getInstance())
+</script>
+
 <template>
   <div class="result-container">
 
@@ -18,12 +24,6 @@
 
   </div>
 </template>
-
-<script setup lang="ts">
-import Calculator from '~~/model/MCalculator'
-
-const calculator = ref(Calculator.getInstance())
-</script>
 
 <style scoped lang="scss">
 @use 'sassMixins' as *;

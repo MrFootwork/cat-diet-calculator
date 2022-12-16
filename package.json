@@ -11,21 +11,22 @@
 		"info": "npx nuxi info"
 	},
 	"devDependencies": {
-		"nuxt": "3.0.0-rc.12",
-		"eslint": "^8.15.0",
-		"typescript": "latest",
-		"vitest": "^0.12.9",
-		"@vitest/ui": "latest",
 		"@nuxt/test-utils-edge": "latest",
+		"@nuxtjs/proxy": "^2.1.0",
+		"@vitest/ui": "latest",
+		"dotenv": "^16.0.0",
+		"eslint": "^8.15.0",
+		"nuxt": "3.0.0-rc.12",
 		"sass": "^1.51.0",
-		"dotenv": "^16.0.0"
+		"typescript": "latest",
+		"vitest": "^0.12.9"
 	},
 	"engines": {
 		"node": "16.x"
 	},
 	"dependencies": {
-		"vue-chartjs": "^4.1.1",
 		"chart.js": "^3.8.0",
-		"mongodb": "^4.5.0"
+		"mongodb": "^4.5.0",
+		"vue-chartjs": "^4.1.1"
 	}
 }

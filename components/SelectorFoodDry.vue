@@ -78,7 +78,7 @@ const urlPlaceholder = function (dryFood: FoodBrand) {
 
     label {
       display: flex;
-      justify-content: start;
+      justify-content: flex-start;
       align-items: center;
 
       img {

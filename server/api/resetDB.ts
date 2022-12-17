@@ -27,89 +27,6 @@ export default fromNodeMiddleware(
 	}
 )
 
-const test03 = {
-	name: 'Royal Canin Care Hair&Skin',
-	recommendations: [
-		{
-			weight: 3,
-			ideal: 41,
-			overweight: 33,
-		},
-		{
-			weight: 4,
-			ideal: 50,
-			overweight: 40,
-		},
-		{
-			weight: 5,
-			ideal: 59,
-			overweight: 47,
-		},
-		{
-			weight: 6,
-			ideal: 67,
-			overweight: 53,
-		},
-	],
-	type: 'dry',
-	color: '#41B883',
-	image:
-		'https://lh3.googleusercontent.com/LVjwlxmeu5omDhv-ay80SkE8zhqiEzXjnb2DoTOO59L_6PmGFXj5c8pNcqCMBD0l0JgT4WlJywsQSiXZDyh4wl9hQr3s5yt_PN04iG1-PYhQGNfWfpwkBUxzIiyeoFf34oKuEhcA-ZI=w2400',
-}
-const test02 = {
-	name: 'Royal Canin Regular Sterilised 37',
-	recommendations: [
-		{
-			weight: 3,
-			ideal: 47,
-			overweight: 37,
-		},
-		{
-			weight: 4,
-			ideal: 57,
-			overweight: 46,
-		},
-		{
-			weight: 5,
-			ideal: 67,
-			overweight: 54,
-		},
-		{
-			weight: 6,
-			ideal: 76,
-			overweight: 61,
-		},
-	],
-	type: 'dry',
-	color: '#E46651',
-}
-const test01 = {
-	name: 'dry test',
-	recommendations: [
-		{
-			weight: 3,
-			ideal: 47,
-			overweight: 37,
-		},
-		{
-			weight: 4,
-			ideal: 57,
-			overweight: 46,
-		},
-		{
-			weight: 5,
-			ideal: 67,
-			overweight: 54,
-		},
-		{
-			weight: 6,
-			ideal: 76,
-			overweight: 61,
-		},
-	],
-	type: 'dry',
-	color: '#00D8FF',
-}
 const royalCaninCare = {
 	name: 'Royal Canin Care Hair&Skin',
 	recommendations: [
@@ -165,6 +82,8 @@ const royalCaninSterilised = {
 	],
 	type: 'dry',
 	color: '#E46651',
+	image:
+		'https://lh3.googleusercontent.com/mAzKOk9HjKoegN-4MMzobtShYzN2xBKK2VwnF48w6fBAVnO_nT5aamBFK1j9YetIged7FPpsHistECwdDkZ9pi6sa7z8XcwDiCqIQyBD89Igb3T9ulTqrAA6L8jwLr-Wbkuk0iFE8TI=w2400',
 }
 const test = {
 	name: 'dry test',
@@ -250,9 +169,9 @@ const shebaSelection = {
 // TODO kg / lbs
 const dryFood = [royalCaninCare, royalCaninSterilised, test]
 const wetFood = [shebaBig, shebaSelection]
-// const wetFood = [shebaBig]
 
 async function addData(db, collection, data) {
+	console.log('data added to database: ', data)
 	await db.collection(collection).insertMany(data)
 }
 

@@ -57,7 +57,7 @@
             <input type="checkbox"
                    :id="dryFood.name"
                    v-model="dryFood.isMixPortion" />
-            {{ dryFood.name }}
+            <label :for="dryFood.name"> {{ dryFood.name }}</label>
           </label>
         </div>
       </div>
@@ -101,7 +101,8 @@ const imageURL = function (dryFood: FoodBrand) {
     justify-content: flex-end;
 
     input {
-      display: none;
+      margin: 0 .1rem 0;
+      visibility: hidden;
     }
 
     label {
@@ -134,19 +135,47 @@ const imageURL = function (dryFood: FoodBrand) {
   .dry-food-image {}
 
   .wrapper-food {
+
+
+    border: 1px solid red;
+
+
     .dry-food-card {
+      position: relative;
+
       width: 30vw;
-      height: 50vh;
+      height: 46vw;
+      max-width: 260px;
+      max-height: 400px;
       margin: 1rem;
 
+      &.activated {
+        box-shadow: 5px 5px 15px 5px #FF8080, -9px 5px 15px 5px #FFE488, -7px -5px 15px 5px #8CFF85, 12px -5px 15px 5px #80C7FF, 12px 10px 15px 7px #E488FF, -10px 10px 15px 7px #FF616B, -10px -7px 27px 1px #8E5CFF, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+      }
+
       label {
+        position: absolute;
+
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         cursor: pointer;
 
         img {
-          max-height: 100%;
-          max-width: 100%;
+          width: 100%;
+          height: 100%;
+
         }
+
+        input {
+          visibility: hidden;
+        }
+
+        label {}
       }
+
+
     }
   }
 }
@@ -155,33 +184,27 @@ const imageURL = function (dryFood: FoodBrand) {
 .select-gallery {
 
   .wrapper-food {
-    border: 1px solid violet;
-
     display: flex;
-
     flex-wrap: wrap;
-
+    justify-content: center;
 
     .dry-food-card {
-      border: 1px solid violet;
+      border: 1px solid yellow;
 
 
 
-      &.activated {
-        border: 5px solid blue;
-
-      }
+      &.activated {}
 
       label {
-        border: 1px solid violet;
+        border: 1px solid yellow;
 
         img {
-          border: 1px solid violet;
+          border: 1px solid yellow;
 
         }
 
         input {
-          border: 1px solid violet;
+          border: 1px solid yellow;
 
         }
       }
@@ -192,20 +215,12 @@ const imageURL = function (dryFood: FoodBrand) {
 .select-carousel {
 
   .wrapper-food {
-    border: 1px solid salmon;
-
-    display: flex;
-
-    flex-wrap: wrap;
 
 
     .dry-food-card {
       border: 1px solid salmon;
 
-      &.activated {
-        border: 5px solid red;
-
-      }
+      &.activated {}
 
       label {
         border: 1px solid salmon;

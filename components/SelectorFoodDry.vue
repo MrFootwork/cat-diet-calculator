@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div class="dry-food">
+    <div class="dry-food"
+         :class="optionSelected">
 
       <div class="options">
 
@@ -8,8 +9,9 @@
                name="view-mode"
                class="option gallery"
                id="gallery"
-               v-model="optionSelected">
-        <!-- checked> -->
+               v-model="optionSelected"
+               value="select-gallery"
+               checked>
         <label for="gallery"
                name="view-mode">
           <img src="/icon-grid.png"
@@ -21,7 +23,8 @@
                name="view-mode"
                class="option carousel"
                id="carousel"
-               v-model="optionSelected">
+               v-model="optionSelected"
+               value="select-carousel">
         <label for="carousel"
                name="view-mode">
           <img src="/icon-carousel.png"
@@ -45,11 +48,11 @@
 
       <div class="wrapper-food">
         <div class="dry-food-card"
+             :class="{ activated: dryFood.isMixPortion }"
              v-for="dryFood in calculator.brandsOfType('dry')"
              :key="dryFood._id">
           <label :for="dryFood.name">
-            <!-- <img :src="dryFood._id" :alt="dryFood.name" /> -->
-            <img :src="urlPlaceholder(dryFood)"
+            <img :src="imageURL(dryFood)"
                  :alt="dryFood.name" />
             <input type="checkbox"
                    :id="dryFood.name"
@@ -68,15 +71,11 @@
 import FoodBrand from '~~/model/IFoodBrand';
 import Calculator from '~~/model/MCalculator'
 
-const optionSelected = ref('gallery')
-
+const optionSelected = ref('select-gallery')
 
 const calculator = ref(Calculator.getInstance())
 
-// FIXME persist brand images in database
-// 1. save images in database
-// 2. adjust model to handle images
-const urlPlaceholder = function (dryFood: FoodBrand) {
+const imageURL = function (dryFood: FoodBrand) {
 
   if (dryFood.image) {
     return dryFood.image
@@ -111,11 +110,8 @@ const urlPlaceholder = function (dryFood: FoodBrand) {
       align-items: center;
 
       img {
-        // background-color: $light-highlight-color;
         cursor: pointer;
       }
-
-
 
       #img-gallery {
         width: 2rem;
@@ -137,12 +133,94 @@ const urlPlaceholder = function (dryFood: FoodBrand) {
 
   .dry-food-image {}
 
-  .dry-food,
-  .options,
-  input,
-  label,
-  img {
-    border: 1px solid red;
+  .wrapper-food {
+    .dry-food-card {
+      width: 30vw;
+      height: 50vh;
+      margin: 1rem;
+
+      label {
+        cursor: pointer;
+
+        img {
+          max-height: 100%;
+          max-width: 100%;
+        }
+      }
+    }
+  }
+}
+
+// .dry-food,
+.select-gallery {
+
+  .wrapper-food {
+    border: 1px solid violet;
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+
+    .dry-food-card {
+      border: 1px solid violet;
+
+
+
+      &.activated {
+        border: 5px solid blue;
+
+      }
+
+      label {
+        border: 1px solid violet;
+
+        img {
+          border: 1px solid violet;
+
+        }
+
+        input {
+          border: 1px solid violet;
+
+        }
+      }
+    }
+  }
+}
+
+.select-carousel {
+
+  .wrapper-food {
+    border: 1px solid salmon;
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+
+    .dry-food-card {
+      border: 1px solid salmon;
+
+      &.activated {
+        border: 5px solid red;
+
+      }
+
+      label {
+        border: 1px solid salmon;
+
+        img {
+          border: 1px solid salmon;
+
+        }
+
+        input {
+          border: 1px solid salmon;
+
+        }
+      }
+    }
   }
 }
 </style>

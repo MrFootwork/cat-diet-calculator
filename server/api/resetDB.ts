@@ -86,7 +86,7 @@ const royalCaninSterilised = {
 		'https://lh3.googleusercontent.com/mAzKOk9HjKoegN-4MMzobtShYzN2xBKK2VwnF48w6fBAVnO_nT5aamBFK1j9YetIged7FPpsHistECwdDkZ9pi6sa7z8XcwDiCqIQyBD89Igb3T9ulTqrAA6L8jwLr-Wbkuk0iFE8TI=w2400',
 }
 const test_1 = {
-	name: 'dry test',
+	name: 'dry test_1',
 	recommendations: [
 		{
 			weight: 3,
@@ -115,7 +115,7 @@ const test_1 = {
 		'https://lh3.googleusercontent.com/mAzKOk9HjKoegN-4MMzobtShYzN2xBKK2VwnF48w6fBAVnO_nT5aamBFK1j9YetIged7FPpsHistECwdDkZ9pi6sa7z8XcwDiCqIQyBD89Igb3T9ulTqrAA6L8jwLr-Wbkuk0iFE8TI=w2400',
 }
 const test_2 = {
-	name: 'dry test',
+	name: 'dry test_2',
 	recommendations: [
 		{
 			weight: 3,
@@ -144,7 +144,7 @@ const test_2 = {
 		'https://lh3.googleusercontent.com/mAzKOk9HjKoegN-4MMzobtShYzN2xBKK2VwnF48w6fBAVnO_nT5aamBFK1j9YetIged7FPpsHistECwdDkZ9pi6sa7z8XcwDiCqIQyBD89Igb3T9ulTqrAA6L8jwLr-Wbkuk0iFE8TI=w2400',
 }
 const test_3 = {
-	name: 'dry test',
+	name: 'dry test_3',
 	recommendations: [
 		{
 			weight: 3,

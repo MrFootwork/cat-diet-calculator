@@ -4,31 +4,59 @@
 
       <div class="options">
 
-        <input type="checkbox" name="view-mode" class="option gallery" id="gallery">
-        <label for="gallery" name="view-mode">
-          <img src="/icon-grid.png" alt="icon-grid" id="img-gallery">
+        <input type="radio"
+               name="view-mode"
+               class="option gallery"
+               id="gallery"
+               v-model="optionSelected">
+        <!-- checked> -->
+        <label for="gallery"
+               name="view-mode">
+          <img src="/icon-grid.png"
+               alt="icon-grid"
+               id="img-gallery">
         </label>
 
-        <input type="checkbox" name="view-mode" class="option carousel" id="carousel">
-        <label for="carousel" name="view-mode">
-          <img src="/icon-carousel.png" alt="icon-carousel" id="img-carousel">
+        <input type="radio"
+               name="view-mode"
+               class="option carousel"
+               id="carousel"
+               v-model="optionSelected">
+        <label for="carousel"
+               name="view-mode">
+          <img src="/icon-carousel.png"
+               alt="icon-carousel"
+               id="img-carousel">
         </label>
 
       </div>
 
-      <a target="_blank" href="https://icons8.com/icon/52220/modulansicht">Modulansicht</a> icon by <a target="_blank"
-        href="https://icons8.com">Icons8</a>
+      <a target="_blank"
+         href="https://icons8.com/icon/52220/modulansicht">
+        Modulansicht</a> icon by
+      <a target="_blank"
+         href="https://icons8.com">Icons8</a>
 
-      <a target="_blank" href="https://icons8.com/icon/I2q2wsTIgjzm/image">Image</a> icon by <a target="_blank"
-        href="https://icons8.com">Icons8</a>
+      <a target="_blank"
+         href="https://icons8.com/icon/I2q2wsTIgjzm/image">
+        Image</a> icon by
+      <a target="_blank"
+         href="https://icons8.com">Icons8</a>
 
-      <div class="dry-food-card" v-for="dryFood in calculator.brandsOfType('dry')" :key="dryFood._id">
-        <label :for="dryFood.name">
-          <!-- <img :src="dryFood._id" :alt="dryFood.name" /> -->
-          <img :src="urlPlaceholder(dryFood)" :alt="dryFood.name" />
-          <input type="checkbox" :id="dryFood.name" v-model="dryFood.isMixPortion" />
-          {{ dryFood.name }}
-        </label>
+      <div class="wrapper-food">
+        <div class="dry-food-card"
+             v-for="dryFood in calculator.brandsOfType('dry')"
+             :key="dryFood._id">
+          <label :for="dryFood.name">
+            <!-- <img :src="dryFood._id" :alt="dryFood.name" /> -->
+            <img :src="urlPlaceholder(dryFood)"
+                 :alt="dryFood.name" />
+            <input type="checkbox"
+                   :id="dryFood.name"
+                   v-model="dryFood.isMixPortion" />
+            {{ dryFood.name }}
+          </label>
+        </div>
       </div>
 
     </div>
@@ -40,7 +68,8 @@
 import FoodBrand from '~~/model/IFoodBrand';
 import Calculator from '~~/model/MCalculator'
 
-const modeGalleryOn = ref(true)
+const optionSelected = ref('gallery')
+
 
 const calculator = ref(Calculator.getInstance())
 
@@ -82,9 +111,11 @@ const urlPlaceholder = function (dryFood: FoodBrand) {
       align-items: center;
 
       img {
-        color: $light-highlight-color;
-
+        // background-color: $light-highlight-color;
+        cursor: pointer;
       }
+
+
 
       #img-gallery {
         width: 2rem;
@@ -95,6 +126,10 @@ const urlPlaceholder = function (dryFood: FoodBrand) {
         width: 3rem;
         height: 3rem;
       }
+    }
+
+    @at-root input:checked+label>img {
+      filter: invert(100%)
     }
 
     .option {}

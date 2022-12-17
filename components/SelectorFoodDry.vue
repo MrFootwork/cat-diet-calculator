@@ -112,33 +112,33 @@ const imageURL = function (dryFood: FoodBrand) {
 
       img {
         cursor: pointer;
+        // filter: invert(91%) sepia(2%) saturate(6695%) hue-rotate(72deg) brightness(102%) contrast(87%);
+
+        #img-gallery {
+          width: 2rem;
+          height: 2rem;
+        }
+
+        #img-carousel {
+          width: 3rem;
+          height: 3rem;
+        }
       }
 
-      #img-gallery {
-        width: 2rem;
-        height: 2rem;
+      @at-root input:checked+label>img {
+        // https://codepen.io/sosuke/pen/Pjoqqp
+        // https://stackoverflow.com/a/50942954/13608849
+        // used that genius codepen to calculate the filter
+        filter: invert(19%) sepia(15%) saturate(1008%) hue-rotate(106deg) brightness(94%) contrast(88%);
+
+
       }
 
-      #img-carousel {
-        width: 3rem;
-        height: 3rem;
-      }
+      .option {}
     }
-
-    @at-root input:checked+label>img {
-      filter: invert(100%)
-    }
-
-    .option {}
   }
 
-  .dry-food-image {}
-
   .wrapper-food {
-
-
-    border: 1px solid red;
-
 
     .dry-food-card {
       position: relative;
@@ -148,6 +148,10 @@ const imageURL = function (dryFood: FoodBrand) {
       max-width: 260px;
       max-height: 400px;
       margin: 1rem;
+
+      border-radius: 5%;
+
+      box-shadow: -5px 5px 20px -5px hsl(0, 0%, 0%);
 
       &.activated {
         box-shadow: 5px 5px 15px 5px #FF8080, -9px 5px 15px 5px #FFE488, -7px -5px 15px 5px #8CFF85, 12px -5px 15px 5px #80C7FF, 12px 10px 15px 7px #E488FF, -10px 10px 15px 7px #FF616B, -10px -7px 27px 1px #8E5CFF, 5px 5px 15px 5px rgba(0, 0, 0, 0);
@@ -165,7 +169,7 @@ const imageURL = function (dryFood: FoodBrand) {
         img {
           width: 100%;
           height: 100%;
-
+          border-radius: 5%;
         }
 
         input {
@@ -189,24 +193,16 @@ const imageURL = function (dryFood: FoodBrand) {
     justify-content: center;
 
     .dry-food-card {
-      border: 1px solid yellow;
 
 
 
       &.activated {}
 
       label {
-        border: 1px solid yellow;
 
-        img {
-          border: 1px solid yellow;
+        img {}
 
-        }
-
-        input {
-          border: 1px solid yellow;
-
-        }
+        input {}
       }
     }
   }
@@ -215,6 +211,7 @@ const imageURL = function (dryFood: FoodBrand) {
 .select-carousel {
 
   .wrapper-food {
+    border: 1px solid salmon;
 
 
     .dry-food-card {

@@ -9,11 +9,14 @@ const calculator = ref(Calculator.getInstance())
 
     <div class="wrapper-bowl">
       <!-- https://nuxt.com/docs/getting-started/assets#public-directory -->
-      <img class="image-bowl" src="/food-bowl-fish.png" alt="">
+      <img class="image-bowl"
+           src="/food-bowl-fish.png"
+           alt="">
     </div>
 
     <div class="wrapper-result-display">
-      <p id="result" class="result-display">{{ `${calculator.getResult(calculator.allBrands)} g` }}</p>
+      <p id="result"
+         class="result-display">{{ `${calculator.getResult(calculator.allBrands)} g` }}</p>
     </div>
 
     <div class="wrapper-label">

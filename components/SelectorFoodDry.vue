@@ -66,6 +66,7 @@
   </div>
 </template>
 <!-- FIXME build card slider -->
+<!-- https://codepen.io/frise/pen/mZvKpe -->
 <!-- https://www.youtube.com/watch?v=OQZNAMjC6Vg -->
 <script setup lang="ts">
 import FoodBrand from '~~/model/IFoodBrand';

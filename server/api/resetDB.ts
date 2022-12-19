@@ -197,6 +197,8 @@ const shebaBig = {
 		},
 	],
 	type: 'wet',
+	image:
+		'https://lh3.googleusercontent.com/cGXV_a6OVQbXzkybi1waEyaVgQkYKT3VbxgTiMoluEzIut1S1ZxvAo8hJopJOfPd2UUixv3v6e3EZ7Qm4HwMc2kdyKSLWOQ8JbUZP6c-j15EZ4RCQD2k6sTDVExo8wQQNktwf1mhXKQ=w2400',
 }
 const shebaSelection = {
 	name: 'Sheba Selection In Sauce',
@@ -223,6 +225,8 @@ const shebaSelection = {
 		},
 	],
 	type: 'wet',
+	image:
+		'https://lh3.googleusercontent.com/cGXV_a6OVQbXzkybi1waEyaVgQkYKT3VbxgTiMoluEzIut1S1ZxvAo8hJopJOfPd2UUixv3v6e3EZ7Qm4HwMc2kdyKSLWOQ8JbUZP6c-j15EZ4RCQD2k6sTDVExo8wQQNktwf1mhXKQ=w2400',
 }
 // FIXME add more brands
 // FIXME add colors for brands

@@ -53,6 +53,8 @@ const calculator = ref(Calculator.getInstance())
   right: var(--length);
   font-family: "Abril Fatface", cursive;
 
+  z-index: 100;
+
   .wrapper-bowl {
     .image-bowl {
       position: relative;

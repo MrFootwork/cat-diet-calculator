@@ -34,7 +34,8 @@
 
       </div>
 
-      <a target="_blank"
+      <!-- need to display somewhere -->
+      <!-- <a target="_blank"
          href="https://icons8.com/icon/52220/modulansicht">
         Modulansicht</a> icon by
       <a target="_blank"
@@ -44,7 +45,7 @@
          href="https://icons8.com/icon/I2q2wsTIgjzm/image">
         Image</a> icon by
       <a target="_blank"
-         href="https://icons8.com">Icons8</a>
+         href="https://icons8.com">Icons8</a> -->
 
       <div class="wrapper-food">
         <div class="dry-food-card"
@@ -86,7 +87,6 @@ const imageURL = function (dryFood: FoodBrand) {
   const query = `?text=${dryFood.name}`
 
   return baseUrl + query
-
 }
 </script>
 
@@ -113,7 +113,6 @@ const imageURL = function (dryFood: FoodBrand) {
 
       img {
         cursor: pointer;
-        // filter: invert(91%) sepia(2%) saturate(6695%) hue-rotate(72deg) brightness(102%) contrast(87%);
 
         #img-gallery {
           width: 2rem;
@@ -131,8 +130,6 @@ const imageURL = function (dryFood: FoodBrand) {
         // https://stackoverflow.com/a/50942954/13608849
         // used that genius codepen to calculate the filter
         filter: invert(19%) sepia(15%) saturate(1008%) hue-rotate(106deg) brightness(94%) contrast(88%);
-
-
       }
 
       .option {}
@@ -193,14 +190,13 @@ const imageURL = function (dryFood: FoodBrand) {
     flex-wrap: wrap;
     justify-content: center;
 
+    transition: all 2s;
+
     .dry-food-card {
-
-
 
       &.activated {}
 
       label {
-
         img {}
 
         input {}
@@ -214,6 +210,8 @@ const imageURL = function (dryFood: FoodBrand) {
   .wrapper-food {
     border: 1px solid salmon;
 
+    // FIXME transition between gallery and carousel view doesn't work
+    transition: all 2s;
 
     .dry-food-card {
       border: 1px solid salmon;

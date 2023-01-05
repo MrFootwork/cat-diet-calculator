@@ -1,3 +1,56 @@
+<script setup lang="ts">
+import FoodBrand from '~~/model/IFoodBrand'
+import Calculator from '~~/model/MCalculator'
+
+const optionSelected = ref('select-gallery')
+
+const calculator = ref(Calculator.getInstance())
+
+const imageURL = function (dryFood: FoodBrand) {
+
+  if (dryFood.image) return dryFood.image
+
+  const baseUrl = 'https://via.placeholder.com/100x150'
+  const query = `?text=${dryFood.name}`
+
+  return baseUrl + query
+}
+
+// for carousel functionality
+const selectCard = function (dryFood: FoodBrand, event: Event) {
+
+  if (!(event.target instanceof HTMLElement)) return
+
+  const newActive = event.target
+  const isItem = newActive.closest('.dry-food-card>label>input[type=checkbox]')
+  const isCheckedNow = !dryFood.isMixPortion
+
+  if (isItem || isCheckedNow) {
+    update(newActive)
+  }
+}
+
+const cardHTMLRefs = ref<HTMLElement[] | undefined>()
+
+const update = function (newActive: HTMLElement) {
+  const newActivePos = newActive.dataset.pos
+  // FIXME shitty typescript stuff...💩
+  const current = cardHTMLRefs.value?.find((elem) => elem.dataset.pos === '0')
+  const prev = cardHTMLRefs.value?.find((elem) => elem.dataset.pos === '-1')
+  const next = cardHTMLRefs.value?.find((elem) => elem.dataset.pos === '1')
+  const first = cardHTMLRefs.value?.find((elem) => elem.dataset.pos === '-2')
+  const last = cardHTMLRefs.value?.find((elem) => elem.dataset.pos === '2')
+
+  current?.classList.remove('carousel__item_active');
+
+  [current, prev, next, first, last].forEach(item => {
+    var itemPos = item.dataset.pos
+
+    item.dataset.pos = getPos(itemPos, newActivePos)
+  })
+}
+</script>
+
 <template>
   <div>
     <div class="dry-food"
@@ -52,13 +105,15 @@
              v-for="(dryFood, i) in calculator.brandsOfType('dry')"
              :class="{ activated: dryFood.isMixPortion }"
              :key="dryFood._id"
+             ref="cardHTMLRefs"
              :data-pos="i - Math.floor(calculator.brandsOfType('dry').length / 2)">
           <label :for="dryFood.name">
             <img :src="imageURL(dryFood)"
                  :alt="dryFood.name" />
             <input type="checkbox"
                    :id="dryFood.name"
-                   v-model="dryFood.isMixPortion" />
+                   v-model="dryFood.isMixPortion"
+                   @click="selectCard(dryFood, $event)" />
             <label :for="dryFood.name"> {{ dryFood.name }}</label>
           </label>
         </div>
@@ -68,29 +123,10 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import FoodBrand from '~~/model/IFoodBrand';
-import Calculator from '~~/model/MCalculator'
-
-const optionSelected = ref('select-gallery')
-
-const calculator = ref(Calculator.getInstance())
-
-const imageURL = function (dryFood: FoodBrand) {
-
-  if (dryFood.image) {
-    return dryFood.image
-  }
-
-  const baseUrl = 'https://via.placeholder.com/100x150'
-  const query = `?text=${dryFood.name}`
-
-  return baseUrl + query
-}
-</script>
-
 <style scoped lang="scss">
 @use 'sassColors' as *;
+
+$food-card-height: 46vw;
 
 .dry-food {
   // FIXME transition between gallery and carousel view doesn't work
@@ -137,13 +173,14 @@ const imageURL = function (dryFood: FoodBrand) {
     }
   }
 
+  // basic wrapper for food cards
   .wrapper-food {
 
     .dry-food-card {
       position: relative;
 
       width: 30vw;
-      height: 46vw;
+      height: $food-card-height;
       max-width: 260px;
       max-height: 400px;
       margin: 1rem;
@@ -172,7 +209,7 @@ const imageURL = function (dryFood: FoodBrand) {
         }
 
         input {
-          visibility: hidden;
+          display: none
         }
 
         label {}
@@ -210,26 +247,26 @@ const imageURL = function (dryFood: FoodBrand) {
 .select-carousel {
 
   .wrapper-food {
-    border: 1px solid salmon;
+    // border: 1px solid salmon;
 
     display: flex;
     list-style: none;
     position: relative;
     width: 100%;
-    height: 300px;
+    height: calc($food-card-height + 5vh);
     justify-content: center;
     perspective: 300px;
 
     .dry-food-card {
-      border: 1px solid salmon;
+      // border: 1px solid salmon;
 
       display: flex;
       align-items: center;
       justify-content: center;
       color: #fff;
       font-size: 0px;
-      width: 150px;
-      height: 250px;
+      // width: 150px;
+      // height: 250px;
       border-radius: 12px;
       box-shadow: 0px 2px 8px 0px rgba(50, 50, 50, 0.5);
       position: absolute;
@@ -238,37 +275,17 @@ const imageURL = function (dryFood: FoodBrand) {
       &.activated {}
 
       label {
-        border: 1px solid salmon;
+        // border: 1px solid salmon;
 
         img {
-          border: 1px solid salmon;
+          // border: 1px solid salmon;
 
         }
 
         input {
-          border: 1px solid salmon;
+          // border: 1px solid salmon;
 
         }
-      }
-
-      &:nth-child(1) {
-        background: linear-gradient(45deg, #2D35EB 0%, #904ED4 100%);
-      }
-
-      &:nth-child(2) {
-        background: linear-gradient(45deg, #2D35EB 0%, #fdbb2d 100%);
-      }
-
-      &:nth-child(3) {
-        background: linear-gradient(45deg, #2D35EB 0%, #22c1c3 100%);
-      }
-
-      &:nth-child(4) {
-        background: linear-gradient(45deg, #fdbb2d 0%, #904ED4 100%);
-      }
-
-      &:nth-child(5) {
-        background: linear-gradient(45deg, #22c1c3 0%, #904ED4 100%);
       }
 
       &[data-pos="0"] {
@@ -282,28 +299,28 @@ const imageURL = function (dryFood: FoodBrand) {
       }
 
       &[data-pos="-1"] {
-        transform: translateX(-40%) scale(.9);
+        transform: translateX(-60%) scale(.9);
         z-index: 4;
       }
 
       &[data-pos="1"] {
-        transform: translateX(40%) scale(.9);
+        transform: translateX(60%) scale(.9);
         z-index: 4;
       }
 
       &[data-pos="-2"],
       &[data-pos="2"] {
         opacity: 0.4;
-        filter: blur(3px) grayscale(20%);
+        filter: blur(2px) grayscale(20%);
       }
 
       &[data-pos="-2"] {
-        transform: translateX(-70%) scale(.8);
+        transform: translateX(-90%) scale(.8);
         z-index: 3;
       }
 
       &[data-pos="2"] {
-        transform: translateX(70%) scale(.8);
+        transform: translateX(90%) scale(.8);
         z-index: 3;
       }
     }

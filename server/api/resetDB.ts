@@ -172,6 +172,64 @@ const test_3 = {
 	image:
 		'https://lh3.googleusercontent.com/mAzKOk9HjKoegN-4MMzobtShYzN2xBKK2VwnF48w6fBAVnO_nT5aamBFK1j9YetIged7FPpsHistECwdDkZ9pi6sa7z8XcwDiCqIQyBD89Igb3T9ulTqrAA6L8jwLr-Wbkuk0iFE8TI=w2400',
 }
+const test_4 = {
+	name: 'dry test_3',
+	recommendations: [
+		{
+			weight: 3,
+			ideal: 47,
+			overweight: 37,
+		},
+		{
+			weight: 4,
+			ideal: 57,
+			overweight: 46,
+		},
+		{
+			weight: 5,
+			ideal: 67,
+			overweight: 54,
+		},
+		{
+			weight: 6,
+			ideal: 76,
+			overweight: 61,
+		},
+	],
+	type: 'dry',
+	color: '#41B883',
+	image:
+		'https://lh3.googleusercontent.com/mAzKOk9HjKoegN-4MMzobtShYzN2xBKK2VwnF48w6fBAVnO_nT5aamBFK1j9YetIged7FPpsHistECwdDkZ9pi6sa7z8XcwDiCqIQyBD89Igb3T9ulTqrAA6L8jwLr-Wbkuk0iFE8TI=w2400',
+}
+const test_5 = {
+	name: 'dry test_3',
+	recommendations: [
+		{
+			weight: 3,
+			ideal: 47,
+			overweight: 37,
+		},
+		{
+			weight: 4,
+			ideal: 57,
+			overweight: 46,
+		},
+		{
+			weight: 5,
+			ideal: 67,
+			overweight: 54,
+		},
+		{
+			weight: 6,
+			ideal: 76,
+			overweight: 61,
+		},
+	],
+	type: 'dry',
+	color: '#41B883',
+	image:
+		'https://lh3.googleusercontent.com/mAzKOk9HjKoegN-4MMzobtShYzN2xBKK2VwnF48w6fBAVnO_nT5aamBFK1j9YetIged7FPpsHistECwdDkZ9pi6sa7z8XcwDiCqIQyBD89Igb3T9ulTqrAA6L8jwLr-Wbkuk0iFE8TI=w2400',
+}
 const shebaBig = {
 	name: 'Sheba Slices',
 	recommendations: [
@@ -231,7 +289,15 @@ const shebaSelection = {
 // FIXME add more brands
 // FIXME add colors for brands
 // TODO kg / lbs
-const dryFood = [royalCaninCare, royalCaninSterilised, test_1, test_2, test_3]
+const dryFood = [
+	royalCaninCare,
+	royalCaninSterilised,
+	test_1,
+	test_2,
+	test_3,
+	test_4,
+	test_5,
+]
 const wetFood = [shebaBig, shebaSelection]
 
 async function addData(db, collection, data) {

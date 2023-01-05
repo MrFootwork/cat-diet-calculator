@@ -49,9 +49,10 @@
 
       <div class="wrapper-food">
         <div class="dry-food-card"
+             v-for="(dryFood, i) in calculator.brandsOfType('dry')"
              :class="{ activated: dryFood.isMixPortion }"
-             v-for="dryFood in calculator.brandsOfType('dry')"
-             :key="dryFood._id">
+             :key="dryFood._id"
+             :data-pos="i - Math.floor(calculator.brandsOfType('dry').length / 2)">
           <label :for="dryFood.name">
             <img :src="imageURL(dryFood)"
                  :alt="dryFood.name" />
@@ -92,6 +93,8 @@ const imageURL = function (dryFood: FoodBrand) {
 @use 'sassColors' as *;
 
 .dry-food {
+  // FIXME transition between gallery and carousel view doesn't work
+  // transition: all 2s;
 
   .options {
     width: 100%;
@@ -174,8 +177,6 @@ const imageURL = function (dryFood: FoodBrand) {
 
         label {}
       }
-
-
     }
   }
 }
@@ -188,7 +189,7 @@ const imageURL = function (dryFood: FoodBrand) {
     flex-wrap: wrap;
     justify-content: center;
 
-    transition: all 2s;
+    // transition: all 2s;
 
     .dry-food-card {
 
@@ -211,11 +212,28 @@ const imageURL = function (dryFood: FoodBrand) {
   .wrapper-food {
     border: 1px solid salmon;
 
-    // FIXME transition between gallery and carousel view doesn't work
-    transition: all 2s;
+    display: flex;
+    list-style: none;
+    position: relative;
+    width: 100%;
+    height: 300px;
+    justify-content: center;
+    perspective: 300px;
 
     .dry-food-card {
       border: 1px solid salmon;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 0px;
+      width: 150px;
+      height: 250px;
+      border-radius: 12px;
+      box-shadow: 0px 2px 8px 0px rgba(50, 50, 50, 0.5);
+      position: absolute;
+      transition: all .3s ease-in;
 
       &.activated {}
 
@@ -231,6 +249,62 @@ const imageURL = function (dryFood: FoodBrand) {
           border: 1px solid salmon;
 
         }
+      }
+
+      &:nth-child(1) {
+        background: linear-gradient(45deg, #2D35EB 0%, #904ED4 100%);
+      }
+
+      &:nth-child(2) {
+        background: linear-gradient(45deg, #2D35EB 0%, #fdbb2d 100%);
+      }
+
+      &:nth-child(3) {
+        background: linear-gradient(45deg, #2D35EB 0%, #22c1c3 100%);
+      }
+
+      &:nth-child(4) {
+        background: linear-gradient(45deg, #fdbb2d 0%, #904ED4 100%);
+      }
+
+      &:nth-child(5) {
+        background: linear-gradient(45deg, #22c1c3 0%, #904ED4 100%);
+      }
+
+      &[data-pos="0"] {
+        z-index: 5;
+      }
+
+      &[data-pos="-1"],
+      &[data-pos="1"] {
+        opacity: 0.7;
+        filter: blur(1px) grayscale(10%);
+      }
+
+      &[data-pos="-1"] {
+        transform: translateX(-40%) scale(.9);
+        z-index: 4;
+      }
+
+      &[data-pos="1"] {
+        transform: translateX(40%) scale(.9);
+        z-index: 4;
+      }
+
+      &[data-pos="-2"],
+      &[data-pos="2"] {
+        opacity: 0.4;
+        filter: blur(3px) grayscale(20%);
+      }
+
+      &[data-pos="-2"] {
+        transform: translateX(-70%) scale(.8);
+        z-index: 3;
+      }
+
+      &[data-pos="2"] {
+        transform: translateX(70%) scale(.8);
+        z-index: 3;
       }
     }
   }

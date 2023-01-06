@@ -1,5 +1,5 @@
 {
 	"typescript.tsdk": "node_modules/typescript/lib",
 	"html.format.wrapAttributes": "force-aligned",
-	"typescript.format.semicolons": "remove"
+	"typescript.format.semicolons": "insert"
 }

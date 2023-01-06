@@ -1,54 +1,71 @@
 <script setup lang="ts">
-import FoodBrand from '~~/model/IFoodBrand'
-import Calculator from '~~/model/MCalculator'
+import FoodBrand from '~~/model/IFoodBrand';
+import Calculator from '~~/model/MCalculator';
 
-const optionSelected = ref('select-gallery')
+const optionSelected = ref('select-gallery');
 
-const calculator = ref(Calculator.getInstance())
+const calculator = ref(Calculator.getInstance());
 
-const imageURL = function (dryFood: FoodBrand) {
+function imageURL(dryFood: FoodBrand) {
 
-  if (dryFood.image) return dryFood.image
+  if (dryFood.image) return dryFood.image;
 
-  const baseUrl = 'https://via.placeholder.com/100x150'
-  const query = `?text=${dryFood.name}`
+  const baseUrl = 'https://via.placeholder.com/100x150';
+  const query = `?text=${dryFood.name}`;
 
-  return baseUrl + query
-}
+  return baseUrl + query;
+};
 
 // for carousel functionality
+function initiatePosition(i, cardCount) {
+  return i - Math.floor(cardCount / 2);
+};
+
 const selectCard = function (dryFood: FoodBrand, event: Event) {
 
-  if (!(event.target instanceof HTMLElement)) return
+  if (!(event.target instanceof HTMLElement)) return;
 
-  const newActive = event.target
-  const isItem = newActive.closest('.dry-food-card>label>input[type=checkbox]')
-  const isCheckedNow = !dryFood.isMixPortion
+  const newActive = event.target.parentElement?.parentElement;
+  const isItem = event.target.closest('.dry-food-card>label>input[type=checkbox]');
+  const isCheckedNow = !dryFood.isMixPortion;
 
-  if (isItem || isCheckedNow) {
-    update(newActive)
+  if (newActive && isItem && isCheckedNow) {
+    update(newActive);
   }
-}
+};
+// FIXME review and adjust
+const cardHTMLRefs = ref<HTMLElement[] | undefined>();
 
-const cardHTMLRefs = ref<HTMLElement[] | undefined>()
+function update(newActive: HTMLElement) {
+  const newActivePos = newActive.dataset.pos;
 
-const update = function (newActive: HTMLElement) {
-  const newActivePos = newActive.dataset.pos
-  // FIXME shitty typescript stuff...💩
-  const current = cardHTMLRefs.value?.find((elem) => elem.dataset.pos === '0')
-  const prev = cardHTMLRefs.value?.find((elem) => elem.dataset.pos === '-1')
-  const next = cardHTMLRefs.value?.find((elem) => elem.dataset.pos === '1')
-  const first = cardHTMLRefs.value?.find((elem) => elem.dataset.pos === '-2')
-  const last = cardHTMLRefs.value?.find((elem) => elem.dataset.pos === '2')
+  const current = cardHTMLRefs.value?.find((elem) => elem.dataset.pos === '0');
+  const prev = cardHTMLRefs.value?.find((elem) => elem.dataset.pos === '-1');
+  const next = cardHTMLRefs.value?.find((elem) => elem.dataset.pos === '1');
+  const first = cardHTMLRefs.value?.find((elem) => elem.dataset.pos === '-2');
+  const last = cardHTMLRefs.value?.find((elem) => elem.dataset.pos === '2');
 
-  current?.classList.remove('carousel__item_active');
+  const activeFiveElements = [current, prev, next, first, last];
 
-  [current, prev, next, first, last].forEach(item => {
-    var itemPos = item.dataset.pos
+  cardHTMLRefs.value?.forEach((item) => {
+    if (item) {
+      var itemPos = item.dataset.pos;
+      if (item && itemPos && newActivePos) {
+        item.dataset.pos = getPos(itemPos, newActivePos);
+      };
+    }
+  });
+};
 
-    item.dataset.pos = getPos(itemPos, newActivePos)
-  })
-}
+const getPos = function (current: string, active: string) {
+  const diff = +current - +active;
+
+  if (Math.abs(+current - +active) > 2) {
+    return '' + -current;
+  }
+
+  return '' + diff;
+};
 </script>
 
 <template>
@@ -106,7 +123,7 @@ const update = function (newActive: HTMLElement) {
              :class="{ activated: dryFood.isMixPortion }"
              :key="dryFood._id"
              ref="cardHTMLRefs"
-             :data-pos="i - Math.floor(calculator.brandsOfType('dry').length / 2)">
+             :data-pos="initiatePosition(i, calculator.brandsOfType('dry').length)">
           <label :for="dryFood.name">
             <img :src="imageURL(dryFood)"
                  :alt="dryFood.name" />
@@ -295,7 +312,8 @@ $food-card-height: 46vw;
       &[data-pos="-1"],
       &[data-pos="1"] {
         opacity: 0.7;
-        filter: blur(1px) grayscale(10%);
+        // filter: blur(1px) grayscale(10%);
+        filter: blur(1px);
       }
 
       &[data-pos="-1"] {

@@ -173,7 +173,7 @@ const test_3 = {
 		'https://lh3.googleusercontent.com/mAzKOk9HjKoegN-4MMzobtShYzN2xBKK2VwnF48w6fBAVnO_nT5aamBFK1j9YetIged7FPpsHistECwdDkZ9pi6sa7z8XcwDiCqIQyBD89Igb3T9ulTqrAA6L8jwLr-Wbkuk0iFE8TI=w2400',
 }
 const test_4 = {
-	name: 'dry test_3',
+	name: 'dry test_4',
 	recommendations: [
 		{
 			weight: 3,
@@ -202,7 +202,7 @@ const test_4 = {
 		'https://lh3.googleusercontent.com/mAzKOk9HjKoegN-4MMzobtShYzN2xBKK2VwnF48w6fBAVnO_nT5aamBFK1j9YetIged7FPpsHistECwdDkZ9pi6sa7z8XcwDiCqIQyBD89Igb3T9ulTqrAA6L8jwLr-Wbkuk0iFE8TI=w2400',
 }
 const test_5 = {
-	name: 'dry test_3',
+	name: 'dry test_5',
 	recommendations: [
 		{
 			weight: 3,

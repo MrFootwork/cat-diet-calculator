@@ -16,14 +16,16 @@ function imageURL(dryFood: FoodBrand) {
   return baseUrl + query;
 };
 
-// for carousel functionality
+/*************************************
+ *  for carousel functionality
+ *************************************/
 const dryFoodCount = computed(() => {
   return calculator.value.brandsOfType('dry').length;
 });
 const positionVisibleMaximum = computed(() => {
   return Math.floor(dryFoodCount.value / 2);
 });
-
+// initial HTML data attribute positions
 function initiatePosition(i: number) {
   return i - positionVisibleMaximum.value;
 };
@@ -33,34 +35,32 @@ function isHiddenLeft(i: number) {
 function isHiddenRight(i: number) {
   return (i - positionVisibleMaximum.value) >= positionVisibleMaximum.value;
 }
-
-const selectCard = function (dryFood: FoodBrand, event: Event) {
-
+// click handler
+const selectCard = function (event: Event) {
   if (!(event.target instanceof HTMLElement)) return;
 
   const newActive = event.target.parentElement?.parentElement;
   const isItem = event.target.closest('.dry-food-card>label>input[type=checkbox]');
 
-  if (newActive && isItem) {
-    update(newActive);
-  }
+  if (newActive && isItem) update(newActive);
 };
-// FIXME review and adjust
+// all food cards
 const cardHTMLRefs = ref<HTMLElement[] | undefined>();
-
+// update all food cards after click
 function update(newActive: HTMLElement) {
   const newActivePos = newActive.dataset.pos;
 
   // set dataset.pos for all cards
   cardHTMLRefs.value?.forEach((item) => {
-    if (item) {
-      var itemPos = item.dataset.pos;
-      if (item && itemPos && newActivePos) {
-        item.dataset.pos = getPos(itemPos, newActivePos);
-        item.dataset.isHiddenLeft = '' + (+item.dataset.pos <= -positionVisibleMaximum.value);
-        item.dataset.isHiddenRight = '' + (+item.dataset.pos >= positionVisibleMaximum.value);
-      };
-    }
+    if (!item) return;
+
+    var itemPos = item.dataset.pos;
+
+    if (itemPos && newActivePos) {
+      item.dataset.pos = getPos(itemPos, newActivePos);
+      item.dataset.isHiddenLeft = '' + (+item.dataset.pos <= -positionVisibleMaximum.value);
+      item.dataset.isHiddenRight = '' + (+item.dataset.pos >= positionVisibleMaximum.value);
+    };
   });
 };
 
@@ -146,7 +146,7 @@ function getPos(current: string, steps: string) {
             <input type="checkbox"
                    :id="dryFood.name"
                    v-model="dryFood.isMixPortion"
-                   @click="selectCard(dryFood, $event)" />
+                   @click="selectCard($event)" />
             <label :for="dryFood.name"> {{ dryFood.name }}</label>
           </label>
         </div>

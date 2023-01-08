@@ -17,9 +17,22 @@ function imageURL(dryFood: FoodBrand) {
 };
 
 // for carousel functionality
-function initiatePosition(i, cardCount) {
-  return i - Math.floor(cardCount / 2);
+const dryFoodCount = computed(() => {
+  return calculator.value.brandsOfType('dry').length;
+});
+const positionVisibleMaximum = computed(() => {
+  return Math.floor(dryFoodCount.value / 2);
+});
+
+function initiatePosition(i: number) {
+  return i - positionVisibleMaximum.value;
 };
+function isHiddenLeft(i: number) {
+  return (i - positionVisibleMaximum.value) <= -positionVisibleMaximum.value;
+}
+function isHiddenRight(i: number) {
+  return (i - positionVisibleMaximum.value) >= positionVisibleMaximum.value;
+}
 
 const selectCard = function (dryFood: FoodBrand, event: Event) {
 
@@ -27,9 +40,8 @@ const selectCard = function (dryFood: FoodBrand, event: Event) {
 
   const newActive = event.target.parentElement?.parentElement;
   const isItem = event.target.closest('.dry-food-card>label>input[type=checkbox]');
-  const isCheckedNow = !dryFood.isMixPortion;
 
-  if (newActive && isItem && isCheckedNow) {
+  if (newActive && isItem) {
     update(newActive);
   }
 };
@@ -39,33 +51,34 @@ const cardHTMLRefs = ref<HTMLElement[] | undefined>();
 function update(newActive: HTMLElement) {
   const newActivePos = newActive.dataset.pos;
 
-  const current = cardHTMLRefs.value?.find((elem) => elem.dataset.pos === '0');
-  const prev = cardHTMLRefs.value?.find((elem) => elem.dataset.pos === '-1');
-  const next = cardHTMLRefs.value?.find((elem) => elem.dataset.pos === '1');
-  const first = cardHTMLRefs.value?.find((elem) => elem.dataset.pos === '-2');
-  const last = cardHTMLRefs.value?.find((elem) => elem.dataset.pos === '2');
-
-  // const activeFiveElements = [current, prev, next, first, last];
-
   // set dataset.pos for all cards
   cardHTMLRefs.value?.forEach((item) => {
     if (item) {
       var itemPos = item.dataset.pos;
       if (item && itemPos && newActivePos) {
         item.dataset.pos = getPos(itemPos, newActivePos);
+        item.dataset.isHiddenLeft = '' + (+item.dataset.pos <= -positionVisibleMaximum.value);
+        item.dataset.isHiddenRight = '' + (+item.dataset.pos >= positionVisibleMaximum.value);
       };
     }
   });
 };
 
-const getPos = function (current: string, active: string) {
-  const diff = +current - +active;
+function getPos(current: string, steps: string) {
+  const newPos = +current - +steps;
+  const moveToRight = +steps < 0;
+  const moveToLeft = +steps > 0;
+  const isHidden = Math.abs(newPos) > positionVisibleMaximum.value;
 
-  if (Math.abs(+current - +active) > 2) {
-    return '' + -current;
-  }
+  if (moveToRight && isHidden) {
+    return '' + (newPos - dryFoodCount.value);
+  };
 
-  return '' + diff;
+  if (moveToLeft && isHidden) {
+    return '' + (newPos + dryFoodCount.value);
+  };
+
+  return '' + newPos;
 };
 </script>
 
@@ -124,7 +137,9 @@ const getPos = function (current: string, active: string) {
              :class="{ activated: dryFood.isMixPortion }"
              :key="dryFood._id"
              ref="cardHTMLRefs"
-             :data-pos="initiatePosition(i, calculator.brandsOfType('dry').length)">
+             :data-pos="initiatePosition(i)"
+             :data-is-hidden-left="isHiddenLeft(i)"
+             :data-is-hidden-right="isHiddenRight(i)">
           <label :for="dryFood.name">
             <img :src="imageURL(dryFood)"
                  :alt="dryFood.name" />
@@ -312,9 +327,9 @@ $food-card-height: 46vw;
 
       &[data-pos="-1"],
       &[data-pos="1"] {
-        opacity: 0.7;
-        // filter: blur(1px) grayscale(10%);
-        filter: blur(1px);
+        // opacity: 0.7;
+        filter: blur(1px) grayscale(10%);
+        // filter: blur(1px);
       }
 
       &[data-pos="-1"] {
@@ -329,8 +344,8 @@ $food-card-height: 46vw;
 
       &[data-pos="-2"],
       &[data-pos="2"] {
-        opacity: 0.4;
-        // filter: blur(2px) grayscale(20%);
+        // opacity: 0.4;
+        filter: blur(2px) grayscale(20%);
       }
 
       &[data-pos="-2"] {
@@ -341,6 +356,16 @@ $food-card-height: 46vw;
       &[data-pos="2"] {
         transform: translateX(90%) scale(.8);
         z-index: 3;
+      }
+
+      &[data-is-hidden-left="true"] {
+        transform: translateX(-140%) scale(0.1);
+        z-index: 0;
+      }
+
+      &[data-is-hidden-right="true"] {
+        transform: translateX(140%) scale(0.1);
+        z-index: 0;
       }
     }
   }

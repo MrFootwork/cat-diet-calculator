@@ -45,8 +45,9 @@ function update(newActive: HTMLElement) {
   const first = cardHTMLRefs.value?.find((elem) => elem.dataset.pos === '-2');
   const last = cardHTMLRefs.value?.find((elem) => elem.dataset.pos === '2');
 
-  const activeFiveElements = [current, prev, next, first, last];
+  // const activeFiveElements = [current, prev, next, first, last];
 
+  // set dataset.pos for all cards
   cardHTMLRefs.value?.forEach((item) => {
     if (item) {
       var itemPos = item.dataset.pos;
@@ -329,7 +330,7 @@ $food-card-height: 46vw;
       &[data-pos="-2"],
       &[data-pos="2"] {
         opacity: 0.4;
-        filter: blur(2px) grayscale(20%);
+        // filter: blur(2px) grayscale(20%);
       }
 
       &[data-pos="-2"] {

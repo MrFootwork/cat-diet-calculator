@@ -36,13 +36,25 @@ function isHiddenRight(i: number) {
   return (i - positionVisibleMaximum.value) >= positionVisibleMaximum.value;
 }
 // click handler
-const selectCard = function (event: Event) {
+function selectCard(event: Event) {
   if (!(event.target instanceof HTMLElement)) return;
 
   const newActive = event.target.parentElement?.parentElement;
   const isItem = event.target.closest('.dry-food-card>label>input[type=checkbox]');
 
   if (newActive && isItem) update(newActive);
+};
+function moveCarousel(direction: 'left' | 'right') {
+  let positionalDirection = '';
+
+  if (direction === 'left') positionalDirection = '-1';
+  if (direction === 'right') positionalDirection = '1';
+
+  const newActive = cardHTMLRefs.value?.find(foodCard => {
+    return foodCard.dataset.pos === positionalDirection;
+  });
+
+  if (newActive) update(newActive);
 };
 // all food cards
 const cardHTMLRefs = ref<HTMLElement[] | undefined>();
@@ -134,8 +146,11 @@ function getPos(current: string, steps: string) {
       <div class="wrapper-food">
 
         <button v-if="optionSelected === 'select-carousel'"
-                class="button left">
-          This is left
+                class="button left"
+                @click="moveCarousel('left')">
+          <img src="/circle-chevron-left.svg"
+               alt="previous dry food brand"
+               class="icon-arrow previous">
         </button>
 
         <div class="dry-food-card"
@@ -158,8 +173,11 @@ function getPos(current: string, steps: string) {
         </div>
 
         <button v-if="optionSelected === 'select-carousel'"
-                class="button right">
-          this is right
+                class="button right"
+                @click="moveCarousel('right')">
+          <img src="/circle-chevron-right.svg"
+               alt="next dry food brand"
+               class="icon-arrow next">
         </button>
 
       </div>
@@ -310,13 +328,28 @@ $food-card-height: 46vw;
       max-height: inherit;
       z-index: 10;
 
+      background: none;
+      border: none;
+      cursor: pointer;
+
+      & .icon-arrow {
+        width: 50px;
+        height: 50px;
+      }
+
       &.left {
         left: 0;
+
+        & .previous {}
       }
 
       &.right {
         right: 0;
+
+        & .next {}
       }
+
+
     }
 
     .dry-food-card {

@@ -1,7 +1,11 @@
 <script setup lang="ts">
-import Calculator from '~~/model/MCalculator'
+import Calculator from '~~/model/MCalculator';
 
-const calculator = ref(Calculator.getInstance())
+const calculator = ref(Calculator.getInstance());
+
+const displayResult = computed(() => {
+  return `${calculator.value.getResult(calculator.value.allBrands)} g`;
+});
 </script>
 
 <template>
@@ -16,7 +20,7 @@ const calculator = ref(Calculator.getInstance())
 
     <div class="wrapper-result-display">
       <p id="result"
-         class="result-display">{{ `${calculator.getResult(calculator.allBrands)} g` }}</p>
+         class="result-display">{{ displayResult }}</p>
     </div>
 
     <div class="wrapper-label">
@@ -29,8 +33,8 @@ const calculator = ref(Calculator.getInstance())
 </template>
 
 <style scoped lang="scss">
-@use 'sassMixins' as *;
-@use 'sassColors' as *;
+@use 'mixins' as *;
+@use 'colors' as *;
 
 
 @include styleBody(light) {

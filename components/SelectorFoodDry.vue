@@ -132,6 +132,12 @@ function getPos(current: string, steps: string) {
          href="https://icons8.com">Icons8</a> -->
 
       <div class="wrapper-food">
+
+        <button v-if="optionSelected === 'select-carousel'"
+                class="button left">
+          This is left
+        </button>
+
         <div class="dry-food-card"
              v-for="(dryFood, i) in calculator.brandsOfType('dry')"
              :class="{ activated: dryFood.isMixPortion }"
@@ -150,6 +156,12 @@ function getPos(current: string, steps: string) {
             <label :for="dryFood.name"> {{ dryFood.name }}</label>
           </label>
         </div>
+
+        <button v-if="optionSelected === 'select-carousel'"
+                class="button right">
+          this is right
+        </button>
+
       </div>
 
     </div>
@@ -157,7 +169,8 @@ function getPos(current: string, steps: string) {
 </template>
 
 <style scoped lang="scss">
-@use 'sassColors' as *;
+@use 'colors' as *;
+@use 'mixins' as *;
 
 $food-card-height: 46vw;
 
@@ -280,15 +293,29 @@ $food-card-height: 46vw;
 .select-carousel {
 
   .wrapper-food {
-    // border: 1px solid salmon;
-
     display: flex;
+    justify-content: center;
+
     list-style: none;
     position: relative;
     width: 100%;
-    height: calc($food-card-height + 5vh);
-    justify-content: center;
+    @include orientationHeight($food-card-height);
     perspective: 300px;
+
+    .button {
+      position: absolute;
+
+      height: inherit;
+      z-index: 10;
+
+      &.left {
+        left: 0;
+      }
+
+      &.right {
+        right: 0;
+      }
+    }
 
     .dry-food-card {
       // border: 1px solid salmon;
@@ -359,12 +386,12 @@ $food-card-height: 46vw;
       }
 
       &[data-is-hidden-left="true"] {
-        transform: translateX(-140%) scale(0.1);
+        transform: translateX(-140%) scale(0);
         z-index: 0;
       }
 
       &[data-is-hidden-right="true"] {
-        transform: translateX(140%) scale(0.1);
+        transform: translateX(140%) scale(0);
         z-index: 0;
       }
     }

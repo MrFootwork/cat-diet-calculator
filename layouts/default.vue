@@ -11,8 +11,8 @@ import ResultDisplay from '~~/components/DisplayResult.vue'
 </template>
 
 <style lang="scss">
-@use 'sassMixins' as *;
-@use 'sassColors' as *;
+@use 'mixins' as *;
+@use 'colors' as *;
 
 :root {
   @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Montserrat:wght@700&display=swap');

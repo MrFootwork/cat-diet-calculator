@@ -5,3 +5,13 @@
   }
 
 }
+
+@mixin orientationHeight($height) {
+  @media (orientation: landscape) {
+    height: calc($height + 5vh);
+  }
+
+  @media (orientation: portrait) {
+    height: calc($height + 5vw);
+  }
+}

@@ -97,6 +97,48 @@ function getPos(current: string, steps: string) {
 
   return '' + newPos;
 };
+
+// swipe actions
+function touchStart(touchEvent: TouchEvent) {
+  // We only care if one finger is used
+  if (touchEvent.changedTouches.length !== 1) return;
+
+  const posXStart = touchEvent.changedTouches[0].clientX;
+
+  addEventListener('touchend', (touchEvent) => {
+    touchEnd(touchEvent, posXStart);
+  }, { once: true });
+}
+
+function touchEnd(touchEvent: TouchEvent, posXStart: number) {
+
+  const distance = posXStart - touchEvent.changedTouches[0].clientX;
+  if (Math.abs(distance) < 30) return;
+
+  const containerWidth = document.querySelector('.wrapper-food')?.offsetWidth;
+  const distanceRatio = Math.abs(distance) / containerWidth;
+  const direction = distance > 0 ? 'right' : 'left';
+  const numberDirection = distance > 0 ? 1 : -1;
+
+  // big motion rotates more cards
+  if (distanceRatio >= 0.6) {
+    const newActive = cardHTMLRefs.value?.find(foodCard => {
+      return foodCard.dataset.pos === '' + numberDirection * 3;
+    });
+    if (newActive) update(newActive);
+    return;
+  }
+
+  if (distanceRatio >= 0.3) {
+    const newActive = cardHTMLRefs.value?.find(foodCard => {
+      return foodCard.dataset.pos === '' + numberDirection * 2;
+    });
+    if (newActive) update(newActive);
+    return;
+  }
+
+  moveCarousel(direction);
+}
 </script>
 
 <template>
@@ -148,7 +190,8 @@ function getPos(current: string, steps: string) {
       <a target="_blank"
          href="https://icons8.com">Icons8</a> -->
 
-      <div class="wrapper-food">
+      <div class="wrapper-food"
+           @touchstart="touchStart">
 
         <button v-if="optionSelected === 'select-carousel'"
                 class="button left"
@@ -198,9 +241,6 @@ function getPos(current: string, steps: string) {
 $food-card-height: 46vw;
 
 .dry-food {
-  // FIXME transition between gallery and carousel view doesn't work
-  // transition: all 2s;
-
   .options {
     width: 100%;
 
@@ -287,15 +327,13 @@ $food-card-height: 46vw;
   }
 }
 
-// .dry-food,
+// gallery style
 .select-gallery {
 
   .wrapper-food {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-
-    // transition: all 2s;
 
     .dry-food-card {
 
@@ -310,9 +348,7 @@ $food-card-height: 46vw;
   }
 }
 
-// FIXME build card slider 
-// https://codepen.io/frise/pen/mZvKpe 
-//  https://www.youtube.com/watch?v=OQZNAMjC6Vg
+// carousel style
 .select-carousel {
 
   .wrapper-food {
@@ -353,39 +389,28 @@ $food-card-height: 46vw;
 
         & .next {}
       }
-
-
     }
 
     .dry-food-card {
-      // border: 1px solid salmon;
-
       display: flex;
       align-items: center;
       justify-content: center;
+
       color: #fff;
       font-size: 0px;
-      // width: 150px;
-      // height: 250px;
-      border-radius: 12px;
       box-shadow: 0px 2px 8px 0px rgba(50, 50, 50, 0.5);
+
+      border-radius: 12px;
       position: absolute;
-      transition: all .3s ease-in;
+      transition: all .2s ease-in;
 
       &.activated {}
 
       label {
-        // border: 1px solid salmon;
 
-        img {
-          // border: 1px solid salmon;
+        img {}
 
-        }
-
-        input {
-          // border: 1px solid salmon;
-
-        }
+        input {}
       }
 
       &[data-pos="0"] {
@@ -394,9 +419,7 @@ $food-card-height: 46vw;
 
       &[data-pos="-1"],
       &[data-pos="1"] {
-        // opacity: 0.7;
         filter: blur(1px) grayscale(10%);
-        // filter: blur(1px);
       }
 
       &[data-pos="-1"] {
@@ -411,7 +434,6 @@ $food-card-height: 46vw;
 
       &[data-pos="-2"],
       &[data-pos="2"] {
-        // opacity: 0.4;
         filter: blur(2px) grayscale(20%);
       }
 

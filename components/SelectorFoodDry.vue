@@ -300,12 +300,14 @@ $food-card-height: 46vw;
     position: relative;
     width: 100%;
     @include orientationHeight($food-card-height);
+    max-height: 450px;
     perspective: 300px;
 
     .button {
       position: absolute;
 
       height: inherit;
+      max-height: inherit;
       z-index: 10;
 
       &.left {

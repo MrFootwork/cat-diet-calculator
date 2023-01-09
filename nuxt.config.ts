@@ -1,5 +1,4 @@
 import { Title } from './.nuxt/components.d'
-import { defineNuxtConfig } from 'nuxt'
 import { resolve } from 'path'
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config

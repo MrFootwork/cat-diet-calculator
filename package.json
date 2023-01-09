@@ -16,7 +16,7 @@
 		"@vitest/ui": "latest",
 		"dotenv": "^16.0.0",
 		"eslint": "^8.15.0",
-		"nuxt": "3.0.0-rc.12",
+		"nuxt": "^3.0.0-rc.14",
 		"sass": "^1.51.0",
 		"typescript": "latest",
 		"vitest": "^0.12.9"

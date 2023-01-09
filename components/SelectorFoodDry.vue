@@ -22,19 +22,24 @@ function imageURL(dryFood: FoodBrand) {
 const dryFoodCount = computed(() => {
   return calculator.value.brandsOfType('dry').length;
 });
-const positionVisibleMaximum = computed(() => {
-  return Math.floor(dryFoodCount.value / 2);
-});
+// all food cards
+const cardHTMLRefs = ref<HTMLElement[] | undefined>();
+// [data-pos] where cards are not visible anymore
+const positionOutOfSight = 3;
+
 // initial HTML data attribute positions
 function initiatePosition(i: number) {
-  return i - positionVisibleMaximum.value;
+  return i - positionOutOfSight;
 };
+
 function isHiddenLeft(i: number) {
-  return (i - positionVisibleMaximum.value) <= -positionVisibleMaximum.value;
+  return (i - positionOutOfSight) <= -positionOutOfSight;
 }
+
 function isHiddenRight(i: number) {
-  return (i - positionVisibleMaximum.value) >= positionVisibleMaximum.value;
+  return (i - positionOutOfSight) >= positionOutOfSight;
 }
+
 // click handler
 function selectCard(event: Event) {
   if (!(event.target instanceof HTMLElement)) return;
@@ -44,6 +49,7 @@ function selectCard(event: Event) {
 
   if (newActive && isItem) update(newActive);
 };
+
 function moveCarousel(direction: 'left' | 'right') {
   let positionalDirection = '';
 
@@ -56,8 +62,7 @@ function moveCarousel(direction: 'left' | 'right') {
 
   if (newActive) update(newActive);
 };
-// all food cards
-const cardHTMLRefs = ref<HTMLElement[] | undefined>();
+
 // update all food cards after click
 function update(newActive: HTMLElement) {
   const newActivePos = newActive.dataset.pos;
@@ -70,8 +75,8 @@ function update(newActive: HTMLElement) {
 
     if (itemPos && newActivePos) {
       item.dataset.pos = getPos(itemPos, newActivePos);
-      item.dataset.isHiddenLeft = '' + (+item.dataset.pos <= -positionVisibleMaximum.value);
-      item.dataset.isHiddenRight = '' + (+item.dataset.pos >= positionVisibleMaximum.value);
+      item.dataset.isHiddenLeft = '' + (+item.dataset.pos <= -positionOutOfSight);
+      item.dataset.isHiddenRight = '' + (+item.dataset.pos >= positionOutOfSight);
     };
   });
 };
@@ -80,7 +85,7 @@ function getPos(current: string, steps: string) {
   const newPos = +current - +steps;
   const moveToRight = +steps < 0;
   const moveToLeft = +steps > 0;
-  const isHidden = Math.abs(newPos) > positionVisibleMaximum.value;
+  const isHidden = Math.abs(newPos) > positionOutOfSight;
 
   if (moveToRight && isHidden) {
     return '' + (newPos - dryFoodCount.value);

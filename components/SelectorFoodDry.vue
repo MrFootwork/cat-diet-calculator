@@ -17,7 +17,7 @@ function imageURL(dryFood: FoodBrand) {
 };
 
 /*************************************
- *  for carousel functionality
+ *  carousel functionality
  *************************************/
 const dryFoodCount = computed(() => {
   return calculator.value.brandsOfType('dry').length;
@@ -50,7 +50,7 @@ const cardHTMLRefs = ref<HTMLElement[] | undefined>();
 function update(newActive: HTMLElement) {
   const newActivePos = newActive.dataset.pos;
 
-  // set dataset.pos for all cards
+  // set HTML data attributes for all cards
   cardHTMLRefs.value?.forEach((item) => {
     if (!item) return;
 

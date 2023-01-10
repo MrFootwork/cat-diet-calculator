@@ -375,6 +375,17 @@ $food-card-height: 46vw;
       & .icon-arrow {
         width: 50px;
         height: 50px;
+
+
+      }
+
+      // FIXME change code so filter will be applied to icons
+      @include styleBody(light) {
+        & .icon-arrow {
+          width: 50px;
+          height: 50px;
+          filter: invert(9%) sepia(87%) saturate(7417%) hue-rotate(247deg) brightness(98%) contrast(145%);
+        }
       }
 
       &.left {

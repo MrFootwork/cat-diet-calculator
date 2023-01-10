@@ -295,11 +295,10 @@ $food-card-height: 46vw;
       margin: 1rem;
 
       border-radius: 5%;
-
-      box-shadow: -5px 5px 20px -5px hsl(0, 0%, 0%);
+      @include boxShadow;
 
       &.activated {
-        box-shadow: 5px 5px 15px 5px #FF8080, -9px 5px 15px 5px #FFE488, -7px -5px 15px 5px #8CFF85, 12px -5px 15px 5px #80C7FF, 12px 10px 15px 7px #E488FF, -10px 10px 15px 7px #FF616B, -10px -7px 27px 1px #8E5CFF, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+        @include boxShadowRainbow;
       }
 
       label {
@@ -398,7 +397,7 @@ $food-card-height: 46vw;
 
       color: #fff;
       font-size: 0px;
-      box-shadow: 0px 2px 8px 0px rgba(50, 50, 50, 0.5);
+      @include boxShadow;
 
       border-radius: 12px;
       position: absolute;

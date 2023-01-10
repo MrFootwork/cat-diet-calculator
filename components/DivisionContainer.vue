@@ -21,6 +21,8 @@
 @include styleBody(light) {
   .container {
     border: 3px solid $light-primary-color;
+    background-color: $light-secondary-color;
+    @include boxShadow;
     @extend %staticContainerAttributes
   }
 }

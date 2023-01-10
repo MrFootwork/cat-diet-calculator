@@ -115,7 +115,7 @@ function touchEnd(touchEvent: TouchEvent, posXStart: number) {
   const distance = posXStart - touchEvent.changedTouches[0].clientX;
   if (Math.abs(distance) < 30) return;
 
-  const containerWidth = document.querySelector('.wrapper-food')?.offsetWidth;
+  const containerWidth = (document.querySelector('.wrapper-food') as HTMLDivElement).offsetWidth;
   const distanceRatio = Math.abs(distance) / containerWidth;
   const direction = distance > 0 ? 'right' : 'left';
   const numberDirection = distance > 0 ? 1 : -1;

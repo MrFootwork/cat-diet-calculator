@@ -22,7 +22,7 @@ import ResultDisplay from '~~/components/DisplayResult.vue'
 }
 
 
-@include styleBody(light) {
+@include styleBody(default) {
   background-color: $light-background-color;
   color: $light-text-color;
 }

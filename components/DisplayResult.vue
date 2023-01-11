@@ -37,7 +37,7 @@ const displayResult = computed(() => {
 @use 'colors' as *;
 
 
-@include styleBody(light) {
+@include styleBody(default) {
   .result-container {
     color: $light-text-color;
   }

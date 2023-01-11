@@ -376,7 +376,7 @@ $food-card-height: 46vw;
       }
 
       // FIXME change code so filter will be applied to icons
-      @include styleBody(light) {
+      @include styleBody(default) {
         & .icon-arrow {
           width: 50px;
           height: 50px;

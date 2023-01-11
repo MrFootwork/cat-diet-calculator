@@ -18,7 +18,7 @@
   padding: 1rem;
 }
 
-@include styleBody(light) {
+@include styleBody(default) {
   .container {
     border: 3px solid $light-primary-color;
     background-color: $light-secondary-color;

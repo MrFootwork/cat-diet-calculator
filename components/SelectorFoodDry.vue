@@ -196,10 +196,7 @@ function touchEnd(touchEvent: TouchEvent, posXStart: number) {
         <button v-if="optionSelected === 'select-carousel'"
                 class="button left"
                 @click="moveCarousel('left')">
-          <!-- <img src="/circle-chevron-left.svg"
-               alt="previous dry food brand"
-               class="icon-arrow previous"> -->
-          <IconCircleChevronLeft />
+          <IconCircleChevronLeft fill-color="orange" />
         </button>
 
         <div class="dry-food-card"
@@ -224,9 +221,7 @@ function touchEnd(touchEvent: TouchEvent, posXStart: number) {
         <button v-if="optionSelected === 'select-carousel'"
                 class="button right"
                 @click="moveCarousel('right')">
-          <img src="/circle-chevron-right.svg"
-               alt="next dry food brand"
-               class="icon-arrow next">
+          <IconCircleChevronRight fill-color="salmon" />
         </button>
 
       </div>

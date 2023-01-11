@@ -11,27 +11,30 @@
     </div>
 
     <div class="cat-shape">
+
+      <input type="radio"
+             name="catShape"
+             id="ideal"
+             value="ideal"
+             v-model="calculator.catShape" />
       <label for="ideal">
-        <input type="radio"
-               name="catShape"
-               id="ideal"
-               value="ideal"
-               v-model="calculator.catShape" />
         <img src="https://img.icons8.com/color/96/null/thin-cat.png"
              alt="cat shape option ideal" />
         <!-- need to attribute for image -->
-        <!-- <a target="_blank" href="https://icons8.com/icon/fzZBYAwn9fbk/skinny-cat">Skinny Cat icon by Icons8</a> -->
       </label>
+      <!-- <a target="_blank" href="https://icons8.com/icon/fzZBYAwn9fbk/skinny-cat">Skinny Cat icon by Icons8</a> -->
+
+      <input type="radio"
+             name="catShape"
+             id="overweight"
+             value="overweight"
+             v-model="calculator.catShape" />
       <label for="overweight">
-        <input type="radio"
-               name="catShape"
-               id="overweight"
-               value="overweight"
-               v-model="calculator.catShape" />
         <img src="https://img.icons8.com/color/96/null/fat-cat.png"
              alt="cat shape option overweight" />
-        <!-- <a target="_blank" href="https://icons8.com/icon/ZGYXhUYK9ciX/fat-cat">Fat Cat icon by Icons8</a> -->
       </label>
+      <!-- <a target="_blank" href="https://icons8.com/icon/ZGYXhUYK9ciX/fat-cat">Fat Cat icon by Icons8</a> -->
+
       <button class="cat-shape-help-toggle"
               @click="toggleCatShapeHelp">
         What is my cat?
@@ -59,6 +62,8 @@ function toggleCatShapeHelp() {
 </script>
 
 <style scoped lang="scss">
+@use 'mixins' as *;
+
 .cat-shape-help {
   margin: 1rem;
   display: flex;
@@ -67,6 +72,27 @@ function toggleCatShapeHelp() {
   img {
     width: 85vw;
 
+  }
+}
+
+.cat-shape {
+  input[type="radio"] {
+    visibility: hidden;
+
+
+    &:checked+label>img {
+      @include boxShadowRainbow;
+      // background-color: red;
+    }
+  }
+
+  label {
+    cursor: pointer;
+
+    img {
+      height: 5rem;
+      border-radius: 50%;
+    }
   }
 }
 </style>

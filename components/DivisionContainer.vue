@@ -14,14 +14,13 @@
 
 %staticContainerAttributes {
   border-radius: 10px;
-  margin: 1rem;
+  margin: 1rem 2rem;
   padding: 1rem;
 }
 
 @include styleBody(default) {
   .container {
-    border: 3px solid $light-primary-color;
-    background-color: $light-secondary-color;
+    backdrop-filter: blur(12px);
     @include boxShadow;
     @extend %staticContainerAttributes
   }

@@ -17,7 +17,11 @@
 }
 
 @mixin boxShadow() {
-  box-shadow: -2px 3px 17px -5px hsl(0, 0%, 60%);
+  box-shadow: -2px 3px 17px -5px hsl(0, 0%, 30%);
+}
+
+@mixin boxShadowCard() {
+  box-shadow: -5px 10px 35px -10px hsl(0, 0%, 30%);
 }
 
 @mixin boxShadowRainbow() {

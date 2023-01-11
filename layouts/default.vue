@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import ResultDisplay from '~~/components/DisplayResult.vue'
 
 </script>
 
 <template>
-  <div>
-    <ResultDisplay />
+  <div class="background">
+    <DisplayResult />
     <slot />
   </div>
 </template>
@@ -14,20 +13,30 @@ import ResultDisplay from '~~/components/DisplayResult.vue'
 @use 'mixins' as *;
 @use 'colors' as *;
 
-:root {
+%body {
+
   @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Montserrat:wght@700&display=swap');
+  font-family: "Abril Fatface", cursive;
 
   margin: 0;
   padding: 0;
 }
 
-
 @include styleBody(default) {
+
+  @extend %body;
   background-color: $light-background-color;
   color: $light-text-color;
+
+  .background {
+    background-image: url("/background-cats.png");
+    background-size: contain;
+  }
 }
 
 @include styleBody(dark) {
+
+  @extend %body;
   background-color: $dark-primary-color;
   color: $dark-secondary-color;
 }

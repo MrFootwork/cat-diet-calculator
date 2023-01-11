@@ -196,7 +196,7 @@ function touchEnd(touchEvent: TouchEvent, posXStart: number) {
         <button v-if="optionSelected === 'select-carousel'"
                 class="button left"
                 @click="moveCarousel('left')">
-          <IconCircleChevronLeft fill-color="orange" />
+          <IconCircleChevronLeft />
         </button>
 
         <div class="dry-food-card"
@@ -221,7 +221,7 @@ function touchEnd(touchEvent: TouchEvent, posXStart: number) {
         <button v-if="optionSelected === 'select-carousel'"
                 class="button right"
                 @click="moveCarousel('right')">
-          <IconCircleChevronRight fill-color="salmon" />
+          <IconCircleChevronRight />
         </button>
 
       </div>
@@ -267,11 +267,12 @@ $food-card-height: 46vw;
         }
       }
 
+      @at-root input+label>img {
+        filter: invert(87%) sepia(39%) saturate(3430%) hue-rotate(336deg) brightness(87%) contrast(82%);
+      }
+
       @at-root input:checked+label>img {
-        // https://codepen.io/sosuke/pen/Pjoqqp
-        // https://stackoverflow.com/a/50942954/13608849
-        // used that genius codepen to calculate the filter
-        filter: invert(19%) sepia(15%) saturate(1008%) hue-rotate(106deg) brightness(94%) contrast(88%);
+        filter: invert(79%) sepia(41%) saturate(6469%) hue-rotate(1deg) brightness(106%) contrast(103%);
       }
 
       .option {}
@@ -291,7 +292,7 @@ $food-card-height: 46vw;
       margin: 1rem;
 
       border-radius: 5%;
-      @include boxShadow;
+      @include boxShadowCard;
 
       &.activated {
         @include boxShadowRainbow;
@@ -368,22 +369,6 @@ $food-card-height: 46vw;
       border: none;
       cursor: pointer;
 
-      & .icon-arrow {
-        width: 50px;
-        height: 50px;
-
-
-      }
-
-      // FIXME change code so filter will be applied to icons
-      @include styleBody(default) {
-        & .icon-arrow {
-          width: 50px;
-          height: 50px;
-          // filter: invert(9%) sepia(87%) saturate(7417%) hue-rotate(247deg) brightness(98%) contrast(145%);
-        }
-      }
-
       &.left {
         left: 0;
 
@@ -404,7 +389,6 @@ $food-card-height: 46vw;
 
       color: #fff;
       font-size: 0px;
-      @include boxShadow;
 
       border-radius: 12px;
       position: absolute;

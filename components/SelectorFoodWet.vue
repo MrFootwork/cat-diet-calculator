@@ -47,7 +47,7 @@ const calculator = ref(Calculator.getInstance());
 
     border-radius: 5%;
 
-    @include boxShadow;
+    @include boxShadowCard;
 
     &.activated {
       @include boxShadowRainbow;

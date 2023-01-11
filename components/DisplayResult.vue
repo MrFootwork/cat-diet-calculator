@@ -55,7 +55,6 @@ const displayResult = computed(() => {
   position: fixed;
   top: 1rem;
   right: var(--length);
-  font-family: "Abril Fatface", cursive;
 
   z-index: 100;
 

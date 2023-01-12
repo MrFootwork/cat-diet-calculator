@@ -79,19 +79,23 @@ function toggleCatShapeHelp() {
   input[type="radio"] {
     visibility: hidden;
 
-
     &:checked+label>img {
-      @include boxShadowRainbow;
-      // background-color: red;
+      box-shadow: inset -4px 4px 20px -12px #000000;
+      transform: scale(95%);
+      transition: all .1s ease-in-out;
     }
   }
 
   label {
     cursor: pointer;
+    height: 5rem;
 
     img {
       height: 5rem;
       border-radius: 50%;
+      box-shadow: -4px 4px 20px -10px #000000;
+      transition: all .1s ease-in-out;
+
     }
   }
 }

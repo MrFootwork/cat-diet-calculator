@@ -13,6 +13,11 @@
 @use 'mixins' as *;
 @use 'colors' as *;
 
+:root {
+  --background-padding: 5vw;
+  --background-padding-max: 2rem;
+}
+
 %body {
 
   @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Montserrat:wght@700&display=swap');
@@ -31,6 +36,7 @@
   .background {
     background-image: url("/background-cats.png");
     background-size: contain;
+    padding: min(var(--background-padding), var(--background-padding-max));
   }
 }
 
@@ -39,5 +45,9 @@
   @extend %body;
   background-color: $dark-primary-color;
   color: $dark-secondary-color;
+
+  .background {
+    padding: min(var(--background-padding), var(--background-padding-max));
+  }
 }
 </style>

@@ -27,6 +27,10 @@
   padding: 0;
 }
 
+%background {
+  padding: min(var(--background-padding), var(--background-padding-max));
+}
+
 @include styleBody(default) {
 
   @extend %body;
@@ -34,9 +38,10 @@
   color: $light-text-color;
 
   .background {
+
+    @extend %background;
     background-image: url("/background-cats.png");
     background-size: contain;
-    padding: min(var(--background-padding), var(--background-padding-max));
   }
 }
 
@@ -47,7 +52,8 @@
   color: $dark-secondary-color;
 
   .background {
-    padding: min(var(--background-padding), var(--background-padding-max));
+
+    @extend %background;
   }
 }
 </style>

@@ -16,11 +16,17 @@ const calculator = ref(Calculator.getInstance());
         <input type="checkbox"
                :id="wetFood.name"
                v-model="wetFood.isMixPortion" />
-        <input v-if="wetFood.isMixPortion"
-               type="number"
-               min="0"
-               step=".5"
-               v-model.number="wetFood.mixPortion" />
+
+        <div class="input-number">
+          <button class="input-number-minus"></button>
+          <input v-if="wetFood.isMixPortion"
+                 type="number"
+                 min="0"
+                 step=".5"
+                 v-model.number="wetFood.mixPortion" />
+          <button class="input-number-plus"></button>
+        </div>
+
         <label :for="wetFood.name">{{ wetFood.name }}</label>
       </label>
     </div>
@@ -72,18 +78,31 @@ const calculator = ref(Calculator.getInstance());
         visibility: hidden;
       }
 
-      // how to hide the spin buttons
-      // input[type=number]::-webkit-inner-spin-button {
-      //   -webkit-appearance: none;
-      // }
+      .input-number {
+        & .input-number-minus {}
 
-      input[type=number] {
-        position: absolute;
+        input[type=number] {
+          position: absolute;
 
-        bottom: 0;
-        right: 0;
-        z-index: 100;
+          bottom: 0;
+          right: 0;
+          z-index: 100;
+
+          // hide spin buttons for
+          // firefox 
+          -moz-appearance: textfield;
+          appearance: textfield;
+          margin: 0;
+
+          // and for chrome
+          &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+          }
+        }
+
+        & .input-number-plus {}
       }
+
     }
   }
 }

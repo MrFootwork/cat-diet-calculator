@@ -18,6 +18,9 @@ export default defineNuxtConfig({
 	server: {
 		host: '0.0.0.0',
 	},
+	imports: {
+		dirs: ['stores'],
+	},
 	modules: [
 		'@pinia/nuxt',
 		{

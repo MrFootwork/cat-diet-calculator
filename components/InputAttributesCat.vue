@@ -1,3 +1,23 @@
+<script setup lang="ts">
+import Calculator from '~~/model/MCalculator';
+import { useModalStore } from 'store/modal';
+import { storeToRefs } from 'pinia';
+
+
+const calculator = ref(Calculator.getInstance());
+
+const modalStore = useModalStore();
+const { isHelpVisible } = storeToRefs(modalStore);
+const { showHelp, hideHelp } = modalStore;
+
+// const showHelp = ref(false);
+
+function toggleCatShapeHelp() {
+  if (!modalStore) showHelp();
+  if (modalStore) hideHelp();
+}
+</script>
+
 <template>
   <div class="options-wrapper">
 
@@ -43,24 +63,13 @@
 
     <div class="cat-shape-help"
          @click="toggleCatShapeHelp"
-         v-if="showHelp">
+         v-if="isHelpVisible">
       <img src="/HealthyCatWeight.webp"
            alt="Can you see/feel the ribs of your cat?" />
     </div>
 
   </div>
 </template>
-
-<script setup lang="ts">
-import Calculator from '~~/model/MCalculator';
-
-const calculator = ref(Calculator.getInstance());
-const showHelp = ref(false);
-
-function toggleCatShapeHelp() {
-  showHelp.value = !showHelp.value;
-}
-</script>
 
 <style scoped lang="scss">
 @use 'mixins' as *;

@@ -10,4 +10,5 @@ export const alias: Record<string, string> = {
 	'assets': r('./assets'),
 	'public': r('./public'),
 	'public/': r('./public/'),
+	'store/': r('./store/'),
 }

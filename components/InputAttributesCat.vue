@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="options-wrapper">
 
     <div class="cat-weight">
       <label for="cat-weight">{{ calculator.catWeight }}</label>
@@ -34,14 +34,15 @@
              alt="cat shape option overweight" />
       </label>
       <!-- <a target="_blank" href="https://icons8.com/icon/ZGYXhUYK9ciX/fat-cat">Fat Cat icon by Icons8</a> -->
-
-      <button class="cat-shape-help-toggle"
-              @click="toggleCatShapeHelp">
-        What is my cat?
-      </button>
     </div>
 
+    <button class="cat-shape-help-toggle"
+            @click="toggleCatShapeHelp">
+      What is my cat?
+    </button>
+
     <div class="cat-shape-help"
+         @click="toggleCatShapeHelp"
          v-if="showHelp">
       <img src="/HealthyCatWeight.webp"
            alt="Can you see/feel the ribs of your cat?" />
@@ -64,38 +65,79 @@ function toggleCatShapeHelp() {
 <style scoped lang="scss">
 @use 'mixins' as *;
 
-.cat-shape-help {
-  margin: 1rem;
+.options-wrapper {
   display: flex;
-  justify-content: center;
+  // align-items: center;
+  flex-direction: column;
 
-  img {
-    width: 85vw;
+  // .cat-shape-help {
+  //   margin: 1rem;
+  //   display: flex;
+  //   justify-content: center;
 
-  }
-}
+  //   img {
+  //     width: 85vw;
 
-.cat-shape {
-  input[type="radio"] {
-    visibility: hidden;
+  //   }
+  // }
+  .cat-shape-help {
+    position: fixed;
+    // top: 0;
+    // left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
 
-    &:checked+label>img {
-      box-shadow: inset -6px 6px 25px -12px #000000;
-      transform: scale(95%);
-      transition: all 0s ease-in;
-    }
-  }
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  label {
-    cursor: pointer;
-    height: 5rem;
+    background-color: #000000;
 
     img {
+      position: fixed;
+
+      z-index: 100;
+      width: 85vw;
+
+    }
+  }
+
+  .cat-shape {
+    input[type=radio] {
+      display: none;
+
+      &:checked+label>img {
+        box-shadow: inset -6px 6px 25px -12px #000000;
+        transform: scale(95%);
+        transition: all 0s ease-in;
+      }
+
+      // TODO click animation for "negative" click
+
+    }
+
+    label {
+      cursor: pointer;
       height: 5rem;
-      border-radius: 50%;
-      box-shadow: -4px 4px 30px -6px #000000;
+
+      img {
+        height: 5rem;
+        border-radius: 50%;
+        box-shadow: -4px 4px 30px -6px #000000;
+        transition: all .04s ease-in;
+      }
+    }
+
+    input[type=radio]:checked:focus+label>img {
+      box-shadow: inset -6px 6px 25px -12px #000000;
+      transform: scale(90%);
       transition: all .04s ease-in;
     }
+  }
+
+  .cat-shape-help-toggle {
+    width: 10rem;
   }
 }
 </style>

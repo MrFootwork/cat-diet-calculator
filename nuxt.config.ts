@@ -18,6 +18,17 @@ export default defineNuxtConfig({
 	server: {
 		host: '0.0.0.0',
 	},
+	modules: [
+		'@pinia/nuxt',
+		{
+			autoImports: [
+				// automatically imports `defineStore`
+				'defineStore', // import { defineStore } from 'pinia'
+				// automatically imports `defineStore` as `definePiniaStore`
+				['defineStore', 'definePiniaStore'], // import { defineStore as definePiniaStore } from 'pinia'
+			],
+		},
+	],
 	// preset for deploying
 	// https://v3.nuxtjs.org/guide/deploy/presets/
 	nitro: {

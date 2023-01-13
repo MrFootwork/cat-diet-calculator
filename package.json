@@ -6,7 +6,6 @@
 		"start": "node .output/server/index.mjs",
 		"generate": "nuxt generate",
 		"preview": "nuxt preview",
-		"logs": "heroku logs --source app --tail",
 		"test": "vitest --ui",
 		"info": "npx nuxi info"
 	},
@@ -16,7 +15,7 @@
 		"@vitest/ui": "latest",
 		"dotenv": "^16.0.0",
 		"eslint": "^8.15.0",
-		"nuxt": "^3.0.0-rc.14",
+		"nuxt": "^3.0.0",
 		"sass": "^1.51.0",
 		"typescript": "latest",
 		"vitest": "^0.12.9"

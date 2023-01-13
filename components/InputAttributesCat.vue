@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Calculator from '~~/model/MCalculator';
-import { useModalStore } from 'store/modal';
+import Calculator from '@/model/MCalculator';
+import { useModalStore } from '@/store/modal';
 import { storeToRefs } from 'pinia';
 
 
@@ -11,7 +11,8 @@ const { isHelpVisible } = storeToRefs(modalStore);
 const { showHelp, hideHelp } = modalStore;
 
 // const showHelp = ref(false);
-
+// FIXME get this component to work with pinia
+// BUG help modal is not showing
 function toggleCatShapeHelp() {
   if (!modalStore) showHelp();
   if (modalStore) hideHelp();

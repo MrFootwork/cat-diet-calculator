@@ -117,7 +117,7 @@ function amountReset(brand: FoodBrand) {
         & .input-number.container {
 
           display: flex;
-          justify-content: center;
+          justify-content: space-between;
           align-items: center;
 
           width: 40%;
@@ -129,15 +129,16 @@ function amountReset(brand: FoodBrand) {
 
           font-weight: 600;
           font-size: 1.2rem;
+          color: white;
 
           input[type=number] {
 
             text-align: center;
             width: 2rem;
-            background-color: $light-primary-color;
+            background-color: inherit;
             outline: none;
             border: none;
-            // color: white;
+            color: inherit;
             font-weight: inherit;
             font-size: inherit;
 
@@ -159,31 +160,32 @@ function amountReset(brand: FoodBrand) {
             border-radius: 50%;
 
             background: none;
+            backdrop-filter: brightness(90%);
             border: none;
             cursor: pointer;
 
             font-weight: inherit;
             font-size: inherit;
+            color: inherit;
             text-align: center;
 
 
             &:hover {
               box-shadow: -4px 3px 15px -5px black;
+              backdrop-filter: brightness(100%);
+
             }
 
             &:active {
               box-shadow: inset -2px 2px 9px -5px black;
+              backdrop-filter: brightness(100%);
 
             }
           }
 
-          .input-number-minus {
-            margin-right: .1rem;
-          }
+          .input-number-minus {}
 
-          .input-number-plus {
-            margin-left: .1rem;
-          }
+          .input-number-plus {}
         }
       }
     }

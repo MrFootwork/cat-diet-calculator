@@ -1,21 +1,21 @@
 <script setup lang="ts">
 import Calculator from '@/model/MCalculator';
-import { useModalStore } from '@/store/modal';
+import { useModalStore } from './../store/modal';
 import { storeToRefs } from 'pinia';
 
 
 const calculator = ref(Calculator.getInstance());
 
 const modalStore = useModalStore();
-const { isHelpVisible } = storeToRefs(modalStore);
 const { showHelp, hideHelp } = modalStore;
 
-// const showHelp = ref(false);
-// FIXME get this component to work with pinia
+// FIXME style display for modal correctly
+// modal should be absolute and therefor being hung under body
 // BUG help modal is not showing
 function toggleCatShapeHelp() {
-  if (!modalStore) showHelp();
-  if (modalStore) hideHelp();
+  const modalStore = useModalStore();
+  if (!modalStore.isHelpVisible) return showHelp();
+  if (modalStore.isHelpVisible) hideHelp();
 }
 </script>
 
@@ -62,18 +62,50 @@ function toggleCatShapeHelp() {
       What is my cat?
     </button>
 
-    <div class="cat-shape-help"
-         @click="toggleCatShapeHelp"
-         v-if="isHelpVisible">
-      <img src="/HealthyCatWeight.webp"
-           alt="Can you see/feel the ribs of your cat?" />
-    </div>
+    <!-- FIXME add close button -->
+    <Teleport to="body">
+      <div class="cat-shape-help"
+           @click="toggleCatShapeHelp"
+           v-if="modalStore.isHelpVisible">
+        <img src="/HealthyCatWeight.webp"
+             alt="Can you see/feel the ribs of your cat?" />
+      </div>
+    </Teleport>
 
   </div>
 </template>
 
 <style scoped lang="scss">
 @use 'mixins' as *;
+
+
+// the helper modal
+.cat-shape-help {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  z-index: 100;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: hsl(0, 0%, 0%, 0.8);
+  backdrop-filter: blur(5px);
+
+  transition: all 1s ease;
+
+  img {
+    position: fixed;
+
+    z-index: 101;
+    width: 85vw;
+
+    border-radius: 15px;
+  }
+}
 
 .options-wrapper {
   display: flex;
@@ -90,27 +122,9 @@ function toggleCatShapeHelp() {
 
   //   }
   // }
-  .cat-shape-help {
-    position: fixed;
-    // top: 0;
-    // left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 100;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background-color: #000000;
-
-    img {
-      position: fixed;
-
-      z-index: 100;
-      width: 85vw;
-
-    }
+  .cat-shape-help-toggle {
+    cursor: pointer;
   }
 
   .cat-shape {

@@ -94,7 +94,7 @@ function toggleCatShapeHelp() {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 100%;
   z-index: 100;
 
@@ -105,13 +105,11 @@ function toggleCatShapeHelp() {
   background-color: hsl(0, 0%, 0%, 0.2);
   backdrop-filter: blur(5px);
 
-  transition: all 2s ease;
-
   img {
     position: fixed;
 
     z-index: 101;
-    width: 0;
+    aspect-ratio: 2501 / 2069;
 
     border-radius: 15px;
     box-shadow: -3px 3px 15px 3px black;
@@ -121,7 +119,7 @@ function toggleCatShapeHelp() {
     }
 
     &[data-show=true] {
-      width: 85vw;
+      @include orientationSize(95)
     }
   }
 }

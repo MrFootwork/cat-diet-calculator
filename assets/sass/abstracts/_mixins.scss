@@ -18,6 +18,16 @@
   }
 }
 
+@mixin orientationSize($size) {
+  @media (orientation: landscape) {
+    height: calc($size * 1vh);
+  }
+
+  @media (orientation: portrait) {
+    width: calc($size * 1vw);
+  }
+}
+
 @mixin boxShadow() {
   box-shadow: -2px 3px 17px -5px hsl(0, 0%, 30%);
 }

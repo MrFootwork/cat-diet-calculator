@@ -74,9 +74,14 @@ function amountReset(brand: FoodBrand) {
     max-height: 400px;
     margin: 1rem;
 
+    // FIXME add globally and absolute value wise same border-radius
     border-radius: 5%;
 
     @include boxShadowCard;
+
+    &:hover {
+      @include outlineOnHover;
+    }
 
     &.activated {
       @include boxShadowRainbow;
@@ -172,6 +177,7 @@ function amountReset(brand: FoodBrand) {
             &:hover {
               box-shadow: -4px 3px 17px -5px black;
               backdrop-filter: brightness(100%);
+              @include outlineOnHover;
             }
 
             &:active {

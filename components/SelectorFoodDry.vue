@@ -246,12 +246,12 @@ $food-card-height: 46vw;
     input {
       display: none;
 
-      transform: translateY(0);
-      transition: transform 1s ease-in;
+      // transform: translateY(0);
+      // transition: transform 1s ease-in;
 
       &:hover+label {
         cursor: pointer;
-        @include boxShadowOnHover;
+        @include outlineOnHover;
       }
 
       &:checked+label {
@@ -265,24 +265,30 @@ $food-card-height: 46vw;
       transition: transform 0s linear;
     }
 
+    --label-size: 4rem;
+
     label {
       display: flex;
-      justify-content: flex-start;
+      justify-content: center;
       align-items: center;
 
-      margin: 0 .1rem;
-      width: 3.5rem;
-      height: 3.5rem;
+      margin: 0.3rem;
+      width: var(--label-size);
+      height: var(--label-size);
+      border-radius: 5%;
+
+      // FIXME add box-shadow
 
       img {
-        #img-gallery {
-          width: 2rem;
-          height: 2rem;
+
+        aspect-ratio: 1/1;
+
+        &#img-gallery {
+          width: 3.5rem;
         }
 
-        #img-carousel {
-          width: 3rem;
-          height: 3rem;
+        &#img-carousel {
+          width: 4rem;
         }
       }
 
@@ -340,9 +346,7 @@ $food-card-height: 46vw;
       }
 
       &:hover {
-        outline: 5px solid $light-secondary-color;
-        outline-offset: .2rem;
-        outline-style: blur(5px);
+        @include outlineOnHover;
       }
     }
   }
@@ -417,7 +421,7 @@ $food-card-height: 46vw;
 
       border-radius: 12px;
       position: absolute;
-      transition: all .2s ease-in;
+      transition: transform .2s ease-in;
 
       &.activated {}
 

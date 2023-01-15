@@ -146,6 +146,7 @@ function toggleCatShapeHelp() {
         box-shadow: inset -6px 6px 25px -12px black;
         transform: scale(95%);
         cursor: auto;
+        outline: none;
       }
 
       // TODO click animation for "negative" click
@@ -162,9 +163,7 @@ function toggleCatShapeHelp() {
       }
 
       &:hover>img {
-        box-shadow:
-          0 0 1px 5px $light-secondary-color,
-          -4px 4px 30px -6px black;
+        @include outlineOnHover;
       }
     }
 
@@ -181,7 +180,7 @@ function toggleCatShapeHelp() {
       }
 
       &:hover>img {
-        box-shadow: 0 0 1px 5px $light-secondary-color;
+        @include outlineOnHover;
       }
 
       &:active>img {

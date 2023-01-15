@@ -40,6 +40,11 @@
   box-shadow: 0 0 1px 5px $light-secondary-color
 }
 
+@mixin outlineOnHover() {
+  outline       : .3rem solid $light-secondary-color;
+  outline-offset: .1rem;
+}
+
 @mixin boxShadowRainbow() {
   box-shadow:
     5px 5px 15px 5px #FF8080,

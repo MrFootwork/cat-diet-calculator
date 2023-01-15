@@ -29,7 +29,7 @@ svg {
 }
 
 button:hover>div>svg {
-  @include boxShadowOnHover;
+  @include outlineOnHover;
 }
 
 button:active>div>svg {

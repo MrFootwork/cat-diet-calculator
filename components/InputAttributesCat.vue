@@ -43,7 +43,8 @@ function toggleCatShapeHelp() {
              id="ideal"
              value="ideal"
              v-model="calculator.catShape" />
-      <label for="ideal">
+      <label for="ideal"
+             class="radio-button">
         <img src="https://img.icons8.com/color/96/null/thin-cat.png"
              alt="cat shape option ideal" />
         <!-- TODO attribution -->
@@ -55,7 +56,8 @@ function toggleCatShapeHelp() {
              id="overweight"
              value="overweight"
              v-model="calculator.catShape" />
-      <label for="overweight">
+      <label for="overweight"
+             class="radio-button">
         <img src="https://img.icons8.com/color/96/null/fat-cat.png"
              alt="cat shape option overweight" />
         <!-- TODO attribution -->
@@ -88,6 +90,8 @@ function toggleCatShapeHelp() {
 <style scoped lang="scss">
 @use 'mixins' as *;
 @use 'colors' as *;
+@use 'variables' as *;
+
 
 // the helper modal
 .cat-shape-help {
@@ -111,7 +115,7 @@ function toggleCatShapeHelp() {
     z-index: 101;
     aspect-ratio: 2501 / 2069;
 
-    border-radius: 15px;
+    border-radius: $round-corner;
     box-shadow: -3px 3px 15px 3px black;
 
     &[data-show=false] {
@@ -153,12 +157,12 @@ function toggleCatShapeHelp() {
 
     }
 
-    label {
+    label.radio-button {
       cursor: pointer;
 
       img {
         height: 5rem;
-        border-radius: 50%;
+        border-radius: $round-corner;
         box-shadow: -4px 4px 30px -6px black;
       }
 
@@ -176,7 +180,7 @@ function toggleCatShapeHelp() {
 
       img {
         width: 1.5rem;
-        border-radius: 50%;
+        border-radius: $round-corner;
       }
 
       &:hover>img {

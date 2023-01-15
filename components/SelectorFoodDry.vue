@@ -156,7 +156,8 @@ function touchEnd(touchEvent: TouchEvent, posXStart: number) {
                value="select-gallery"
                checked>
         <label for="gallery"
-               name="view-mode">
+               name="view-mode"
+               class="radio-button">
           <img src="/icon-grid.png"
                alt="icon-grid"
                id="img-gallery">
@@ -164,12 +165,13 @@ function touchEnd(touchEvent: TouchEvent, posXStart: number) {
 
         <input type="radio"
                name="view-mode"
-               class="option carousel"
+               class="option carousel radio-button"
                id="carousel"
                v-model="optionSelected"
                value="select-carousel">
         <label for="carousel"
-               name="view-mode">
+               name="view-mode"
+               class="radio-button">
           <img src="/icon-carousel.png"
                alt="icon-carousel"
                id="img-carousel">
@@ -233,6 +235,7 @@ function touchEnd(touchEvent: TouchEvent, posXStart: number) {
 <style scoped lang="scss">
 @use 'colors' as *;
 @use 'mixins' as *;
+@use 'variables' as *;
 
 $food-card-height: 46vw;
 
@@ -265,9 +268,9 @@ $food-card-height: 46vw;
       transition: transform 0s linear;
     }
 
-    --label-size: 4rem;
+    --label-size: 5rem;
 
-    label {
+    label.radio-button {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -275,7 +278,7 @@ $food-card-height: 46vw;
       margin: 0.3rem;
       width: var(--label-size);
       height: var(--label-size);
-      border-radius: 5%;
+      border-radius: $round-corner;
 
       // FIXME add box-shadow
 
@@ -284,11 +287,11 @@ $food-card-height: 46vw;
         aspect-ratio: 1/1;
 
         &#img-gallery {
-          width: 3.5rem;
+          width: 4rem;
         }
 
         &#img-carousel {
-          width: 4rem;
+          width: 5rem;
         }
       }
 

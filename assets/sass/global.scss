@@ -1,4 +1,5 @@
 // https://stackoverflow.com/a/71540999/13608849
 // TODO global doesn't work => look in nuxt.config.ts
-@use "abstracts/mixins";
-@use "abstracts/colors";
+// @use 'mixins'as *;
+// @use "colors"as *;
+// @use "variables"as *;

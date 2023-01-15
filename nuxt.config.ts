@@ -11,8 +11,9 @@ export default defineNuxtConfig({
 		},
 	},
 	alias: {
-		mixins: resolve(__dirname, './assets/sass/abstracts/_mixins.scss'),
+		mixins: resolve(__dirname, 'assets/sass/abstracts/_mixins.scss'),
 		colors: resolve(__dirname, './assets/sass/abstracts/_colors.scss'),
+		variables: resolve(__dirname, './assets/sass/abstracts/_variables.scss'),
 	},
 	// https://render.com/docs/deploy-nuxtjs
 	server: {

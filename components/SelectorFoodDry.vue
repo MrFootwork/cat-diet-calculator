@@ -340,8 +340,9 @@ $food-card-height: 46vw;
       }
 
       &:hover {
-        @include boxShadowOnHover;
-        // transition: box-shadow 0s linear;
+        outline: 5px solid $light-secondary-color;
+        outline-offset: .2rem;
+        outline-style: blur(5px);
       }
     }
   }

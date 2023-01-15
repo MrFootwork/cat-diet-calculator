@@ -246,6 +246,9 @@ $food-card-height: 46vw;
     input {
       display: none;
 
+      transform: translateY(0);
+      transition: transform 1s ease-in;
+
       &:hover+label {
         cursor: pointer;
         @include boxShadowOnHover;
@@ -255,6 +258,11 @@ $food-card-height: 46vw;
         cursor: default;
         box-shadow: none;
       }
+    }
+
+    input:active+label>img {
+      transform: translateY(3px);
+      transition: transform 0s linear;
     }
 
     label {

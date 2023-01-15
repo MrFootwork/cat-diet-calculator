@@ -87,6 +87,7 @@ function toggleCatShapeHelp() {
 
 <style scoped lang="scss">
 @use 'mixins' as *;
+@use 'colors' as *;
 
 // the helper modal
 .cat-shape-help {
@@ -143,9 +144,15 @@ function toggleCatShapeHelp() {
       display: none;
 
       &:checked+label>img {
-        box-shadow: inset -6px 6px 25px -12px #000000;
+        box-shadow: inset -6px 6px 25px -12px black;
         transform: scale(95%);
-        transition: all .01s ease-in;
+        transition: all .1s ease-in;
+      }
+
+      &:checked:focus+label>img {
+        box-shadow: inset -6px 6px 25px -12px black;
+        transform: scale(90%);
+        transition: all .1s ease-in;
       }
 
       // TODO click animation for "negative" click
@@ -154,20 +161,20 @@ function toggleCatShapeHelp() {
 
     label {
       cursor: pointer;
-      // height: 5rem;
 
       img {
         height: 5rem;
         border-radius: 50%;
-        box-shadow: -4px 4px 30px -6px #000000;
-        transition: all .04s ease-in;
+        box-shadow: -4px 4px 30px -6px black;
+        transition: all .1s ease-in;
       }
-    }
 
-    input[type=radio]:checked:focus+label>img {
-      box-shadow: inset -6px 6px 25px -12px #000000;
-      transform: scale(90%);
-      transition: all .04s ease-in;
+      &:hover>img {
+        box-shadow:
+          -4px 4px 30px -6px black,
+          0 0 1px 5px $light-secondary-color;
+
+      }
     }
 
     button.cat-shape-help-toggle {
@@ -179,6 +186,16 @@ function toggleCatShapeHelp() {
 
       img {
         width: 1.5rem;
+        border-radius: 50%;
+      }
+
+      &:hover>img {
+        box-shadow: 0 0 1px 5px $light-secondary-color;
+      }
+
+      &:focus>img {
+        transform: translateY(2px);
+        box-shadow: none;
       }
     }
   }

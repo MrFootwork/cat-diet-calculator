@@ -1,3 +1,5 @@
+@use 'colors'as *;
+
 @mixin styleBody($theme-name) {
 
   body.theme-#{$theme-name} {
@@ -22,6 +24,10 @@
 
 @mixin boxShadowCard() {
   box-shadow: -5px 10px 35px -10px hsl(0, 0%, 30%);
+}
+
+@mixin boxShadowOnHover() {
+  box-shadow: 0 0 1px 5px $light-secondary-color
 }
 
 @mixin boxShadowRainbow() {

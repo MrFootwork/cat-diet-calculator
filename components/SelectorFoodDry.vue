@@ -244,8 +244,17 @@ $food-card-height: 46vw;
     justify-content: flex-end;
 
     input {
-      margin: 0 .1rem 0;
-      visibility: hidden;
+      display: none;
+
+      &:hover+label {
+        cursor: pointer;
+        @include boxShadowOnHover;
+      }
+
+      &:checked+label {
+        cursor: default;
+        box-shadow: none;
+      }
     }
 
     label {
@@ -253,9 +262,11 @@ $food-card-height: 46vw;
       justify-content: flex-start;
       align-items: center;
 
-      img {
-        cursor: pointer;
+      margin: 0 .1rem;
+      width: 3.5rem;
+      height: 3.5rem;
 
+      img {
         #img-gallery {
           width: 2rem;
           height: 2rem;

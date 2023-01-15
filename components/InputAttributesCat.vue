@@ -147,13 +147,7 @@ function toggleCatShapeHelp() {
       &:checked+label>img {
         box-shadow: inset -6px 6px 25px -12px black;
         transform: scale(95%);
-        transition: all .1s ease-in;
-      }
-
-      &:checked:focus+label>img {
-        box-shadow: inset -6px 6px 25px -12px black;
-        transform: scale(90%);
-        transition: all .1s ease-in;
+        cursor: auto;
       }
 
       // TODO click animation for "negative" click
@@ -167,14 +161,12 @@ function toggleCatShapeHelp() {
         height: 5rem;
         border-radius: 50%;
         box-shadow: -4px 4px 30px -6px black;
-        transition: all .1s ease-in;
       }
 
       &:hover>img {
         box-shadow:
           -4px 4px 30px -6px black,
           0 0 1px 5px $light-secondary-color;
-
       }
     }
 
@@ -194,7 +186,7 @@ function toggleCatShapeHelp() {
         box-shadow: 0 0 1px 5px $light-secondary-color;
       }
 
-      &:focus>img {
+      &:active>img {
         transform: translateY(2px);
         box-shadow: none;
       }

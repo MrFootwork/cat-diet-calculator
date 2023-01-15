@@ -338,6 +338,11 @@ $food-card-height: 46vw;
 
         label {}
       }
+
+      &:hover {
+        @include boxShadowOnHover;
+        // transition: box-shadow 0s linear;
+      }
     }
   }
 }

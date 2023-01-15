@@ -43,6 +43,7 @@ function toggleCatShapeHelp() {
              alt="cat shape option ideal" />
         <!-- need to attribute for image -->
       </label>
+      <!-- TODO attribution -->
       <!-- <a target="_blank" href="https://icons8.com/icon/fzZBYAwn9fbk/skinny-cat">Skinny Cat icon by Icons8</a> -->
 
       <input type="radio"
@@ -54,6 +55,7 @@ function toggleCatShapeHelp() {
         <img src="https://img.icons8.com/color/96/null/fat-cat.png"
              alt="cat shape option overweight" />
       </label>
+      <!-- TODO attribution -->
       <!-- <a target="_blank" href="https://icons8.com/icon/ZGYXhUYK9ciX/fat-cat">Fat Cat icon by Icons8</a> -->
     </div>
 
@@ -62,13 +64,14 @@ function toggleCatShapeHelp() {
       What is my cat?
     </button>
 
-    <!-- FIXME add close button -->
+    <!-- modal for help infos on cat shape -->
     <Teleport to="body">
       <div class="cat-shape-help"
            @click="toggleCatShapeHelp"
            v-if="modalStore.isHelpVisible">
         <img src="/HealthyCatWeight.webp"
-             alt="Can you see/feel the ribs of your cat?" />
+             alt="Can you see/feel the ribs of your cat?"
+             :data-show="modalStore.isHelpVisible" />
       </div>
     </Teleport>
 
@@ -92,18 +95,24 @@ function toggleCatShapeHelp() {
   align-items: center;
   justify-content: center;
 
-  background-color: hsl(0, 0%, 0%, 0.8);
+  background-color: hsl(0, 0%, 0%, 0.2);
   backdrop-filter: blur(5px);
 
-  transition: all 1s ease;
+  transition: all 2s ease;
 
   img {
     position: fixed;
 
     z-index: 101;
-    width: 85vw;
+    width: 0;
 
     border-radius: 15px;
+    box-shadow: -3px 3px 15px 3px black;
+    // transition: all 2s ease;
+
+    &[data-show=true] {
+      width: 85vw;
+    }
   }
 }
 
@@ -123,7 +132,7 @@ function toggleCatShapeHelp() {
   //   }
   // }
 
-  .cat-shape-help-toggle {
+  button.cat-shape-help-toggle {
     cursor: pointer;
   }
 

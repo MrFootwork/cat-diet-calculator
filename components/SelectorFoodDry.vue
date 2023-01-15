@@ -177,7 +177,7 @@ function touchEnd(touchEvent: TouchEvent, posXStart: number) {
 
       </div>
 
-      <!-- need to display somewhere -->
+      <!-- TODO attribution -->
       <!-- <a target="_blank"
          href="https://icons8.com/icon/52220/modulansicht">
         Modulansicht</a> icon by

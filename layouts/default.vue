@@ -41,7 +41,7 @@
 
     @extend %background;
     background-image: url("/background-cats.png");
-    background-size: contain;
+    background-size: 90vw;
   }
 }
 

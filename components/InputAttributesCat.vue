@@ -138,6 +138,7 @@ function toggleCatShapeHelp() {
     label,
     button {
       margin: 0 .2rem;
+      padding: 0;
     }
 
     input[type=radio] {

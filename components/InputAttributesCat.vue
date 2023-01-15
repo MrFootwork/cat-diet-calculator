@@ -60,11 +60,14 @@ function toggleCatShapeHelp() {
       </label>
       <!-- TODO attribution -->
       <!-- <a target="_blank" href="https://icons8.com/icon/ZGYXhUYK9ciX/fat-cat">Fat Cat icon by Icons8</a> -->
-    </div>
 
-    <button class="cat-shape-help-toggle"
-            @click="toggleCatShapeHelp">
-    </button>
+      <button class="cat-shape-help-toggle"
+              @click="toggleCatShapeHelp">
+        <img src="https://img.icons8.com/flat-round/64/null/question-mark.png" />
+        <!-- TODO attribution -->
+        <!-- <a target="_blank" href="https://icons8.com/icon/80684/question-mark">Question Mark icon by Icons8</a> -->
+      </button>
+    </div>
 
     <!-- modal for help infos on cat shape -->
     <Teleport to="body">

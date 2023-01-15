@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import Calculator from '@/model/MCalculator';
 import { useModalStore } from './../store/modal';
-import { storeToRefs } from 'pinia';
-
 
 const calculator = ref(Calculator.getInstance());
 
@@ -14,8 +12,13 @@ const { showHelp, hideHelp } = modalStore;
 // BUG help modal is not showing
 function toggleCatShapeHelp() {
   const modalStore = useModalStore();
-  if (!modalStore.isHelpVisible) return showHelp();
-  if (modalStore.isHelpVisible) hideHelp();
+  if (!modalStore.isHelpVisible) {
+    showHelp();
+    return;
+  }
+  if (modalStore.isHelpVisible) {
+    hideHelp();
+  }
 }
 </script>
 
@@ -61,7 +64,6 @@ function toggleCatShapeHelp() {
 
     <button class="cat-shape-help-toggle"
             @click="toggleCatShapeHelp">
-      What is my cat?
     </button>
 
     <!-- modal for help infos on cat shape -->
@@ -108,7 +110,10 @@ function toggleCatShapeHelp() {
 
     border-radius: 15px;
     box-shadow: -3px 3px 15px 3px black;
-    // transition: all 2s ease;
+
+    &[data-show=false] {
+      width: 0;
+    }
 
     &[data-show=true] {
       width: 85vw;

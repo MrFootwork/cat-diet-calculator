@@ -25,6 +25,7 @@ function toggleCatShapeHelp() {
 <template>
   <div class="options-wrapper">
 
+    <!-- input cat weight -->
     <div class="cat-weight">
       <label for="cat-weight">{{ calculator.catWeight }}</label>
       <input id="cat-weight"
@@ -34,6 +35,7 @@ function toggleCatShapeHelp() {
              v-model.number="calculator.catWeight" />
     </div>
 
+    <!-- input cat shape -->
     <div class="cat-shape">
 
       <input type="radio"
@@ -44,10 +46,9 @@ function toggleCatShapeHelp() {
       <label for="ideal">
         <img src="https://img.icons8.com/color/96/null/thin-cat.png"
              alt="cat shape option ideal" />
-        <!-- need to attribute for image -->
+        <!-- TODO attribution -->
+        <!-- <a target="_blank" href="https://icons8.com/icon/fzZBYAwn9fbk/skinny-cat">Skinny Cat icon by Icons8</a> -->
       </label>
-      <!-- TODO attribution -->
-      <!-- <a target="_blank" href="https://icons8.com/icon/fzZBYAwn9fbk/skinny-cat">Skinny Cat icon by Icons8</a> -->
 
       <input type="radio"
              name="catShape"
@@ -57,9 +58,9 @@ function toggleCatShapeHelp() {
       <label for="overweight">
         <img src="https://img.icons8.com/color/96/null/fat-cat.png"
              alt="cat shape option overweight" />
+        <!-- TODO attribution -->
+        <!-- <a target="_blank" href="https://icons8.com/icon/ZGYXhUYK9ciX/fat-cat">Fat Cat icon by Icons8</a> -->
       </label>
-      <!-- TODO attribution -->
-      <!-- <a target="_blank" href="https://icons8.com/icon/ZGYXhUYK9ciX/fat-cat">Fat Cat icon by Icons8</a> -->
 
       <button class="cat-shape-help-toggle"
               @click="toggleCatShapeHelp">
@@ -67,6 +68,7 @@ function toggleCatShapeHelp() {
         <!-- TODO attribution -->
         <!-- <a target="_blank" href="https://icons8.com/icon/80684/question-mark">Question Mark icon by Icons8</a> -->
       </button>
+
     </div>
 
     <!-- modal for help infos on cat shape -->
@@ -85,7 +87,6 @@ function toggleCatShapeHelp() {
 
 <style scoped lang="scss">
 @use 'mixins' as *;
-
 
 // the helper modal
 .cat-shape-help {
@@ -126,32 +127,25 @@ function toggleCatShapeHelp() {
 
 .options-wrapper {
   display: flex;
-  // align-items: center;
+  justify-content: flex-end;
   flex-direction: column;
 
-  // .cat-shape-help {
-  //   margin: 1rem;
-  //   display: flex;
-  //   justify-content: center;
-
-  //   img {
-  //     width: 85vw;
-
-  //   }
-  // }
-
-  button.cat-shape-help-toggle {
-    cursor: pointer;
-  }
-
   .cat-shape {
+    display: flex;
+    align-items: flex-start;
+
+    label,
+    button {
+      margin: 0 .2rem;
+    }
+
     input[type=radio] {
       display: none;
 
       &:checked+label>img {
         box-shadow: inset -6px 6px 25px -12px #000000;
         transform: scale(95%);
-        transition: all 0s ease-in;
+        transition: all .01s ease-in;
       }
 
       // TODO click animation for "negative" click
@@ -160,7 +154,7 @@ function toggleCatShapeHelp() {
 
     label {
       cursor: pointer;
-      height: 5rem;
+      // height: 5rem;
 
       img {
         height: 5rem;
@@ -175,10 +169,18 @@ function toggleCatShapeHelp() {
       transform: scale(90%);
       transition: all .04s ease-in;
     }
-  }
 
-  .cat-shape-help-toggle {
-    width: 10rem;
+    button.cat-shape-help-toggle {
+      cursor: pointer;
+
+      background: none;
+      border: none;
+      width: auto;
+
+      img {
+        width: 1.5rem;
+      }
+    }
   }
 }
 </style>

@@ -268,7 +268,7 @@ $food-card-height: 46vw;
       transition: transform 0s linear;
     }
 
-    --label-size: 5rem;
+    --label-size: $size-button;
 
     label.radio-button {
       display: flex;
@@ -276,8 +276,10 @@ $food-card-height: 46vw;
       align-items: center;
 
       margin: 0.3rem;
-      width: var(--label-size);
-      height: var(--label-size);
+      // width: var(--label-size);
+      // height: var(--label-size);
+      width: $size-button;
+      height: $size-button;
       border-radius: $round-corner;
 
       // FIXME add box-shadow
@@ -287,11 +289,11 @@ $food-card-height: 46vw;
         aspect-ratio: 1/1;
 
         &#img-gallery {
-          width: 4rem;
+          width: 85%;
         }
 
         &#img-carousel {
-          width: 5rem;
+          width: 100%;
         }
       }
 

@@ -161,7 +161,7 @@ function toggleCatShapeHelp() {
       cursor: pointer;
 
       img {
-        height: 5rem;
+        height: $size-button;
         border-radius: $round-corner;
         box-shadow: -4px 4px 30px -6px black;
       }

@@ -169,17 +169,14 @@ function amountReset(brand: FoodBrand) {
             color: inherit;
             text-align: center;
 
-
             &:hover {
-              box-shadow: -4px 3px 15px -5px black;
+              box-shadow: -4px 3px 17px -5px black;
               backdrop-filter: brightness(100%);
-
             }
 
             &:active {
               box-shadow: inset -2px 2px 9px -5px black;
               backdrop-filter: brightness(100%);
-
             }
           }
 

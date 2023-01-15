@@ -8,12 +8,12 @@ const modalStore = useModalStore();
 const { showHelp, hideHelp } = modalStore;
 
 // FIXME style display for modal correctly
-// modal should be absolute and therefor being hung under body
-// BUG help modal is not showing
 function toggleCatShapeHelp() {
   const modalStore = useModalStore();
   if (!modalStore.isHelpVisible) {
-    showHelp();
+    setTimeout(() => {
+      showHelp();
+    }, 40);
     return;
   }
   if (modalStore.isHelpVisible) {
@@ -165,8 +165,8 @@ function toggleCatShapeHelp() {
 
       &:hover>img {
         box-shadow:
-          -4px 4px 30px -6px black,
-          0 0 1px 5px $light-secondary-color;
+          0 0 1px 5px $light-secondary-color,
+          -4px 4px 30px -6px black;
       }
     }
 

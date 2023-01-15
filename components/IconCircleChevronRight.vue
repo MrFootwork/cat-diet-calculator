@@ -15,12 +15,26 @@
 
 <style scoped lang="scss">
 @use 'colors' as *;
+@use 'mixins' as *;
 
 $circle-size: 4rem;
 
 svg {
   width: $circle-size;
   height: $circle-size;
-  fill: $light-primary-color
+  fill: $light-primary-color;
+  border-radius: 50%;
+
+  transition: transform .3s ease-out;
+}
+
+button:hover>div>svg {
+  @include boxShadowOnHover;
+}
+
+button:active>div>svg {
+  box-shadow: none;
+  transform: translateY(3px);
+  transition: none;
 }
 </style>

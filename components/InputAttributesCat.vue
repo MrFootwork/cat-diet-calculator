@@ -147,14 +147,12 @@ function toggleCatShapeHelp() {
       display: none;
 
       &:checked+label>img {
-        box-shadow: inset -6px 6px 25px -12px black;
-        transform: scale(95%);
-        cursor: auto;
-        outline: none;
+        @include boxShadowButtonChecked;
       }
 
-      // TODO click animation for "negative" click
-
+      &:active+label>img {
+        @include boxShadowButtonActive;
+      }
     }
 
     label.radio-button {
@@ -163,7 +161,7 @@ function toggleCatShapeHelp() {
       img {
         height: $size-button;
         border-radius: $round-corner;
-        box-shadow: -4px 4px 30px -6px black;
+        @include boxShadowButton;
       }
 
       &:hover>img {

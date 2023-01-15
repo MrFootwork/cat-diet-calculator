@@ -249,26 +249,19 @@ $food-card-height: 46vw;
     input {
       display: none;
 
-      // transform: translateY(0);
-      // transition: transform 1s ease-in;
-
       &:hover+label {
         cursor: pointer;
         @include outlineOnHover;
       }
 
       &:checked+label {
-        cursor: default;
-        box-shadow: none;
+        @include boxShadowButtonChecked;
       }
     }
 
-    input:active+label>img {
-      transform: translateY(3px);
-      transition: transform 0s linear;
+    input:active+label {
+      @include boxShadowButtonActive;
     }
-
-    --label-size: $size-button;
 
     label.radio-button {
       display: flex;
@@ -276,16 +269,13 @@ $food-card-height: 46vw;
       align-items: center;
 
       margin: 0.3rem;
-      // width: var(--label-size);
-      // height: var(--label-size);
+      aspect-ratio: 1 / 1;
       width: $size-button;
-      height: $size-button;
       border-radius: $round-corner;
 
-      // FIXME add box-shadow
+      @include boxShadowButton;
 
       img {
-
         aspect-ratio: 1/1;
 
         &#img-gallery {

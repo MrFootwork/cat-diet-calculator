@@ -20,8 +20,8 @@
 
 %body {
 
-  @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Montserrat:wght@700&display=swap');
-  font-family: "Abril Fatface", cursive;
+  // font-family: "Abril Fatface", cursive;
+  font-family: "Chilanka", cursive;
 
   margin: 0;
   padding: 0;

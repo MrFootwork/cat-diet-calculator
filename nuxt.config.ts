@@ -51,6 +51,7 @@ export default defineNuxtConfig({
 	},
 	// https://stackoverflow.com/questions/71540998/how-to-use-global-sass-variables-in-my-nuxt-3-components
 	// css: ['@/assets/sass/global.scss'],
+	css: ['@/layouts/global.css'],
 	// https://v3.nuxtjs.org/getting-started/assets/#global-styles-imports
 	// vite: {
 	// 	css: {

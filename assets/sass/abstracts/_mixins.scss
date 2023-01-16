@@ -39,9 +39,9 @@
 
 @mixin boxShadowCardActivated() {
   box-shadow:
-    0px 0px .4rem .4rem $light-primary-color,
+    $box-shadow-card,
     inset 0px 0px .4rem .4rem $light-primary-color,
-    $box-shadow-card;
+    0px 0px .6rem .6rem $light-primary-color;
 }
 
 @mixin boxShadowButton() {
@@ -65,4 +65,5 @@
 @mixin outlineOnHover() {
   outline       : .4rem solid $light-secondary-color;
   outline-offset: .1rem;
+  z-index       : 9;
 }

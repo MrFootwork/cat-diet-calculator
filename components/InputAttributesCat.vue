@@ -27,6 +27,7 @@ function toggleCatShapeHelp() {
 
     <!-- input cat weight -->
     <!-- FIXME create seperate range slider component -->
+    <!-- inspiration: https://codepen.io/kdbkapsere/pen/vRmVZX -->
     <div class="cat-weight input-range">
       <label for="cat-weight">{{ calculator.catWeight }}</label>
       <input id="cat-weight"

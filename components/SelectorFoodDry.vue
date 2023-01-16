@@ -210,13 +210,17 @@ function touchEnd(touchEvent: TouchEvent, posXStart: number) {
              :data-is-hidden-left="isHiddenLeft(i)"
              :data-is-hidden-right="isHiddenRight(i)">
           <label :for="dryFood.name">
+
             <img :src="imageURL(dryFood)"
                  :alt="dryFood.name" />
+
             <input type="checkbox"
                    :id="dryFood.name"
                    v-model="dryFood.isMixPortion"
                    @click="selectCard($event)" />
+
             <label :for="dryFood.name"> {{ dryFood.name }}</label>
+
           </label>
         </div>
 
@@ -299,7 +303,7 @@ $food-card-height: 46vw;
     }
   }
 
-  // basic wrapper for food cards
+  // basic style for food cards
   .wrapper-food {
 
     .dry-food-card {
@@ -314,16 +318,22 @@ $food-card-height: 46vw;
       border-radius: $round-corner;
       @include boxShadowCard;
 
+
+      &:hover {
+        @include outlineOnHover;
+      }
+
+      // TODO add zoom effect on hover
+      // inspired by: https://codepen.io/petegarvin1/pen/YzWBbRx
       &.activated {
         @include boxShadowCardActivated;
         z-index: 10;
 
         &>label {
           z-index: 5;
-          @include boxShadowCardActivated;
 
           &>img {
-            z-index: 5;
+            z-index: inherit;
           }
         }
       }
@@ -350,9 +360,6 @@ $food-card-height: 46vw;
         label {}
       }
 
-      &:hover {
-        @include outlineOnHover;
-      }
     }
   }
 }

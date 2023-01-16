@@ -27,8 +27,10 @@ function amountReset(brand: FoodBrand) {
          :key="wetFood._id"
          :class="{ activated: wetFood.isMixPortion }">
       <label :for="wetFood.name">
+
         <img :src="wetFood.image"
              :alt="wetFood.name" />
+
         <input type="checkbox"
                :id="wetFood.name"
                v-model="wetFood.isMixPortion" />
@@ -50,6 +52,7 @@ function amountReset(brand: FoodBrand) {
         </div>
 
         <label :for="wetFood.name">{{ wetFood.name }}</label>
+
       </label>
     </div>
   </div>
@@ -76,7 +79,6 @@ function amountReset(brand: FoodBrand) {
     margin: 1rem;
 
     border-radius: $round-corner;
-
     @include boxShadowCard;
 
     &:hover {

@@ -26,16 +26,7 @@ function toggleCatShapeHelp() {
   <div class="options-wrapper">
 
     <!-- input cat weight -->
-    <!-- FIXME create seperate range slider component -->
-    <!-- inspiration: https://codepen.io/kdbkapsere/pen/vRmVZX -->
-    <div class="cat-weight input-range">
-      <label for="cat-weight">{{ calculator.catWeight }}</label>
-      <input id="cat-weight"
-             type="range"
-             min="3"
-             max="6"
-             v-model.number="calculator.catWeight" />
-    </div>
+    <InputAttributesCatWeight />
 
     <!-- input cat shape -->
     <div class="cat-shape">
@@ -134,25 +125,6 @@ function toggleCatShapeHelp() {
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
-
-  &>div.cat-weight.input-range {
-    border: 3px solid black;
-    padding: 0;
-    margin: $margin-button;
-
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-
-    &>label {
-      border: 3px solid orange;
-    }
-
-    &>input[type=range] {
-      border: 3px solid red;
-      width: calc(2 * 4rem);
-    }
-  }
 
   .cat-shape {
     display: flex;

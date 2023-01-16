@@ -295,10 +295,6 @@ $food-card-height: 46vw;
         filter: invert(87%) sepia(39%) saturate(3430%) hue-rotate(336deg) brightness(87%) contrast(82%);
       }
 
-      @at-root input:checked+label>img {
-        filter: invert(79%) sepia(41%) saturate(6469%) hue-rotate(1deg) brightness(106%) contrast(103%);
-      }
-
       .option {}
     }
   }

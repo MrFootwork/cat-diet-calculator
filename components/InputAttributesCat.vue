@@ -113,7 +113,7 @@ function toggleCatShapeHelp() {
     position: fixed;
 
     z-index: 101;
-    aspect-ratio: 2501 / 2069;
+    aspect-ratio: $aspect-ratio-info-box;
 
     border-radius: $round-corner;
     box-shadow: -3px 3px 15px 3px black;

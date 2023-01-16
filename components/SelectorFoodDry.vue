@@ -268,7 +268,7 @@ $food-card-height: 46vw;
       justify-content: center;
       align-items: center;
 
-      margin: 0.3rem;
+      margin: $margin-button;
       aspect-ratio: 1 / 1;
       width: $size-button;
       border-radius: $round-corner;

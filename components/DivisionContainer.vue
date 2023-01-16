@@ -11,11 +11,12 @@
 <style scoped lang="scss">
 @use 'mixins' as *;
 @use 'colors' as *;
+@use 'variables' as *;
 
 %staticContainerAttributes {
   border-radius: 10px;
   margin: 1rem 0;
-  padding: 1rem;
+  padding: $padding-container;
 }
 
 @include styleBody(default) {

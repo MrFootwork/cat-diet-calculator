@@ -26,7 +26,7 @@ function toggleCatShapeHelp() {
   <div class="options-wrapper">
 
     <!-- input cat weight -->
-    <div class="cat-weight">
+    <div class="cat-weight input-range">
       <label for="cat-weight">{{ calculator.catWeight }}</label>
       <input id="cat-weight"
              type="range"
@@ -133,13 +133,32 @@ function toggleCatShapeHelp() {
   justify-content: flex-end;
   flex-direction: column;
 
+  &>div.cat-weight.input-range {
+    border: 3px solid black;
+    padding: 0;
+    margin: $margin-button;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    &>label {
+      border: 3px solid orange;
+    }
+
+    &>input[type=range] {
+      border: 3px solid red;
+      width: calc(2 * 4rem);
+    }
+  }
+
   .cat-shape {
     display: flex;
     align-items: flex-start;
 
     label,
     button {
-      margin: 0 .2rem;
+      margin: $margin-button;
       padding: 0;
     }
 

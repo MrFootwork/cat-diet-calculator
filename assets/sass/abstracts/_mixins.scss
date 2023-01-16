@@ -1,4 +1,5 @@
 @use 'colors'as *;
+@use 'variables'as *;
 
 @mixin styleBody($theme-name) {
 
@@ -33,7 +34,14 @@
 }
 
 @mixin boxShadowCard() {
-  box-shadow: -5px 10px 35px -10px hsl(0, 0%, 30%);
+  box-shadow: $box-shadow-card;
+}
+
+@mixin boxShadowCardActivated() {
+  box-shadow:
+    0px 0px .4rem .4rem $light-primary-color,
+    inset 0px 0px .4rem .4rem $light-primary-color,
+    $box-shadow-card;
 }
 
 @mixin boxShadowButton() {
@@ -55,18 +63,6 @@
 }
 
 @mixin outlineOnHover() {
-  outline       : .3rem solid $light-secondary-color;
+  outline       : .4rem solid $light-secondary-color;
   outline-offset: .1rem;
-}
-
-@mixin boxShadowRainbow() {
-  box-shadow:
-    5px 5px 15px 5px #FF8080,
-    -9px 5px 15px 5px #FFE488,
-    -7px -5px 15px 5px #8CFF85,
-    12px -5px 15px 5px #80C7FF,
-    12px 10px 15px 7px #E488FF,
-    -10px 10px 15px 7px #FF616B,
-    -10px -7px 27px 1px #8E5CFF,
-    5px 5px 15px 5px rgba(0, 0, 0, 0);
 }

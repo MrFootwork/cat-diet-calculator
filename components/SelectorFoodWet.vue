@@ -58,6 +58,7 @@ function amountReset(brand: FoodBrand) {
 <style scoped lang="scss">
 @use 'mixins' as *;
 @use 'colors' as *;
+@use 'variables' as *;
 
 .wet-food {
   display: flex;
@@ -74,8 +75,7 @@ function amountReset(brand: FoodBrand) {
     max-height: 400px;
     margin: 1rem;
 
-    // FIXME add globally and absolute value wise same border-radius
-    border-radius: 5%;
+    border-radius: $round-corner;
 
     @include boxShadowCard;
 
@@ -84,7 +84,7 @@ function amountReset(brand: FoodBrand) {
     }
 
     &.activated {
-      @include boxShadowRainbow;
+      @include boxShadowCardActivated;
     }
 
     label {
@@ -99,7 +99,7 @@ function amountReset(brand: FoodBrand) {
       img {
         width: 100%;
         height: 100%;
-        border-radius: 5%;
+        border-radius: $round-corner;
       }
 
       input[type=checkbox] {

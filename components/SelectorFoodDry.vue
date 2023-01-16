@@ -311,11 +311,21 @@ $food-card-height: 46vw;
       max-height: 400px;
       margin: 1rem;
 
-      border-radius: 5%;
+      border-radius: $round-corner;
       @include boxShadowCard;
 
       &.activated {
-        @include boxShadowRainbow;
+        @include boxShadowCardActivated;
+        z-index: 10;
+
+        &>label {
+          z-index: 5;
+          @include boxShadowCardActivated;
+
+          &>img {
+            z-index: 5;
+          }
+        }
       }
 
       label {
@@ -330,7 +340,7 @@ $food-card-height: 46vw;
         img {
           width: 100%;
           height: 100%;
-          border-radius: 5%;
+          border-radius: $round-corner;
         }
 
         input {

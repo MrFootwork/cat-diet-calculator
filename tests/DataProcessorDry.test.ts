@@ -17,6 +17,9 @@ describe('processed dry food data', () => {
 			type: 'dry',
 		},
 	]
+
+	console.log('before enrichment: ', dataSample[0].recommendations)
+
 	processor.processData(dataSample)
 
 	// testing results
@@ -37,6 +40,9 @@ describe('processed dry food data', () => {
 	it('enriches recommendations by half-step weights', () => {
 		// after enrichment two adjacent recommendations
 		// should be apart from each other by .5
+
+		console.log('after enrichment: ', data[0].recommendations)
+
 		const firstValue_1 = data[0].recommendations[0].weight
 		const secondValue_1 = data[0].recommendations[1].weight
 		expect((firstValue_1 + secondValue_1) % 1).toBe(0.5)

@@ -27,7 +27,7 @@ export default class DataProcessorDry {
 			return brand.type === 'dry'
 		})
 		this._data.forEach(brand => {
-			brand.recommendations.push({ weight: 6.5, ideal: 69, overweight: 55 })
+			brand.recommendations.push({ weight: 7, ideal: 69, overweight: 55 })
 		})
 		return this._data
 	}

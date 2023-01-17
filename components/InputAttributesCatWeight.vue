@@ -32,6 +32,8 @@ div.cat-weight.input-range {
 
   &>label {
     // border: 3px solid violet;
+    width: 2rem;
+    text-align: center;
   }
 
   &>input[type=range] {

@@ -26,7 +26,6 @@
 	"dependencies": {
 		"@pinia/nuxt": "^0.4.6",
 		"chart.js": "^3.8.0",
-		"js-polynomial-regression": "^0.9.1",
 		"ml-regression-polynomial": "^2.2.0",
 		"mongodb": "^4.5.0",
 		"pinia": "^2.0.28",

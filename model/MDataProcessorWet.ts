@@ -19,9 +19,9 @@ export default class DataProcessorWet {
 		return this._data
 	}
 
-	// TODO polynomial regression for value completion
-	// npm package: js-polynomial-regression
-	// https://vuejsdevelopers.com/2017/04/22/vue-js-libraries-plugins/
+	// FIXME polynomial regression for value completion
+	// npm package: ml-regression-polynomial
+	// https://www.npmjs.com/package/ml-regression-polynomial
 	processData(dataFromDB: RawFoodBrand[]) {
 		this._data = dataFromDB.filter(brand => {
 			return brand.type === 'wet'

@@ -47,7 +47,7 @@ export default defineNuxtConfig({
 	// without this following error would occur
 	// https://v3.nuxtjs.org/guide/going-further/esm/#what-kinds-of-problems-can-there-be
 	build: {
-		transpile: ['chart.js', 'js-polynomial-regression'],
+		transpile: ['chart.js'],
 	},
 	// https://stackoverflow.com/questions/71540998/how-to-use-global-sass-variables-in-my-nuxt-3-components
 	// css: ['@/assets/sass/global.scss'],

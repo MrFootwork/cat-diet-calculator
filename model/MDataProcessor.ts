@@ -4,9 +4,11 @@ import PolynomialRegression from 'ml-regression-polynomial'
 export default class DataProcessor {
 	private _data: RawFoodBrand[]
 	private static instance: DataProcessor
+	private VALID_WEIGHTS: numbers[]
 
 	private constructor() {
 		this._data = []
+		this.VALID_WEIGHTS = [2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7]
 	}
 
 	static getInstance() {
@@ -25,8 +27,6 @@ export default class DataProcessor {
 			return brand.type === brandType
 		})
 
-		const VALID_WEIGHTS = [2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7]
-
 		this._data.forEach((brand, i) => {
 			const recommendations = brand.recommendations
 			const weights = recommendations.map(tip => tip.weight)
@@ -42,18 +42,11 @@ export default class DataProcessor {
 			)
 
 			// add enriched data for missing weights
-			VALID_WEIGHTS.forEach(validWeight => {
+			this.VALID_WEIGHTS.forEach(validWeight => {
 				if (recommendations.map(tip => tip.weight).includes(validWeight)) return
 
-				const predictIdeal =
-					Math.round(
-						(regressionIdeal.predict(validWeight) + Number.EPSILON) * 100
-					) / 100
-
-				const predictOverweight =
-					Math.round(
-						(regressionOverweight.predict(validWeight) + Number.EPSILON) * 100
-					) / 100
+				const predictIdeal = regressionIdeal.predict(validWeight)
+				const predictOverweight = regressionOverweight.predict(validWeight)
 
 				recommendations.push({
 					weight: validWeight,

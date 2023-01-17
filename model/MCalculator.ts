@@ -1,6 +1,5 @@
 import Database from '~~/model/MDatabase'
-import DataProcessorDry from '~~/model/MDataProcessorDry'
-import DataProcessorWet from '~~/model/MDataProcessorWet'
+import DataProcessor from '~~/model/MDataProcessor'
 import FoodBrand from '~~/model/IFoodBrand'
 
 import helpers from '~~/model/Helper'
@@ -10,15 +9,13 @@ export default class Calculator {
 	private _data: FoodBrand[] = []
 	private static instance: Calculator
 	private static db: Database
-	private static dryProcessor: DataProcessorDry
-	private static wetProcessor: DataProcessorWet
+	private static processor: DataProcessor
 
 	private constructor() {
 		this.catWeight = 4
 		this.catShape = 'ideal'
 		Calculator.db = Database.getInstance()
-		Calculator.dryProcessor = DataProcessorDry.getInstance()
-		Calculator.wetProcessor = DataProcessorWet.getInstance()
+		Calculator.processor = DataProcessor.getInstance()
 	}
 
 	// input
@@ -41,6 +38,7 @@ export default class Calculator {
 
 		const dryFoodMixDaily = selectedDryBrands.reduce(
 			(currentAverage, brand) => {
+				// ts doesn't compile without this check
 				if (brand.mixPortion == undefined) brand.mixPortion = 1
 				// share of "current brand / mixed food"
 				const brandMixRatio: number = brand.mixPortion / dryFoodMixPortionSum
@@ -97,8 +95,8 @@ export default class Calculator {
 	// methods
 	async refresh() {
 		await Calculator.db.fetchMongo()
-		const dryData = Calculator.dryProcessor.processData(Calculator.db.data)
-		const wetData = Calculator.wetProcessor.processData(Calculator.db.data)
+		const dryData = Calculator.processor.processData('dry', Calculator.db.data)
+		const wetData = Calculator.processor.processData('wet', Calculator.db.data)
 		const allBrands = [...dryData, ...wetData]
 
 		// data enrichment for ui

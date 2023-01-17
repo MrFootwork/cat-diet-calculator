@@ -1,8 +1,9 @@
 import { describe, expect, it } from 'vitest'
 import helpers from '~~/model/Helper'
 
-import DataProcessorWet from '~~/model/MDataProcessorWet'
-import DataProcessorDry from '~~/model/MDataProcessorDry'
+// import DataProcessorWet from '~~/model/MDataProcessorWet'
+// import DataProcessorDry from '~~/model/MDataProcessorDry'
+import DataProcessor from '~~/model/MDataProcessor'
 import Calculator from '~~/model/MCalculator'
 
 // setup mockup
@@ -34,14 +35,13 @@ const dataSample = [
  * Provides instances with initial mocked dataSample.
  */
 const mockup = function () {
-	const processorWet = DataProcessorWet.getInstance()
-	const processorDry = DataProcessorDry.getInstance()
+	const processor = DataProcessor.getInstance()
 
-	processorDry.processData(dataSample)
-	processorWet.processData(dataSample)
+	const brandsWet = processor.processData('wet', dataSample)
+	const brandsDry = processor.processData('dry', dataSample)
 
 	const calculator = Calculator.getInstance()
-	return { processorWet, processorDry, calculator }
+	return { brandsWet, brandsDry, calculator }
 }
 
 const fakeProcessedDryData = function (dataSample) {
@@ -65,7 +65,7 @@ const fakeProcessedWetData = function (dataSample) {
 
 describe('getInstance()', () => {
 	const { calculator } = mockup()
-	it('works', () => {
+	it('returns same single instance each time', () => {
 		const calculator2 = Calculator.getInstance()
 		expect(calculator2).toBe(calculator)
 		expect(calculator2).toBeInstanceOf(Calculator)

@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest'
-import DataProcessorDry from '~~/model/MDataProcessorDry'
+import DataProcessor from '~~/model/MDataProcessor'
 
 describe('processed dry food data', () => {
 	// setup mockup
-	const processor = DataProcessorDry.getInstance()
+	const processor = DataProcessor.getInstance()
 	const dataSample = [
 		{
 			_id: '6292815a8fc792107f9fbe09',
@@ -18,9 +18,7 @@ describe('processed dry food data', () => {
 		},
 	]
 
-	console.log('before enrichment: ', dataSample[0].recommendations)
-
-	processor.processData(dataSample)
+	processor.processData('dry', dataSample)
 
 	// testing results
 	const data = processor.data
@@ -40,8 +38,6 @@ describe('processed dry food data', () => {
 	it('enriches recommendations by half-step weights', () => {
 		// after enrichment two adjacent recommendations
 		// should be apart from each other by .5
-
-		console.log('after enrichment: ', data[0].recommendations)
 
 		const firstValue_1 = data[0].recommendations[0].weight
 		const secondValue_1 = data[0].recommendations[1].weight

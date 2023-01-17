@@ -1,34 +1,31 @@
 import RawFoodBrand from '~~/model/IFoodBrand'
 import PolynomialRegression from 'ml-regression-polynomial'
 
-export default class DataProcessorWet {
+export default class DataProcessor {
 	private _data: RawFoodBrand[]
-	private static instance: DataProcessorWet
+	private static instance: DataProcessor
 
 	private constructor() {
 		this._data = []
 	}
 
 	static getInstance() {
-		if (!DataProcessorWet.instance) {
-			DataProcessorWet.instance = new DataProcessorWet()
+		if (!DataProcessor.instance) {
+			DataProcessor.instance = new DataProcessor()
 		}
-		return DataProcessorWet.instance
+		return DataProcessor.instance
 	}
 
 	get data() {
 		return this._data
 	}
 
-	// FIXME polynomial regression for value completion
-	// npm package: ml-regression-polynomial
-	// https://www.npmjs.com/package/ml-regression-polynomial
-	processData(dataFromDB: RawFoodBrand[]) {
+	processData(brandType: 'dry' | 'wet', dataFromDB: RawFoodBrand[]) {
 		this._data = dataFromDB.filter(brand => {
-			return brand.type === 'wet'
+			return brand.type === brandType
 		})
 
-		const validWeights = [2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7]
+		const VALID_WEIGHTS = [2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7]
 
 		this._data.forEach((brand, i) => {
 			const recommendations = brand.recommendations
@@ -45,7 +42,7 @@ export default class DataProcessorWet {
 			)
 
 			// add enriched data for missing weights
-			validWeights.forEach(validWeight => {
+			VALID_WEIGHTS.forEach(validWeight => {
 				if (recommendations.map(tip => tip.weight).includes(validWeight)) return
 
 				const predictIdeal =

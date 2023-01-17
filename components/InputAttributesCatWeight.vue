@@ -2,6 +2,9 @@
 import Calculator from '@/model/MCalculator';
 
 const calculator = ref(Calculator.getInstance());
+const weightMinimum = computed(() => calculator.value.weightProperties.minimum);
+const weightMaximum = computed(() => calculator.value.weightProperties.maximum);
+const weightSteps = computed(() => calculator.value.weightProperties.steps);
 
 </script>
 
@@ -12,9 +15,9 @@ const calculator = ref(Calculator.getInstance());
     <label for="cat-weight">{{ calculator.catWeight }}</label>
     <input id="cat-weight"
            type="range"
-           min="2"
-           max="7"
-           step=".5"
+           :min="weightMinimum"
+           :max="weightMaximum"
+           :step="weightSteps"
            v-model.number="calculator.catWeight" />
   </div>
 </template>

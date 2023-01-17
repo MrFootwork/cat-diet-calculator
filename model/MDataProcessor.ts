@@ -4,10 +4,11 @@ import PolynomialRegression from 'ml-regression-polynomial'
 export default class DataProcessor {
 	private _data: RawFoodBrand[]
 	private static instance: DataProcessor
-	private VALID_WEIGHTS: numbers[]
+	readonly VALID_WEIGHTS: numbers[]
 
 	private constructor() {
 		this._data = []
+		// these values will be used for the input range slider
 		this.VALID_WEIGHTS = [2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7]
 	}
 

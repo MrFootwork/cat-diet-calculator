@@ -9,13 +9,25 @@ export default class Calculator {
 	private _data: FoodBrand[] = []
 	private static instance: Calculator
 	private static db: Database
-	private static processor: DataProcessor
+	static processor: DataProcessor
+	readonly weightProperties: {
+		minimum: number
+		maximum: number
+		steps: number
+	}
 
 	private constructor() {
 		this.catWeight = 4
 		this.catShape = 'ideal'
 		Calculator.db = Database.getInstance()
 		Calculator.processor = DataProcessor.getInstance()
+		this.weightProperties = {
+			minimum: Math.min(...Calculator.processor.VALID_WEIGHTS),
+			maximum: Math.max(...Calculator.processor.VALID_WEIGHTS),
+			steps:
+				Calculator.processor.VALID_WEIGHTS[1] -
+				Calculator.processor.VALID_WEIGHTS[0],
+		}
 	}
 
 	// input

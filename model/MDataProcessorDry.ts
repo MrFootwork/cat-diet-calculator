@@ -30,7 +30,7 @@ export default class DataProcessorDry {
 
 		const validWeights = [2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7]
 
-		this._data.forEach(brand => {
+		this._data.forEach((brand, i) => {
 			const recommendations = brand.recommendations
 			const weights = recommendations.map(tip => tip.weight)
 			const ideals = recommendations.map(tip => tip.ideal)
@@ -38,14 +38,19 @@ export default class DataProcessorDry {
 
 			const regressionIdeal = new PolynomialRegression(weights, ideals, degree)
 
-			brand.recommendations.forEach(recommendation => {
-				if (validWeights.includes(recommendation.weight)) {
-					console.log(`${recommendation.weight} is valid`)
-				} else {
-					console.log(`${recommendation.weight} has to be added`)
-				}
+			// add enriched data for missing weights
+			validWeights.forEach(validWeight => {
+				if (recommendations.map(tip => tip.weight).includes(validWeight)) return
+
+				recommendations.push({
+					weight: validWeight,
+					ideal: regressionIdeal.predict(validWeight),
+				})
 			})
-			// brand.recommendations.push({ weight: 7, ideal: 69, overweight: 55 })
+
+			this._data[i].recommendations = recommendations.sort(
+				(a, b) => a.weight - b.weight
+			)
 		})
 
 		return this._data

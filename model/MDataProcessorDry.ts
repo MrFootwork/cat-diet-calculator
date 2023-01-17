@@ -34,17 +34,34 @@ export default class DataProcessorDry {
 			const recommendations = brand.recommendations
 			const weights = recommendations.map(tip => tip.weight)
 			const ideals = recommendations.map(tip => tip.ideal)
+			const overweights = recommendations.map(tip => tip.overweight)
 			const degree = 2
 
 			const regressionIdeal = new PolynomialRegression(weights, ideals, degree)
+			const regressionOverweight = new PolynomialRegression(
+				weights,
+				overweights,
+				degree
+			)
 
 			// add enriched data for missing weights
 			validWeights.forEach(validWeight => {
 				if (recommendations.map(tip => tip.weight).includes(validWeight)) return
 
+				const predictIdeal =
+					Math.round(
+						(regressionIdeal.predict(validWeight) + Number.EPSILON) * 100
+					) / 100
+
+				const predictOverweight =
+					Math.round(
+						(regressionOverweight.predict(validWeight) + Number.EPSILON) * 100
+					) / 100
+
 				recommendations.push({
 					weight: validWeight,
-					ideal: regressionIdeal.predict(validWeight),
+					ideal: predictIdeal,
+					overweight: predictOverweight,
 				})
 			})
 

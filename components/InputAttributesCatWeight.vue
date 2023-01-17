@@ -12,8 +12,9 @@ const calculator = ref(Calculator.getInstance());
     <label for="cat-weight">{{ calculator.catWeight }}</label>
     <input id="cat-weight"
            type="range"
-           min="3"
-           max="6"
+           min="2"
+           max="7"
+           step=".5"
            v-model.number="calculator.catWeight" />
   </div>
 </template>

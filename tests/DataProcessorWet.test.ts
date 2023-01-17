@@ -17,6 +17,9 @@ describe('processed wet food data', () => {
 			type: 'wet',
 		},
 	]
+
+	console.log('before enrichment: ', dataSample[0].recommendations)
+
 	DataProcessor.processData(dataSample)
 
 	// testing results
@@ -32,5 +35,23 @@ describe('processed wet food data', () => {
 			2
 		)
 	})
-	it.todo('tips have been enriched')
+	it('enriches recommendations by half-step weights', () => {
+		// after enrichment two adjacent recommendations
+		// should be apart from each other by .5
+
+		console.log('after enrichment: ', dataSample[0].recommendations)
+
+		const firstValue_1 = DataProcessor.data[0].recommendations[0].weight
+		const secondValue_1 = DataProcessor.data[0].recommendations[1].weight
+		expect((firstValue_1 + secondValue_1) % 1).toBe(0.5)
+		const firstValue_2 = DataProcessor.data[0].recommendations[1].weight
+		const secondValue_2 = DataProcessor.data[0].recommendations[2].weight
+		expect((firstValue_2 + secondValue_2) % 1).toBe(0.5)
+		const firstValue_3 = DataProcessor.data[0].recommendations[2].weight
+		const secondValue_3 = DataProcessor.data[0].recommendations[3].weight
+		expect((firstValue_3 + secondValue_3) % 1).toBe(0.5)
+		const firstValue_4 = DataProcessor.data[0].recommendations[3].weight
+		const secondValue_4 = DataProcessor.data[0].recommendations[4].weight
+		expect((firstValue_4 + secondValue_4) % 1).toBe(0.5)
+	})
 })

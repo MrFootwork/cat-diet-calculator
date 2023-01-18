@@ -138,6 +138,10 @@ function amountReset(brand: FoodBrand) {
           font-size: 1.2rem;
           color: white;
 
+          &:hover {
+            @include outlineOnHover;
+          }
+
           input[type=number] {
 
             text-align: center;
@@ -180,7 +184,6 @@ function amountReset(brand: FoodBrand) {
             &:hover {
               box-shadow: -4px 3px 17px -5px black;
               backdrop-filter: brightness(100%);
-              @include outlineOnHover;
             }
 
             &:active {

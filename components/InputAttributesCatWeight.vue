@@ -9,19 +9,20 @@ const weightSteps = computed(() => calculator.value.weightProperties.steps);
 // read current slider width
 const slider = ref<HTMLInputElement>();
 const sliderWidth = computed(() => {
-  let width = slider.value?.offsetWidth;
-  return width ? width : 0;
+  return slider.value?.offsetWidth || 0;
 });
 
 // calculate slider position in relation to parent
 const sliderPosition = computed(() => {
-  const relativePosition = (
-    (calculator.value.catWeight - weightMinimum.value) /
-    (weightMaximum.value - weightMinimum.value)
-  );
-
+  // adjust start position, if minimum is not right
   const shiftStart = '1rem';
+  // adjust length factor, if end position doesn't match
   const lengthFactor = 0.9;
+
+  const relativePosition =
+    (calculator.value.catWeight - weightMinimum.value) /
+    (weightMaximum.value - weightMinimum.value);
+
   const positionLeft = lengthFactor * relativePosition * sliderWidth.value;
 
   return `calc(${shiftStart} + ${positionLeft}px)`;

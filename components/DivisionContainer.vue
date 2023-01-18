@@ -1,17 +1,26 @@
 <template>
   <section class="container">
+    <h4>{{ title }}</h4>
     <slot></slot>
   </section>
 </template>
 
 <script setup lang="ts">
-
+defineProps<{
+  title?: string;
+}>();
 </script>
 
 <style scoped lang="scss">
 @use 'mixins' as *;
 @use 'colors' as *;
 @use 'variables' as *;
+
+h4 {
+  margin: $margin-button;
+  margin-top: 0;
+  margin-bottom: calc(2* $margin-button);
+}
 
 %staticContainerAttributes {
   border-radius: 10px;

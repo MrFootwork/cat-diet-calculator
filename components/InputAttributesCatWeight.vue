@@ -59,7 +59,6 @@ const sliderPosition = computed(() => {
 @use 'mixins' as *;
 
 div.cat-weight.input-range {
-  // border: 3px solid black;
   padding: 0;
   margin: $margin-button;
 
@@ -69,7 +68,8 @@ div.cat-weight.input-range {
 
   &>label {
     position: absolute;
-    top: $margin-button;
+    // top: $margin-button;
+    top: 50px;
     width: auto;
     text-align: center;
     pointer-events: none;
@@ -81,11 +81,13 @@ div.cat-weight.input-range {
     cursor: ew-resize;
 
     padding: 0;
-    margin: $margin-button;
-    width: calc(2 * $size-button + 4 * $margin-button);
+    margin: $margin-button $margin-button $margin-button 0;
+    width: calc(2 * $size-button + 2 * $margin-button);
 
     border-radius: $round-corner;
     @include boxShadowSlider;
+
+    background: none;
 
   }
 }

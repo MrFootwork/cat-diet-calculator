@@ -97,19 +97,19 @@ async function resetDB() {
       <div class="calculator-ui"
            v-show="showUi">
 
-        <Container>
+        <Container title="How heavy is your cat? Is it overweight?">
           <InputAttributesCat />
         </Container>
 
-        <Container>
+        <Container title="What dry food does your cat eat?">
           <SelectorFoodDry />
         </Container>
 
-        <Container>
+        <Container title="Dry Food Mixer">
           <DisplayFoodMixture />
         </Container>
 
-        <Container>
+        <Container title="What wet food and how many of them does your cat eat?">
           <SelectorFoodWet />
         </Container>
 

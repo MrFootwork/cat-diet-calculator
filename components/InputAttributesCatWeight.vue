@@ -6,37 +6,25 @@ const weightMinimum = computed(() => calculator.value.weightProperties.minimum);
 const weightMaximum = computed(() => calculator.value.weightProperties.maximum);
 const weightSteps = computed(() => calculator.value.weightProperties.steps);
 
+// read current slider width
 const slider = ref<HTMLInputElement>();
 const sliderWidth = computed(() => {
   let width = slider.value?.offsetWidth;
   return width ? width : 0;
 });
 
-const sliderValue = computed(() => {
-  return calculator.value.catWeight;
-});
-
+// calculate slider position in relation to parent
 const sliderPosition = computed(() => {
-  const thisPosition = (
+  const relativePosition = (
     (calculator.value.catWeight - weightMinimum.value) /
     (weightMaximum.value - weightMinimum.value)
   );
 
-  let borderCorrection = 0;
+  const shiftStart = '1rem';
+  const lengthFactor = 0.9;
+  const positionLeft = lengthFactor * relativePosition * sliderWidth.value;
 
-  if (sliderValue.value === weightMinimum.value) {
-    borderCorrection = 2;
-  } else if (sliderValue.value === weightMaximum.value) {
-    borderCorrection = -2;
-  } else {
-    borderCorrection = 0;
-  }
-  const positionLeft = thisPosition * sliderWidth.value + borderCorrection;
-  console.log(positionLeft);
-  // return `calc(0.9rem + ${positionLeft} px)`;
-  return `calc(0.9rem + 12 px)`;
-
-  // return ((thisPosition * 100) + borderCorrection) + "px";
+  return `calc(${shiftStart} + ${positionLeft}px)`;
 });
 </script>
 
@@ -73,14 +61,15 @@ div.cat-weight.input-range {
   &>label {
     // border: 3px solid violet;
     position: absolute;
-    top: 0;
+    top: $margin-button;
     width: 2rem;
     text-align: center;
   }
 
   &>input[type=range] {
-    border: 3px solid red;
-    width: calc(2 * $size-button + 1px);
+    padding: 0;
+    margin: $margin-button;
+    width: calc(2 * $size-button + 4 * $margin-button);
   }
 }
 </style>

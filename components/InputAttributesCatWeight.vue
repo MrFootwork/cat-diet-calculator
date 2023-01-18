@@ -56,6 +56,7 @@ const sliderPosition = computed(() => {
 
 <style scoped lang="scss">
 @use 'variables' as *;
+@use 'mixins' as *;
 
 div.cat-weight.input-range {
   // border: 3px solid black;
@@ -67,19 +68,25 @@ div.cat-weight.input-range {
   align-items: center;
 
   &>label {
-    // border: 3px solid violet;
     position: absolute;
     top: $margin-button;
     width: auto;
     text-align: center;
+    pointer-events: none;
   }
 
   &>input[type=range] {
     -webkit-appearance: none;
     appearance: none;
+    cursor: ew-resize;
+
     padding: 0;
     margin: $margin-button;
     width: calc(2 * $size-button + 4 * $margin-button);
+
+    border-radius: $round-corner;
+    @include boxShadowSlider;
+
   }
 }
 </style>

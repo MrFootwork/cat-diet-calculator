@@ -29,6 +29,13 @@
   }
 }
 
+@mixin foodCardSize() {
+  width     : 30vw;
+  height    : $food-card-height;
+  max-width : 260px;
+  max-height: 400px;
+}
+
 @mixin boxShadow() {
   box-shadow: -2px 3px 17px -5px hsl(0, 0%, 30%);
 }
@@ -60,6 +67,10 @@
   transform : scale(92%);
   cursor    : auto;
   outline   : none;
+}
+
+@mixin boxShadowSlider() {
+  box-shadow: inset -4px 6px 22px -10px black;
 }
 
 @mixin outlineOnHover() {

@@ -141,6 +141,9 @@ function touchEnd(touchEvent: TouchEvent, posXStart: number) {
 }
 </script>
 
+<!-- FIXME Turn everything into a component to be reused for dry and wet food -->
+<!-- also add input-number for wet food version -->
+
 <template>
   <div>
     <div class="dry-food"
@@ -241,8 +244,6 @@ function touchEnd(touchEvent: TouchEvent, posXStart: number) {
 @use 'mixins' as *;
 @use 'variables' as *;
 
-$food-card-height: 46vw;
-
 .dry-food {
   .options {
     width: 100%;
@@ -305,15 +306,11 @@ $food-card-height: 46vw;
     .dry-food-card {
       position: relative;
 
-      width: 30vw;
-      height: $food-card-height;
-      max-width: 260px;
-      max-height: 400px;
+      @include foodCardSize;
       margin: 1rem;
 
       border-radius: $round-corner;
       @include boxShadowCard;
-
 
       &:hover {
         @include outlineOnHover;

@@ -70,14 +70,12 @@ function amountReset(brand: FoodBrand) {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
 
   .wet-food-card {
     position: relative;
 
-    width: 30vw;
-    height: 46vw;
-    max-width: 260px;
-    max-height: 400px;
+    @include foodCardSize;
     margin: 1rem;
 
     border-radius: $round-corner;

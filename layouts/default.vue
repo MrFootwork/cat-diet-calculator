@@ -20,7 +20,6 @@
 
 %body {
 
-  // font-family: "Abril Fatface", cursive;
   font-family: "Chilanka", cursive;
 
   margin: 0;
@@ -54,6 +53,8 @@
   .background {
 
     @extend %background;
+    background-image: url("/background-cats-dark.jpg");
+    background-size: 80vw;
   }
 }
 </style>

@@ -276,11 +276,11 @@ const shebaSelection = {
 			ideal: 3.5,
 			overweight: 3,
 		},
-		{
-			weight: 6,
-			ideal: 4,
-			overweight: 3.5,
-		},
+		// {
+		// 	weight: 6,
+		// 	ideal: 4,
+		// 	overweight: 3.5,
+		// },
 	],
 	type: 'wet',
 	image:

@@ -2,6 +2,13 @@
 import Calculator from '@/model/MCalculator';
 
 const calculator = ref(Calculator.getInstance());
+
+// computed values
+const displayCatWeight = computed(() => new Intl.NumberFormat('en-US', {
+  minimumFractionDigits: 1,
+  style: 'unit',
+  unit: 'kilogram'
+}).format(calculator.value.catWeight));
 const weightMinimum = computed(() => calculator.value.weightProperties.minimum);
 const weightMaximum = computed(() => calculator.value.weightProperties.maximum);
 const weightSteps = computed(() => calculator.value.weightProperties.steps);
@@ -35,7 +42,7 @@ const sliderPosition = computed(() => {
   <div class="cat-weight input-range">
     <label for="cat-weight"
            :style="{ left: sliderPosition }">
-      {{ calculator.catWeight }}
+      {{ displayCatWeight }}
     </label>
     <input id="cat-weight"
            type="range"
@@ -63,11 +70,13 @@ div.cat-weight.input-range {
     // border: 3px solid violet;
     position: absolute;
     top: $margin-button;
-    width: 2rem;
+    width: auto;
     text-align: center;
   }
 
   &>input[type=range] {
+    -webkit-appearance: none;
+    appearance: none;
     padding: 0;
     margin: $margin-button;
     width: calc(2 * $size-button + 4 * $margin-button);

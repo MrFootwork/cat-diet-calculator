@@ -12,6 +12,15 @@ const displayCatWeight = computed(() => new Intl.NumberFormat('de-DE', {
 const weightMinimum = computed(() => calculator.value.weightProperties.minimum);
 const weightMaximum = computed(() => calculator.value.weightProperties.maximum);
 const weightSteps = computed(() => calculator.value.weightProperties.steps);
+const relativePosition = computed(() => {
+  return (calculator.value.catWeight - weightMinimum.value) /
+    (weightMaximum.value - weightMinimum.value);
+});
+
+// cat head resizing
+const catHeadScale = computed(() => {
+  return `${1 + .4 * relativePosition.value - .2}`;
+});
 
 // read current slider width
 const slider = ref<HTMLInputElement>();
@@ -26,11 +35,7 @@ const sliderPosition = computed(() => {
   // adjust length factor, if end position doesn't match
   const lengthFactor = 0.88;
 
-  const relativePosition =
-    (calculator.value.catWeight - weightMinimum.value) /
-    (weightMaximum.value - weightMinimum.value);
-
-  const positionLeft = lengthFactor * relativePosition * sliderWidth.value;
+  const positionLeft = lengthFactor * relativePosition.value * sliderWidth.value;
 
   return `calc(${shiftStart} + ${positionLeft}px)`;
 });
@@ -50,7 +55,7 @@ const sliderPosition = computed(() => {
            v-model.number="calculator.catWeight" />
 
     <div class="cat-head"
-         :style="{ left: sliderPosition }">
+         :style="{ left: sliderPosition, scale: catHeadScale }">
       <div class="mouth whisker whisker-1"></div>
       <div class="mouth whisker whisker-2"></div>
       <div class="mouth whisker whisker-3"></div>

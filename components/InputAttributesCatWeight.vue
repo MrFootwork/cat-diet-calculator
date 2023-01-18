@@ -22,9 +22,9 @@ const sliderWidth = computed(() => {
 // calculate slider position in relation to parent
 const sliderPosition = computed(() => {
   // adjust start position, if minimum is not right
-  const shiftStart = '1rem';
+  const shiftStart = '1.12rem';
   // adjust length factor, if end position doesn't match
-  const lengthFactor = 0.9;
+  const lengthFactor = 0.88;
 
   const relativePosition =
     (calculator.value.catWeight - weightMinimum.value) /
@@ -51,7 +51,12 @@ const sliderPosition = computed(() => {
 
     <div class="cat-head"
          :style="{ left: sliderPosition }">
-      <div class="line"></div>
+      <div class="mouth whisker whisker-1"></div>
+      <div class="mouth whisker whisker-2"></div>
+      <div class="mouth whisker whisker-3"></div>
+      <div class="mouth whisker-mask"></div>
+      <div class="ear left"></div>
+      <div class="ear right"></div>
       <label for="cat-weight">
         {{ displayCatWeight }}
       </label>
@@ -112,10 +117,10 @@ div.cat-weight.input-range {
 
     // basic cat head
     &+div.cat-head {
-      // display: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: none;
+      // display: flex;
+      // align-items: center;
+      // justify-content: center;
 
       position: absolute;
       top: .1rem;
@@ -130,17 +135,63 @@ div.cat-weight.input-range {
       border-radius: 50%;
 
       &>label {
-        display: none;
+        display: inline-block;
+        translate: 0 -.3rem;
+        z-index: 20;
 
         text-align: center;
         pointer-events: none;
       }
 
-      &>.line {
+      &>.mouth {
         position: absolute;
-        height: 100px;
-        widows: 1px;
-        background-color: red;
+        display: block;
+        translate: 0 .9rem;
+
+        &.whisker-mask {
+          height: 1.5rem;
+          width: 1.5rem;
+          border-radius: 50%;
+          background-color: inherit;
+        }
+
+        &.whisker {
+          height: 5rem;
+          width: 2px;
+          background-color: $light-secondary-color;
+
+          &.whisker-1 {
+            rotate: 80deg;
+          }
+
+          &.whisker-2 {
+            rotate: 90deg;
+          }
+
+          &.whisker-3 {
+            rotate: 100deg;
+          }
+        }
+      }
+
+      &>.ear {
+        position: absolute;
+        width: 20%;
+        height: 50%;
+        top: 0%;
+        background-color: $light-primary-color;
+        border-radius: 50%;
+        z-index: 8;
+
+        &.left {
+          transform: rotate(160deg);
+          left: 6%;
+        }
+
+        &.right {
+          transform: rotate(20deg);
+          right: 6%;
+        }
       }
     }
   }

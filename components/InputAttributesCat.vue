@@ -37,7 +37,7 @@ function toggleCatShapeHelp() {
              value="ideal"
              v-model="calculator.catShape" />
       <label for="ideal"
-             class="radio-button">
+             class="radio-button ideal">
         <img src="https://img.icons8.com/color/96/null/thin-cat.png"
              alt="cat shape option ideal" />
         <!-- TODO attribution -->
@@ -50,7 +50,7 @@ function toggleCatShapeHelp() {
              value="overweight"
              v-model="calculator.catShape" />
       <label for="overweight"
-             class="radio-button">
+             class="radio-button overweight">
         <img src="https://img.icons8.com/color/96/null/fat-cat.png"
              alt="cat shape option overweight" />
         <!-- TODO attribution -->
@@ -133,6 +133,7 @@ function toggleCatShapeHelp() {
     label,
     button {
       margin: $margin-button;
+      margin-bottom: 0;
       padding: 0;
     }
 
@@ -150,9 +151,12 @@ function toggleCatShapeHelp() {
 
     label.radio-button {
       cursor: pointer;
+      height: $size-button;
+      aspect-ratio: 1 / 1;
 
       img {
-        height: $size-button;
+        height: inherit;
+        aspect-ratio: inherit;
         border-radius: $round-corner;
         @include boxShadowButton;
       }
@@ -160,6 +164,12 @@ function toggleCatShapeHelp() {
       &:hover>img {
         @include outlineOnHover;
       }
+
+      &.ideal {
+        margin-left: 0;
+      }
+
+      &.overweight {}
     }
 
     button.cat-shape-help-toggle {

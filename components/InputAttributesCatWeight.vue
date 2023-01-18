@@ -61,6 +61,7 @@ const sliderPosition = computed(() => {
 div.cat-weight.input-range {
   padding: 0;
   margin: $margin-button;
+  margin-left: 0;
 
   display: flex;
   justify-content: flex-start;

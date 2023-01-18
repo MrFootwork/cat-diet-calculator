@@ -17,9 +17,7 @@ defineProps<{
 @use 'variables' as *;
 
 h4 {
-  margin: $margin-button;
-  margin-top: 0;
-  margin-bottom: calc(2* $margin-button);
+  margin: 0 $margin-button calc(2* $margin-button) 0;
 }
 
 %staticContainerAttributes {

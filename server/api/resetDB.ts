@@ -286,6 +286,29 @@ const shebaSelection = {
 	image:
 		'https://lh3.googleusercontent.com/cGXV_a6OVQbXzkybi1waEyaVgQkYKT3VbxgTiMoluEzIut1S1ZxvAo8hJopJOfPd2UUixv3v6e3EZ7Qm4HwMc2kdyKSLWOQ8JbUZP6c-j15EZ4RCQD2k6sTDVExo8wQQNktwf1mhXKQ=w2400',
 }
+const kitekatWet = {
+	name: 'kitekat Wet',
+	recommendations: [
+		{
+			weight: 3,
+			ideal: 2.5,
+			overweight: 2,
+		},
+		{
+			weight: 4,
+			ideal: 3,
+			overweight: 2.5,
+		},
+		{
+			weight: 5,
+			ideal: 3.5,
+			overweight: 3,
+		},
+	],
+	type: 'wet',
+	image:
+		'https://lh3.googleusercontent.com/HH41WS_RTGRLUPAQ1HhC43A0YZedqGUPnElxw1L-7a_cEVO0QRH0kaD8WFU9VCAWv6YMptfgsOzfQLyRt4nNvdnQg4lyk6tGEOv1graVCeYmLNtmY9hBA27AclgNQ38q5OfZeGjS-QE=w2400',
+}
 // FIXME add more brands
 // FIXME add colors for brands
 // TODO kg / lbs
@@ -298,7 +321,7 @@ const dryFood = [
 	test_4,
 	test_5,
 ]
-const wetFood = [shebaBig, shebaSelection]
+const wetFood = [shebaBig, shebaSelection, kitekatWet]
 
 async function addData(db, collection, data) {
 	console.log('data added to database: ', data)

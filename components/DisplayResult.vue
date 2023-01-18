@@ -2,9 +2,16 @@
 import Calculator from '~~/model/MCalculator';
 
 const calculator = ref(Calculator.getInstance());
+const calculatedResult = computed(() => {
+  return calculator.value.getResult(calculator.value.allBrands);
+});
 
 const displayResult = computed(() => {
-  return `${calculator.value.getResult(calculator.value.allBrands)} g`;
+  return `${new Intl.NumberFormat('de-DE', {
+    minimumFractionDigits: 1,
+    style: 'unit',
+    unit: 'gram'
+  }).format(calculatedResult.value)}`;
 });
 </script>
 

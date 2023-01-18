@@ -4,7 +4,7 @@ import Calculator from '@/model/MCalculator';
 const calculator = ref(Calculator.getInstance());
 
 // computed values
-const displayCatWeight = computed(() => new Intl.NumberFormat('en-US', {
+const displayCatWeight = computed(() => new Intl.NumberFormat('de-DE', {
   minimumFractionDigits: 1,
   style: 'unit',
   unit: 'kilogram'

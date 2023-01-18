@@ -18,6 +18,9 @@ function amountChange(brand: FoodBrand, operator: "+" | "-") {
 function amountReset(brand: FoodBrand) {
   (brand.mixPortion as number) = 0;
 }
+
+// TODO is locale masking necessary?
+// https://stackoverflow.com/questions/41112733/whats-the-proper-way-to-implement-formatting-on-v-model-in-vue-js-2-0
 </script>
 
 <template>
@@ -67,7 +70,6 @@ function amountReset(brand: FoodBrand) {
   display: flex;
   align-items: center;
   justify-content: center;
-
 
   .wet-food-card {
     position: relative;
@@ -146,6 +148,7 @@ function amountReset(brand: FoodBrand) {
             outline: none;
             border: none;
             color: inherit;
+            font-family: inherit;
             font-weight: inherit;
             font-size: inherit;
 

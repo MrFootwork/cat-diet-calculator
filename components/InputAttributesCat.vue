@@ -191,6 +191,7 @@ function toggleCatShapeHelp() {
       &:active>img {
         transform: translateY(2px);
         box-shadow: none;
+        outline: none
       }
     }
   }

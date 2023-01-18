@@ -40,10 +40,7 @@ const sliderPosition = computed(() => {
   <!-- FIXME create seperate range slider component -->
   <!-- inspiration: https://codepen.io/kdbkapsere/pen/vRmVZX -->
   <div class="cat-weight input-range">
-    <label for="cat-weight"
-           :style="{ left: sliderPosition }">
-      {{ displayCatWeight }}
-    </label>
+
     <input id="cat-weight"
            type="range"
            ref="slider"
@@ -51,12 +48,22 @@ const sliderPosition = computed(() => {
            :max="weightMaximum"
            :step="weightSteps"
            v-model.number="calculator.catWeight" />
+
+    <div class="cat-head"
+         :style="{ left: sliderPosition }">
+      <div class="line"></div>
+      <label for="cat-weight">
+        {{ displayCatWeight }}
+      </label>
+    </div>
+
   </div>
 </template>
 
 <style scoped lang="scss">
 @use 'variables' as *;
 @use 'mixins' as *;
+@use 'colors' as *;
 
 div.cat-weight.input-range {
   padding: 0;
@@ -67,14 +74,8 @@ div.cat-weight.input-range {
   justify-content: flex-start;
   align-items: center;
 
-  &>label {
-    position: absolute;
-    // top: $margin-button;
-    top: 50px;
-    width: auto;
-    text-align: center;
-    pointer-events: none;
-  }
+  &>div.cat-head {}
+
 
   &>input[type=range] {
     -webkit-appearance: none;
@@ -90,6 +91,58 @@ div.cat-weight.input-range {
 
     background: none;
 
+    &:hover {
+      @include outlineOnHover;
+    }
+
+    &:active {
+      outline: none;
+
+      // cat head on hover
+      &+div.cat-head {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &>label {
+          display: block;
+        }
+      }
+    }
+
+    // basic cat head
+    &+div.cat-head {
+      // display: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      position: absolute;
+      top: .1rem;
+      z-index: 10;
+
+      aspect-ratio: 1/1;
+      width: calc(11 * $margin-button);
+      transform:
+        translateX(calc((-11 * $margin-button + .53rem)/2));
+
+      background-color: $light-primary-color;
+      border-radius: 50%;
+
+      &>label {
+        display: none;
+
+        text-align: center;
+        pointer-events: none;
+      }
+
+      &>.line {
+        position: absolute;
+        height: 100px;
+        widows: 1px;
+        background-color: red;
+      }
+    }
   }
 }
 </style>

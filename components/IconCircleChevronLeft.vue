@@ -25,11 +25,15 @@ svg {
   fill: $light-primary-color;
   border-radius: 50%;
 
-  transition: transform .3s ease-out;
+  transition: transform .1s ease-out;
 }
 
 button:hover>div>svg {
   @include outlineOnHover;
+}
+
+button:active>div>svg {
+  outline: none
 }
 
 button:active>div>svg {

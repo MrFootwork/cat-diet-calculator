@@ -143,7 +143,11 @@ h4 {
     }
 
     input[type=radio] {
-      display: none;
+      // display: none;
+      height: 0;
+      width: 0;
+      border: none;
+      outline: none;
 
       &:checked+label>img {
         @include boxShadowButtonChecked;
@@ -166,7 +170,8 @@ h4 {
         @include boxShadowButton;
       }
 
-      &:hover>img {
+      &:hover>img,
+      &:focus>img {
         @include outlineOnHover;
       }
 

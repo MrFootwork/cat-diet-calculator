@@ -101,12 +101,22 @@ div.cat-weight.input-range {
 
     background: none;
 
-    &:active,
-    &:focus {
+    // old version
+    // &:active,
+    // &:focus {
+    //   outline: none;
+    // }
+
+    // &:hover {
+    //   @include outlineOnHover;
+    // }
+
+    &:active {
       outline: none;
     }
 
-    &:hover {
+    &:hover,
+    &:focus {
       @include outlineOnHover;
     }
 

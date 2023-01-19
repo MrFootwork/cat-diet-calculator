@@ -79,8 +79,7 @@ const sliderPosition = computed(() => {
 
 div.cat-weight.input-range {
   padding: 0;
-  margin: $margin-button;
-  margin-left: 0;
+  margin: calc(16* $margin-button) 0 $margin-button 0;
 
   display: flex;
   justify-content: flex-start;
@@ -94,7 +93,7 @@ div.cat-weight.input-range {
     cursor: ew-resize;
 
     padding: 0;
-    margin: $margin-button $margin-button $margin-button 0;
+    margin: 0;
     width: calc(2 * $size-button + 2 * $margin-button);
 
     border-radius: $round-corner;
@@ -102,39 +101,43 @@ div.cat-weight.input-range {
 
     background: none;
 
+    &:active,
+    &:focus {
+      outline: none;
+    }
+
     &:hover {
       @include outlineOnHover;
     }
 
-    &:active,
-    &:focus {
-      outline: none;
+    // &:active,
+    // &:focus,
+    // &:hover {
 
-      // cat head on hover
-      &+div.cat-head {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    //   // cat head on hover
+    //   &+div.cat-head-wrapper>div.cat-head {
+    //     display: flex;
+    //     align-items: center;
+    //     justify-content: center;
 
-        &>label {
-          display: block;
-        }
-      }
-    }
+    //     &>label {
+    //       // display: block;
+    //     }
+    //   }
+    // }
 
     // basic cat head
-    &+div.cat-head {
+    &+div.cat-head-wrapper>div.cat-head {
       // display: none;
       display: flex;
       align-items: center;
       justify-content: center;
-      align-self: flex-start;
 
       position: absolute;
-      // top: .1rem;
-      bottom: 8rem;
+      top: 3rem;
+      // bottom: 8rem;
       // margin-bottom: 7rem;
-      // margin-top: 7rem;
+      // margin-top: -4.5rem;
       z-index: 10;
 
       aspect-ratio: 1/1;

@@ -97,7 +97,7 @@ async function resetDB() {
       <div class="calculator-ui"
            v-show="showUi">
 
-        <Container title="How heavy is your cat? Is it overweight?">
+        <Container title="How heavy is your cat?">
           <InputAttributesCat />
         </Container>
 

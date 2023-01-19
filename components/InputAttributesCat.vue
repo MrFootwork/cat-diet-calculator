@@ -28,6 +28,7 @@ function toggleCatShapeHelp() {
     <!-- input cat weight -->
     <InputAttributesCatWeight />
 
+    <h4>Is your cat overweight?</h4>
     <!-- input cat shape -->
     <div class="cat-shape">
 
@@ -85,6 +86,10 @@ function toggleCatShapeHelp() {
 @use 'colors' as *;
 @use 'variables' as *;
 
+// input overweight text
+h4 {
+  margin: calc($padding-container) $margin-button calc(2* $margin-button) 0;
+}
 
 // the helper modal
 .cat-shape-help {

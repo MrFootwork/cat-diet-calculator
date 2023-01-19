@@ -109,7 +109,7 @@ async function resetDB() {
           <DisplayFoodMixture />
         </Container>
 
-        <Container title="What wet food and how many of them does your cat eat?">
+        <Container title="What wet food and how many bags does your cat eat?">
           <SelectorFoodWet />
         </Container>
 

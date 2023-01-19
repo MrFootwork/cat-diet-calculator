@@ -222,8 +222,6 @@ function touchEnd(touchEvent: TouchEvent, posXStart: number) {
                    v-model="dryFood.isMixPortion"
                    @click="selectCard($event)" />
 
-            <label :for="dryFood.name"> {{ dryFood.name }}</label>
-
           </label>
         </div>
 
@@ -349,10 +347,7 @@ function touchEnd(touchEvent: TouchEvent, posXStart: number) {
         input {
           display: none
         }
-
-        label {}
       }
-
     }
   }
 }

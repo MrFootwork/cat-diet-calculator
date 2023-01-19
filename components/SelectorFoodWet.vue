@@ -54,8 +54,6 @@ function amountReset(brand: FoodBrand) {
           </div>
         </div>
 
-        <label :for="wetFood.name">{{ wetFood.name }}</label>
-
       </label>
     </div>
   </div>

@@ -47,8 +47,7 @@
 @mixin boxShadowCardActivated() {
   box-shadow:
     $box-shadow-card,
-    inset 0px 0px .4rem .4rem $light-primary-color,
-    0px 0px .6rem .6rem $light-primary-color;
+    0px 0px .9rem .6rem $light-highlight-color;
 }
 
 @mixin boxShadowButton() {

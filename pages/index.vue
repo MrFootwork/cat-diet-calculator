@@ -101,7 +101,7 @@ async function resetDB() {
           <InputAttributesCat />
         </Container>
 
-        <Container title="What dry food does your cat eat?">
+        <Container title="What dry food does your cat eat? (multiple selection possible)">
           <SelectorFoodDry />
         </Container>
 

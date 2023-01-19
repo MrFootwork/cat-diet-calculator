@@ -54,17 +54,19 @@ const sliderPosition = computed(() => {
            :step="weightSteps"
            v-model.number="calculator.catWeight" />
 
-    <div class="cat-head"
-         :style="{ left: sliderPosition, scale: catHeadScale }">
-      <div class="mouth whisker whisker-1"></div>
-      <div class="mouth whisker whisker-2"></div>
-      <div class="mouth whisker whisker-3"></div>
-      <div class="mouth whisker-mask"></div>
-      <div class="ear left"></div>
-      <div class="ear right"></div>
-      <label for="cat-weight">
-        {{ displayCatWeight }}
-      </label>
+    <div class="cat-head-wrapper">
+      <div class="cat-head"
+           :style="{ left: sliderPosition, scale: catHeadScale }">
+        <div class="mouth whisker whisker-1"></div>
+        <div class="mouth whisker whisker-2"></div>
+        <div class="mouth whisker whisker-3"></div>
+        <div class="mouth whisker-mask"></div>
+        <div class="ear left"></div>
+        <div class="ear right"></div>
+        <label for="cat-weight">
+          {{ displayCatWeight }}
+        </label>
+      </div>
     </div>
 
   </div>
@@ -86,7 +88,6 @@ div.cat-weight.input-range {
 
   &>div.cat-head {}
 
-
   &>input[type=range] {
     -webkit-appearance: none;
     appearance: none;
@@ -105,7 +106,8 @@ div.cat-weight.input-range {
       @include outlineOnHover;
     }
 
-    &:active {
+    &:active,
+    &:focus {
       outline: none;
 
       // cat head on hover
@@ -122,13 +124,17 @@ div.cat-weight.input-range {
 
     // basic cat head
     &+div.cat-head {
-      display: none;
-      // display: flex;
-      // align-items: center;
-      // justify-content: center;
+      // display: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      align-self: flex-start;
 
       position: absolute;
-      top: .1rem;
+      // top: .1rem;
+      bottom: 8rem;
+      // margin-bottom: 7rem;
+      // margin-top: 7rem;
       z-index: 10;
 
       aspect-ratio: 1/1;

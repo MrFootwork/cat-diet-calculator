@@ -97,7 +97,7 @@ async function resetDB() {
       <div class="calculator-ui"
            v-show="showUi">
 
-        <Container title="How heavy is your cat?">
+        <Container class="slot handles padding bottom">
           <InputAttributesCat />
         </Container>
 
@@ -126,5 +126,9 @@ async function resetDB() {
   justify-content: center;
   align-items: center;
   min-height: 80vh;
+}
+
+section.slot.handles.padding.bottom {
+  padding-bottom: 0;
 }
 </style>

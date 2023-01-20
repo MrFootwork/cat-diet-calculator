@@ -9,36 +9,42 @@ const displayCatWeight = computed(() => new Intl.NumberFormat('de-DE', {
   style: 'unit',
   unit: 'kilogram'
 }).format(calculator.value.catWeight));
+
 const weightMinimum = computed(() => calculator.value.weightProperties.minimum);
 const weightMaximum = computed(() => calculator.value.weightProperties.maximum);
 const weightSteps = computed(() => calculator.value.weightProperties.steps);
-const relativePosition = computed(() => {
-  return (calculator.value.catWeight - weightMinimum.value) /
-    (weightMaximum.value - weightMinimum.value);
-});
 
-// cat head resizing
+// cat head resizes dynamically
 const catHeadScale = computed(() => {
   return `${1 + .4 * relativePosition.value - .2}`;
 });
 
+/********************************************************
+ *    slider
+ ********************************************************/
+// relative position of the slider
+const relativePosition = computed(() => {
+  return (calculator.value.catWeight - weightMinimum.value) /
+    (weightMaximum.value - weightMinimum.value);
+});
 // read current slider width
 const slider = ref<HTMLInputElement>();
 const sliderWidth = computed(() => {
   return slider.value?.offsetWidth || 0;
 });
-
 // calculate slider position in relation to parent
 const sliderPosition = computed(() => {
   // adjust start position, if minimum is not right
-  const shiftStart = '1.12rem';
+  const shiftStart = '.85rem';
   // adjust length factor, if end position doesn't match
-  const lengthFactor = 0.88;
+  const lengthFactor = .945;
 
   const positionLeft = lengthFactor * relativePosition.value * sliderWidth.value;
 
   return `calc(${shiftStart} + ${positionLeft}px)`;
 });
+// TODO cat head motion sets value
+
 </script>
 
 <template>
@@ -57,6 +63,7 @@ const sliderPosition = computed(() => {
     <div class="cat-head-wrapper">
       <div class="cat-head"
            :style="{ left: sliderPosition, scale: catHeadScale }">
+        <div class="grid-line"></div>
         <div class="mouth whisker whisker-1"></div>
         <div class="mouth whisker whisker-2"></div>
         <div class="mouth whisker whisker-3"></div>
@@ -79,13 +86,11 @@ const sliderPosition = computed(() => {
 
 div.cat-weight.input-range {
   padding: 0;
-  margin: calc(16* $margin-button) 0 $margin-button 0;
+  margin: calc(16* $margin-button) 0 0 0;
 
   display: flex;
   justify-content: flex-start;
   align-items: center;
-
-  &>div.cat-head {}
 
   &>input[type=range] {
     -webkit-appearance: none;
@@ -133,6 +138,8 @@ div.cat-weight.input-range {
         display: inline-block;
         translate: 0 -.3rem;
         z-index: 20;
+
+        color: white;
 
         text-align: center;
         pointer-events: none;

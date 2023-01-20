@@ -2,7 +2,7 @@
 import FoodBrand from '~~/model/IFoodBrand';
 import Calculator from '~~/model/MCalculator';
 
-const optionSelected = ref('select-gallery');
+const optionSelected = ref('select-carousel');
 
 const calculator = ref(Calculator.getInstance());
 

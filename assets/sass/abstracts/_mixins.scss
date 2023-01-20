@@ -62,10 +62,10 @@
 }
 
 @mixin boxShadowButtonActive() {
-  box-shadow: inset -4px 6px 22px -10px black;
-  transform : scale(92%);
-  cursor    : auto;
-  outline   : none;
+  box-shadow   : inset -4px 6px 22px -10px black;
+  transform    : scale(92%);
+  cursor       : auto;
+  // outline   : none;
 }
 
 @mixin boxShadowSlider() {
@@ -74,7 +74,7 @@
 }
 
 @mixin outlineOnHover() {
-  outline       : .4rem solid $light-secondary-color;
-  outline-offset: .1rem;
-  z-index       : 9;
+  outline          : .4rem solid $light-secondary-color;
+  outline-offset   : .1rem;
+  // z-index       : 9;
 }

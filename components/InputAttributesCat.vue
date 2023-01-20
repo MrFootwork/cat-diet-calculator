@@ -143,17 +143,29 @@ h4 {
     }
 
     input[type=radio] {
-      // display: none;
       height: 0;
       width: 0;
+      margin: 0;
+      padding: 0;
       border: none;
       outline: none;
+      // firefox would display 1.6px borders
+      -moz-appearance: none;
 
-      &:checked+label>img {
+      &:checked+label.radio-button {
         @include boxShadowButtonChecked;
       }
 
-      &:active+label>img {
+      &:hover+label.radio-button,
+      &:focus+label.radio-button {
+        @include outlineOnHover;
+      }
+
+      // TODO use js to apply right styles on all events
+      // :active is only fired once in Chrome
+      // it works in Firefox
+      // current solution: catch :active on label and apply style on label's child
+      &:active+label.radio-button {
         @include boxShadowButtonActive;
       }
     }
@@ -163,16 +175,19 @@ h4 {
       height: $size-button;
       aspect-ratio: 1 / 1;
 
+      @include boxShadowButton;
+      border-radius: $round-corner;
+
+      // mouse down on input element doesn't fire after first focus
+      // for consecutive clicks I had to apply on the child img
+      &:active>img {
+        @include boxShadowButtonActive;
+      }
+
       img {
         height: inherit;
         aspect-ratio: inherit;
         border-radius: $round-corner;
-        @include boxShadowButton;
-      }
-
-      &:hover>img,
-      &:focus>img {
-        @include outlineOnHover;
       }
 
       &.ideal {
@@ -187,6 +202,7 @@ h4 {
 
       background: none;
       border: none;
+      outline: none;
       width: auto;
 
       img {
@@ -194,7 +210,8 @@ h4 {
         border-radius: $round-corner;
       }
 
-      &:hover>img {
+      &:hover>img,
+      &:focus>img {
         @include outlineOnHover;
       }
 

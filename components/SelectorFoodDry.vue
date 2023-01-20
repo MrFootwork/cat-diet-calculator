@@ -156,8 +156,7 @@ function touchEnd(touchEvent: TouchEvent, posXStart: number) {
                class="option gallery"
                id="gallery"
                v-model="optionSelected"
-               value="select-gallery"
-               checked>
+               value="select-gallery">
         <label for="gallery"
                name="view-mode"
                class="radio-button">
@@ -171,7 +170,8 @@ function touchEnd(touchEvent: TouchEvent, posXStart: number) {
                class="option carousel radio-button"
                id="carousel"
                v-model="optionSelected"
-               value="select-carousel">
+               value="select-carousel"
+               checked>
         <label for="carousel"
                name="view-mode"
                class="radio-button">
@@ -249,21 +249,28 @@ function touchEnd(touchEvent: TouchEvent, posXStart: number) {
     display: flex;
     justify-content: flex-end;
 
-    input {
-      display: none;
-
-      &:hover+label {
-        cursor: pointer;
-        @include outlineOnHover;
-      }
+    input[type=radio].option {
+      height: 0;
+      width: 0;
+      margin: 0;
+      padding: 0;
+      border: none;
+      outline: none;
+      // firefox would display 1.6px borders
+      -moz-appearance: none;
 
       &:checked+label {
         @include boxShadowButtonChecked;
       }
-    }
 
-    input:active+label {
-      @include boxShadowButtonActive;
+      &:active+label {
+        @include boxShadowButtonActive;
+      }
+
+      &:focus+label,
+      &:hover+label {
+        @include outlineOnHover;
+      }
     }
 
     label.radio-button {
@@ -271,12 +278,20 @@ function touchEnd(touchEvent: TouchEvent, posXStart: number) {
       justify-content: center;
       align-items: center;
 
+      cursor: pointer;
+
       margin: $margin-button;
       aspect-ratio: 1 / 1;
       width: $size-button;
       border-radius: $round-corner;
 
       @include boxShadowButton;
+
+      // mouse down on input element doesn't fire after first focus
+      // for consecutive clicks I had to apply on the child img
+      &:active>img {
+        @include boxShadowButtonActive;
+      }
 
       img {
         aspect-ratio: 1/1;

@@ -101,16 +101,6 @@ div.cat-weight.input-range {
 
     background: none;
 
-    // old version
-    // &:active,
-    // &:focus {
-    //   outline: none;
-    // }
-
-    // &:hover {
-    //   @include outlineOnHover;
-    // }
-
     &:active {
       outline: none;
     }
@@ -119,22 +109,6 @@ div.cat-weight.input-range {
     &:focus {
       @include outlineOnHover;
     }
-
-    // &:active,
-    // &:focus,
-    // &:hover {
-
-    //   // cat head on hover
-    //   &+div.cat-head-wrapper>div.cat-head {
-    //     display: flex;
-    //     align-items: center;
-    //     justify-content: center;
-
-    //     &>label {
-    //       // display: block;
-    //     }
-    //   }
-    // }
 
     // basic cat head
     &+div.cat-head-wrapper>div.cat-head {
@@ -145,9 +119,6 @@ div.cat-weight.input-range {
 
       position: absolute;
       top: 3rem;
-      // bottom: 8rem;
-      // margin-bottom: 7rem;
-      // margin-top: -4.5rem;
       z-index: 10;
 
       aspect-ratio: 1/1;

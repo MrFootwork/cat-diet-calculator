@@ -44,6 +44,8 @@ const sliderPosition = computed(() => {
   return `calc(${shiftStart} + ${positionLeft}px)`;
 });
 // TODO cat head motion sets value
+// impossible to style built-in slider thumb
+// thoughts: rebuild the range thumb from scratch
 
 </script>
 
@@ -76,6 +78,8 @@ const sliderPosition = computed(() => {
       </div>
     </div>
 
+    <div class="test">test</div>
+
   </div>
 </template>
 
@@ -97,11 +101,11 @@ div.cat-weight.input-range {
     appearance: none;
     cursor: ew-resize;
 
-    padding: 0;
+    padding: 1px;
     margin: 0;
     width: calc(2 * $size-button + 2 * $margin-button);
 
-    border-radius: $round-corner;
+    border-radius: calc($round-corner * 2);
     @include boxShadowSlider;
 
     background: none;
@@ -113,6 +117,29 @@ div.cat-weight.input-range {
     &:hover,
     &:focus {
       @include outlineOnHover;
+    }
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: calc($size-button / 3);
+      aspect-ratio: 1/1;
+
+      background: $light-primary-color;
+      border-radius: 50%;
+
+      transition: 1s ease-in-out;
+    }
+
+    &::-moz-range-thumb {
+      width: calc($size-button / 3.6);
+      height: calc($size-button / 3.6);
+
+      background: $light-primary-color;
+      border-radius: 50%;
+      border: none;
+
+      transition: 0.1s ease-in-out;
     }
 
     // basic cat head
@@ -128,8 +155,7 @@ div.cat-weight.input-range {
 
       aspect-ratio: 1/1;
       width: calc(11 * $margin-button);
-      transform:
-        translateX(calc((-11 * $margin-button + .53rem)/2));
+      transform: translateX(calc((-11 * $margin-button + .53rem)/2));
 
       background-color: $light-primary-color;
       border-radius: 50%;

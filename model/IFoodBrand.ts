@@ -8,7 +8,7 @@ interface FoodBrand {
 	_id: string
 	name: string
 	recommendations: Recommendation[]
-	type: string
+	type: 'dry' | 'wet'
 	isMixPortion?: boolean
 	mixPortion?: number
 	color: string

@@ -148,6 +148,8 @@ function touchEnd(touchEvent: TouchEvent, posXStart: number) {
 <!-- FIXME Turn everything into a component to be reused for dry and wet food -->
 <!-- also add input-number for wet food version -->
 
+<!-- time: 00:13 23.01.2023 -->
+
 <template>
   <div>
     <div :class="`${optionSelected} ${props.foodType}-food-cards`">

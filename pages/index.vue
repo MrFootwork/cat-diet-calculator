@@ -11,8 +11,6 @@ import AnimationLoader from '~~/components/AnimationLoader.vue';
 // input components
 import InputAttributesCat from '~~/components/InputAttributesCat.vue';
 import DisplayFoodMixture from '~~/components/DisplayFoodMixture.vue';
-import SelectorFoodDry from '~~/components/SelectorFoodDry.vue';
-import SelectorFoodWet from '~~/components/SelectorFoodWet.vue';
 
 const db = ref(Database.getInstance());
 const calculator = ref(Calculator.getInstance());
@@ -101,6 +99,9 @@ async function resetDB() {
           <InputAttributesCat />
         </Container>
 
+        <!-- FIXME let index.vue inject title to container's child -->
+        <!-- children have to handle title -->
+        <!-- if title is part of child layout, container shouldn't deal with it -->
         <Container title="What dry food does your cat eat? (multiple selection possible)">
           <SelectorGalleryAndCarousel foodType="dry" />
         </Container>

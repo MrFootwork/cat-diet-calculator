@@ -159,7 +159,7 @@ function toggleCatShapeHelp() {
 
   .option.shape {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     flex-direction: column;
 
     min-width: 17rem;

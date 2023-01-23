@@ -35,9 +35,9 @@ const sliderWidth = computed(() => {
 // calculate slider position in relation to parent
 const sliderPosition = computed(() => {
   // adjust start position, if minimum is not right
-  const shiftStart = '.85rem';
+  const shiftStart = '1.3rem';
   // adjust length factor, if end position doesn't match
-  const lengthFactor = .945;
+  const lengthFactor = .9;
 
   const positionLeft = lengthFactor * relativePosition.value * sliderWidth.value;
 

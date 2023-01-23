@@ -9,6 +9,7 @@ const props = defineProps<{
 const optionSelected = ref('select-carousel');
 
 const calculator = ref(Calculator.getInstance());
+const currentFoodBrands = computed(() => calculator.value.brandsOfType(props.foodType));
 
 function imageURL(foodCard: FoodBrand) {
 
@@ -24,23 +25,29 @@ function imageURL(foodCard: FoodBrand) {
  *  carousel functionality
  *************************************/
 const countBrandFoodType = computed(() => {
-  return calculator.value.brandsOfType(props.foodType).length;
+  return currentFoodBrands.value.length;
 });
 // all food cards
 const cardHTMLRefs = ref<HTMLElement[] | undefined>();
 // [data-pos] where cards are not visible anymore
 const positionOutOfSight = 3;
+// visible carousel cards
+const countVisibleCards = 5;
+const hasLessCardsThanVisible = countBrandFoodType.value < countVisibleCards;
 
 // initial HTML data attribute positions
 function initiatePosition(i: number) {
-  return i - positionOutOfSight;
+  if (!hasLessCardsThanVisible) return i - positionOutOfSight;
+  return i - positionOutOfSight + (countVisibleCards - countBrandFoodType.value);
 };
 
 function isHiddenLeft(i: number) {
+  if (hasLessCardsThanVisible) return false;
   return (i - positionOutOfSight) <= -positionOutOfSight;
 }
 
 function isHiddenRight(i: number) {
+  if (hasLessCardsThanVisible) return false;
   return (i - positionOutOfSight) >= positionOutOfSight;
 }
 
@@ -49,7 +56,7 @@ function selectCard(event: Event) {
   if (!(event.target instanceof HTMLElement)) return;
 
   const newActive = event.target.parentElement?.parentElement;
-  const isItem = event.target.closest('.dry-food-card>label>input[type=checkbox]');
+  const isItem = event.target.closest(`.food-card>label>input[type=checkbox]`);
 
   if (newActive && isItem) update(newActive);
 };
@@ -210,7 +217,7 @@ function touchEnd(touchEvent: TouchEvent, posXStart: number) {
         </button>
 
         <div class="food-card"
-             v-for="(foodCard, i) in calculator.brandsOfType(props.foodType)"
+             v-for="(foodCard, i) in currentFoodBrands"
              :class="{ activated: foodCard.isMixPortion }"
              :key="foodCard._id"
              ref="cardHTMLRefs"

@@ -26,20 +26,26 @@ function toggleCatShapeHelp() {
   <div class="options-wrapper">
 
     <section class="option weight">
-      <h4 class="title weight">How heavy is your cat?</h4>
+
       <!-- input cat weight -->
+      <h4 class="title weight">How heavy is your cat?</h4>
       <InputAttributesCatWeight class="component input range" />
+
     </section>
 
+
     <section class="option shape">
-      <h4 class="title shape">Is your cat overweight?</h4>
+
       <!-- input cat shape -->
+      <h4 class="title shape">Is your cat overweight?</h4>
       <div class="cat-shape">
+
         <input type="radio"
                name="catShape"
                id="ideal"
                value="ideal"
                v-model="calculator.catShape" />
+
         <label for="ideal"
                class="radio-button ideal">
           <img src="https://img.icons8.com/color/96/null/thin-cat.png"
@@ -47,11 +53,13 @@ function toggleCatShapeHelp() {
           <!-- TODO attribution -->
           <!-- <a target="_blank" href="https://icons8.com/icon/fzZBYAwn9fbk/skinny-cat">Skinny Cat icon by Icons8</a> -->
         </label>
+
         <input type="radio"
                name="catShape"
                id="overweight"
                value="overweight"
                v-model="calculator.catShape" />
+
         <label for="overweight"
                class="radio-button overweight">
           <img src="https://img.icons8.com/color/96/null/fat-cat.png"
@@ -59,17 +67,21 @@ function toggleCatShapeHelp() {
           <!-- TODO attribution -->
           <!-- <a target="_blank" href="https://icons8.com/icon/ZGYXhUYK9ciX/fat-cat">Fat Cat icon by Icons8</a> -->
         </label>
+
         <button class="cat-shape-help-toggle"
                 @click="toggleCatShapeHelp">
           <img src="https://img.icons8.com/flat-round/64/null/question-mark.png" />
           <!-- TODO attribution -->
           <!-- <a target="_blank" href="https://icons8.com/icon/80684/question-mark">Question Mark icon by Icons8</a> -->
         </button>
+
       </div>
+
     </section>
 
     <!-- modal for help infos on cat shape -->
     <Teleport to="body">
+
       <div class="cat-shape-help"
            @click="toggleCatShapeHelp"
            v-if="modalStore.isHelpVisible">
@@ -77,6 +89,7 @@ function toggleCatShapeHelp() {
              alt="Can you see/feel the ribs of your cat?"
              :data-show="modalStore.isHelpVisible" />
       </div>
+
     </Teleport>
 
   </div>

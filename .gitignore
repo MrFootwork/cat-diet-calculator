@@ -4,7 +4,7 @@ node_modules
 .nitro
 .cache
 .output
-.dist
+dist/
 .env
 env.ts
 package-lock.json

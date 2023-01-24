@@ -99,16 +99,13 @@ async function resetDB() {
           <InputAttributesCat />
         </Container>
 
-        <!-- FIXME let index.vue inject title to container's child -->
-        <!-- children have to handle title -->
-        <!-- if title is part of child layout, container shouldn't deal with it -->
         <Container>
           <SelectorGalleryAndCarousel title="What dry food does your cat eat? (multiple selection possible)"
                                       foodType="dry" />
         </Container>
 
         <Container>
-          <DisplayFoodMixture title="Dry Food Mixer" />
+          <DisplayFoodMixture />
         </Container>
 
         <Container>

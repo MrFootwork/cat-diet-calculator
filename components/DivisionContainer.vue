@@ -1,6 +1,5 @@
 <template>
   <section class="container">
-    <h4 v-if="title">{{ title }}</h4>
     <slot></slot>
   </section>
 </template>

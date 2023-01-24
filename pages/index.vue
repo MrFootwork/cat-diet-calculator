@@ -102,20 +102,22 @@ async function resetDB() {
         <!-- FIXME let index.vue inject title to container's child -->
         <!-- children have to handle title -->
         <!-- if title is part of child layout, container shouldn't deal with it -->
-        <Container title="What dry food does your cat eat? (multiple selection possible)">
-          <SelectorGalleryAndCarousel foodType="dry" />
+        <Container>
+          <SelectorGalleryAndCarousel title="What dry food does your cat eat? (multiple selection possible)"
+                                      foodType="dry" />
         </Container>
 
-        <Container title="Dry Food Mixer">
-          <DisplayFoodMixture />
+        <Container>
+          <DisplayFoodMixture title="Dry Food Mixer" />
         </Container>
 
-        <Container title="NEW What wet food and how many bags does your cat eat?">
-          <SelectorGalleryAndCarousel foodType="wet" />
+        <Container>
+          <SelectorGalleryAndCarousel title="NEW What wet food and how many bags does your cat eat?"
+                                      foodType="wet" />
         </Container>
 
-        <Container title="What wet food and how many bags does your cat eat?">
-          <SelectorFoodWet />
+        <Container>
+          <SelectorFoodWet title="What wet food and how many bags does your cat eat?" />
         </Container>
 
       </div>

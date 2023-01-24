@@ -3,6 +3,7 @@ import FoodBrand from '~~/model/IFoodBrand';
 import Calculator from '~~/model/MCalculator';
 
 const props = defineProps<{
+  title?: string;
   foodType: FoodBrand['type'];
 }>();
 
@@ -155,11 +156,12 @@ function touchEnd(touchEvent: TouchEvent, posXStart: number) {
 <!-- FIXME Turn everything into a component to be reused for dry and wet food -->
 <!-- also add input-number for wet food version -->
 
-<!-- time: 00:13 23.01.2023 -->
-
 <template>
-  <div>
-    <div :class="`${optionSelected} ${props.foodType}-food-cards`">
+  <div :class="`${optionSelected} ${foodType}-food-cards`">
+
+    <div class="header">
+
+      <h4 class="title">{{ props.title }}</h4>
 
       <div class="options">
 
@@ -193,9 +195,10 @@ function touchEnd(touchEvent: TouchEvent, posXStart: number) {
         </label>
 
       </div>
+    </div>
 
-      <!-- TODO attribution -->
-      <!-- <a target="_blank"
+    <!-- TODO attribution -->
+    <!-- <a target="_blank"
          href="https://icons8.com/icon/52220/modulansicht">
         Modulansicht</a> icon by
       <a target="_blank"
@@ -207,45 +210,44 @@ function touchEnd(touchEvent: TouchEvent, posXStart: number) {
       <a target="_blank"
          href="https://icons8.com">Icons8</a> -->
 
-      <div class="wrapper-food"
-           @touchstart="touchStart">
+    <div class="wrapper-food"
+         @touchstart="touchStart">
 
-        <button v-if="optionSelected === 'select-carousel'"
-                class="button left"
-                @click="moveCarousel('left')">
-          <IconCircleChevronLeft />
-        </button>
+      <button v-if="optionSelected === 'select-carousel'"
+              class="button left"
+              @click="moveCarousel('left')">
+        <IconCircleChevronLeft />
+      </button>
 
-        <div class="food-card"
-             v-for="(foodCard, i) in currentFoodBrands"
-             :class="{ activated: foodCard.isMixPortion }"
-             :key="foodCard._id"
-             ref="cardHTMLRefs"
-             :data-pos="initiatePosition(i)"
-             :data-is-hidden-left="isHiddenLeft(i)"
-             :data-is-hidden-right="isHiddenRight(i)">
-          <label :for="foodCard.name">
+      <div class="food-card"
+           v-for="(foodCard, i) in currentFoodBrands"
+           :class="{ activated: foodCard.isMixPortion }"
+           :key="foodCard._id"
+           ref="cardHTMLRefs"
+           :data-pos="initiatePosition(i)"
+           :data-is-hidden-left="isHiddenLeft(i)"
+           :data-is-hidden-right="isHiddenRight(i)">
+        <label :for="foodCard.name">
 
-            <img :src="imageURL(foodCard)"
-                 :alt="foodCard.name" />
+          <img :src="imageURL(foodCard)"
+               :alt="foodCard.name" />
 
-            <input type="checkbox"
-                   :id="foodCard.name"
-                   v-model="foodCard.isMixPortion"
-                   @click="selectCard($event)" />
+          <input type="checkbox"
+                 :id="foodCard.name"
+                 v-model="foodCard.isMixPortion"
+                 @click="selectCard($event)" />
 
-          </label>
-        </div>
-
-        <button v-if="optionSelected === 'select-carousel'"
-                class="button right"
-                @click="moveCarousel('right')">
-          <IconCircleChevronRight />
-        </button>
-
+        </label>
       </div>
 
+      <button v-if="optionSelected === 'select-carousel'"
+              class="button right"
+              @click="moveCarousel('right')">
+        <IconCircleChevronRight />
+      </button>
+
     </div>
+
   </div>
 </template>
 
@@ -256,73 +258,83 @@ function touchEnd(touchEvent: TouchEvent, posXStart: number) {
 
 .dry-food-cards,
 .wet-food-cards {
-  .options {
-    width: 100%;
-
+  .header {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: flex-start;
 
-    input[type=radio].option {
-      height: 0;
-      width: 0;
+    .title {
       margin: 0;
-      padding: 0;
-      border: none;
-      outline: none;
-      // firefox would display 1.6px borders
-      -moz-appearance: none;
-
-      &:checked+label {
-        @include boxShadowButtonChecked;
-      }
-
-      &:active+label {
-        @include boxShadowButtonActive;
-      }
-
-      &:focus+label,
-      &:hover+label {
-        @include outlineOnHover;
-      }
     }
 
-    label.radio-button {
+    .options {
+      width: auto;
+
       display: flex;
-      justify-content: center;
-      align-items: center;
+      justify-content: flex-end;
 
-      cursor: pointer;
+      input[type=radio].option {
+        height: 0;
+        width: 0;
+        margin: 0;
+        padding: 0;
+        border: none;
+        outline: none;
+        // firefox would display 1.6px borders
+        -moz-appearance: none;
 
-      margin: $margin-button;
-      aspect-ratio: 1 / 1;
-      width: $size-button;
-      border-radius: $round-corner;
-
-      @include boxShadowButton;
-
-      // mouse down on input element doesn't fire after first focus
-      // for consecutive clicks I had to apply on the child img
-      &:active>img {
-        @include boxShadowButtonActive;
-      }
-
-      img {
-        aspect-ratio: 1/1;
-
-        &#img-gallery {
-          width: 85%;
+        &:checked+label {
+          @include boxShadowButtonChecked;
         }
 
-        &#img-carousel {
-          width: 100%;
+        &:active+label {
+          @include boxShadowButtonActive;
+        }
+
+        &:focus+label,
+        &:hover+label {
+          @include outlineOnHover;
         }
       }
 
-      @at-root input+label>img {
-        filter: invert(87%) sepia(39%) saturate(3430%) hue-rotate(336deg) brightness(87%) contrast(82%);
-      }
+      label.radio-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-      .option {}
+        cursor: pointer;
+
+        margin: $margin-button;
+        aspect-ratio: 1 / 1;
+        width: $size-button;
+        border-radius: $round-corner;
+
+        @include boxShadowButton;
+
+        // mouse down on input element doesn't fire after first focus
+        // for consecutive clicks I had to apply on the child img
+        &:active>img {
+          @include boxShadowButtonActive;
+        }
+
+        img {
+          aspect-ratio: 1/1;
+
+          &#img-gallery {
+            width: 85%;
+          }
+
+          &#img-carousel {
+            width: 100%;
+          }
+        }
+
+        @at-root input+label>img {
+          filter: invert(87%) sepia(39%) saturate(3430%) hue-rotate(336deg) brightness(87%) contrast(82%);
+        }
+
+        .option {}
+      }
     }
   }
 

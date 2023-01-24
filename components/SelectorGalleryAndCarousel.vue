@@ -265,6 +265,7 @@ function touchEnd(touchEvent: TouchEvent, posXStart: number) {
 
     .title {
       margin: 0;
+      padding-right: $margin-button;
     }
 
     .options {

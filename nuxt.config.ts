@@ -10,6 +10,11 @@ export default defineNuxtConfig({
 			meta: [],
 		},
 	},
+	runtimeConfig: {
+		public: {
+			google_analytics_id: process.env.GOOGLE_ANALYTICS_ID,
+		},
+	},
 	alias: {
 		mixins: resolve(__dirname, 'assets/sass/abstracts/_mixins.scss'),
 		colors: resolve(__dirname, './assets/sass/abstracts/_colors.scss'),

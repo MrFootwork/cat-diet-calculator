@@ -18,7 +18,8 @@
 		"nuxt": "^3.0.0",
 		"sass": "^1.51.0",
 		"typescript": "latest",
-		"vitest": "^0.12.9"
+		"vitest": "^0.12.9",
+		"vue-gtag-next": "^1.14.0"
 	},
 	"engines": {
 		"node": "16.x"

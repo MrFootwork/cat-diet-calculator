@@ -6,6 +6,8 @@ const calculatedResult = computed(() => {
   return calculator.value.getResult(calculator.value.allBrands);
 });
 
+// TODO animate numbers
+// https://vuejs.org/guide/extras/animation.html#animating-with-watchers
 const displayResult = computed(() => {
   return `${new Intl.NumberFormat('de-DE', {
     minimumFractionDigits: 1,
